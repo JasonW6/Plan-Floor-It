@@ -6,7 +6,7 @@
 }
 
 
-<form method="post" @*action="@Url.Action(......)"*@>
+<form method="post" action="@Url.Action("NewProject", "Project")">
 	<label>Project Name: @Html.TextBoxFor(m => m.HouseName, new { placeholder = "Enter Project Name" })</label>
 	<label>Basement:  @Html.RadioButtonFor(m => m.Basement, "true") Yes @Html.RadioButtonFor(m => m.Basement, "false") No</label>
 	<label>
