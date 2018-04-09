@@ -114,6 +114,7 @@ namespace Capstone.Web.Controllers
                 //user.Roles.Add("Administrator");
                 //user.Roles.Add("Editor");
                 //....
+                user.Roles.Add("Planner");
 
 
                 var result = await UserManager.CreateAsync(user, model.Password);

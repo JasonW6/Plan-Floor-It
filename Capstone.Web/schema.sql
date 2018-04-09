@@ -28,13 +28,13 @@ CREATE TABLE [dbo].[UserRoles]
  CREATE TABLE House
  (
 	HouseId int identity(1, 1),
-	UserId int, 
+	UserId UNIQUEIDENTIFIER, 
 	HouseName varchar(50) not null, 
 	Basement bit not null, 
 	Floors int not null,
 	SquareFootage float not null, 
 	Region varchar(50), 
-	Budget decimal(max) not null, 
+	Budget decimal not null, 
 
 	CONSTRAINT pk_HouseId PRIMARY KEY(HouseId),
 	CONSTRAINT fk_House_Users FOREIGN KEY(UserId) REFERENCES Users(UserId),
@@ -46,7 +46,7 @@ CREATE TABLE [dbo].[UserRoles]
 	FloorId int identity(1, 1),
 	HouseId int,
 	FloorNumber int not null,
-	FloorPlan JSON, --JSON was recognized as a column data type here. Assuming this will work?
+	FloorPlan varchar(max), --JSON was recognized as a column data type here. Assuming this will work?
 	
 	CONSTRAINT pk_FloorId PRIMARY KEY(FloorId),
 	CONSTRAINT fk_Floor_House FOREIGN Key(HouseId) REFERENCES House(HouseId),
