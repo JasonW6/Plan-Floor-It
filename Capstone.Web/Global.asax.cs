@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 
 using System.Web.Routing;
+using Capstone.Web.DAL;
 
 namespace Capstone.Web
 {
@@ -31,8 +32,9 @@ namespace Capstone.Web
 
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-            // Configure Bindings
-            // kernel.Bind<interface>().To<class>();
+			// Configure Bindings
+			// kernel.Bind<interface>().To<class>();
+			kernel.Bind<IProjectDAL>().To<ProjectDAL>().WithConstructorArgument("conectionString", connectionString);
 
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 

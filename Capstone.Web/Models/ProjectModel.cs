@@ -8,7 +8,7 @@ namespace Capstone.Web.Models
 	public class ProjectModel
 	{
 		public int HouseId { get; set; }
-		public int UserId { get; set; }
+		public Guid UserId { get; set; }
 		public string HouseName { get; set; }
 		public bool Basement { get; set; }
 		public int Floors { get; set; }
