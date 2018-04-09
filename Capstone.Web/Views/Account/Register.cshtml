@@ -2,27 +2,29 @@
 @{
     ViewBag.Title = "Register";
 }
-
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>    
-    <div>
-        @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
-    </div>
-    <div>
-        @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
-    </div>
-    <div>
-        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password" })
-    </div>
-    <div>
-        <input type="submit" value="Register" />
-    </div>
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="~/Scripts/particlesSetup.js"></script>
 }
 
-@section Scripts {
+<div id="particles-js"></div>
+<div class="accountFormContainer">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <div>
+            @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
+        </div>
+        <div>
+            @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
+        </div>
+        <div>
+            @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password" })
+        </div>
+        <div>
+            <input type="submit" value="Register" />
+        </div>
+    }
+</div>
 
-}

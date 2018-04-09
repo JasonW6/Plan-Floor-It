@@ -1,0 +1,37 @@
+﻿#accountButtonContainer {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+}
+
+.accountHomeBtn {
+    width: 9em;
+    font-size: 1.5rem;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    display: block;
+    background-color: white;
+    color: black;
+    border: 2px solid #618aea;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+    .accountHomeBtn:hover {
+        background-color: #618aea;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+#registerBtn {
+    margin-top: 0.5em;
+}
+
+
+
+#homeTitle{
+    font-size: 4em;
+}

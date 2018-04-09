@@ -1,6 +1,20 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@section styles{
+    <link href="~/Content/Home.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="~/Scripts/particlesSetup.js"></script>
+}
+
+<div id="particles-js"></div>
 
 
-<h2>Index</h2>
+<div id="accountButtonContainer">
+    <div><h1 id="homeTitle">PLACEHOLDER</h1></div>
+
+    <button class="accountHomeBtn" id="loginBtn">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
+    <button class="accountHomeBtn" id="registerBtn">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</button>
+</div>
