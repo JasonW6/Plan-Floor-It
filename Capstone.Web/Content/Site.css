@@ -103,3 +103,24 @@ a:hover{
 .rememberMeText{
     color: white;
 }
+
+#newProject {
+	background-image: url('HouseOnHill.jpg');
+	background-size: cover; 
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 95vh;
+}
+
+#newProjectForm {
+	background-color: rgba(251, 210, 125, 0.66);
+	border: solid white;
+	padding: 20px;
+	width: 40vw;
+	display: inline-block;
+	margin-left: 10vw;
+	margin-top: 20vh;
+}
+
+
+
