@@ -27,6 +27,7 @@ namespace Capstone.Web.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+
         }
 
         public ApplicationSignInManager SignInManager

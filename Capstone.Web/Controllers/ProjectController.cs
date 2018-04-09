@@ -4,12 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Capstone.Web.DAL;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 
 namespace Capstone.Web.Controllers
 {
     public class ProjectController : Controller
     {
+
+		IProjectDAL dal;
+
+		public ProjectController(IProjectDAL dal)
+		{
+			this.dal = dal;
+		}
+
         // GET: Project
 
         [HttpGet]
@@ -21,17 +32,18 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult NewProject(ProjectModel model)
         {
-            //dal - inset Model into database
+			//dal - inset Model into database
 
-            return RedirectToAction("Build", new { houseId = model.HouseId });
+			model.UserId = new Guid();
+
+			int houseId = dal.AddNewHouse(model);
+
+            return RedirectToAction("Build", houseId);
         }
 
         public ActionResult Build(int houseId)
         {
-            //dal - find house by house id
-            //create project model with house
-
-            ProjectModel model = new ProjectModel();
+			ProjectModel model = dal.GetProjectByHouseId(houseId);
 
             return View("Build", model);  
         }
