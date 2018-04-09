@@ -80,7 +80,7 @@ namespace Capstone.Web.DAL
             }
         }
 
-        private static ProjectModel MapProjectFromTable(SqlDataReader reader)
+        public static ProjectModel MapProjectFromTable(SqlDataReader reader)
         {
             ProjectModel project = null;
             project.HouseId = Convert.ToInt32(reader["HouseId"]);
