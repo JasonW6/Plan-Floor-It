@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="fabric.min.js"></script>
+    <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="c" width="1400" height="600"></canvas>
+    <script>
+        const canvas = new fabric.Canvas('c');
+        canvas.on('object:scaling', function () {
+            const active = canvas.getActiveObject();
+            active.set({ width: active.width * active.scaleX, scaleX: 1, height: active.height * active.scaleY, scaleY: 1 }); // apply the scale
+            active.setCoords(); // called so that the bounding box etc gets updated
+        });
+        // canvas moving limit 
+
+        canvas.on("object:moving", function (e) {
+            let movingBox = e.target;
+            const boundingBox = canvas.item(0);
+            var top = movingBox.top;
+            var bottom = top + movingBox.height;
+            var left = movingBox.left;
+            var right = left + movingBox.width;
+
+            var topBound = boundingBox.top;
+            var bottomBound = topBound + boundingBox.height - 5;
+            var leftBound = boundingBox.left;
+            var rightBound = leftBound + boundingBox.width - 5;
+
+            movingBox.set("left", Math.min(Math.max(left, leftBound), rightBound - movingBox.width));
+            movingBox.set("top", Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
+        });
+
+
+
+// end canvas moving limit
+    </script>
+    <button type="button" onclick="setFoundation()">foundation</button>
+    <form type="text" name="area">
+        Width:
+        <input type="number" name="width"> Height:
+        <input type="number" name="height"> Color:
+        <input type="color" name="color">
+        <button type="button" onclick="newRect(width.value, height.value, color.value, false)">new</button>
+    </form>
+
+    <form>
+        Material:
+        <select name="material">
+            <option value="wood.jpg">Wood</option>
+            <option value="tile.gif">Tile</option>
+            <option value="carpet.jpg">Carpet</option>
+        </select>
+        <button onclick="setMaterial(material.value)" type="button">set</button>
+    </form>
+
+    <div class="materials">
+        <div draggable="true" ondragstart="drag(event)" class="material" id="brown"></div>
+        <div draggable="true" ondragstart="drag(event)" class="material" id="yellow"></div>
+        <div draggable="true" ondragstart="drag(event)" class="material" id="orange"></div>
+    </div>
+    <input ondrop="drop(event)" ondragover="allowDrop(event)" type="text">
+    <div odrop="changeColor(event)" style="background-color:white;" ondragover="allowDrop(event)" class="material" id="color"></div>
+</body>
+
+</html>
