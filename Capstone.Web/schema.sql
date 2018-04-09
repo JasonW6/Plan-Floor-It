@@ -1,4 +1,4 @@
-﻿CREATE DATABASE Project;
+﻿CREATE DATABASE HousePlanner;
 
 GO
 
@@ -18,7 +18,7 @@ CREATE TABLE [dbo].[Users]
 CREATE TABLE [dbo].[UserRoles]
 (
 	[UserId] UNIQUEIDENTIFIER NOT NULL,
-	[Role] VARCHAR(MAX) NOT NULL,
+	[Role] VARCHAR(100) NOT NULL,
 
 	CONSTRAINT pk_UserRoles PRIMARY KEY (UserId, Role),
 	CONSTRAINT fk_UserRoles_Users FOREIGN KEY (UserId) REFERENCES Users(UserId)
@@ -32,9 +32,9 @@ CREATE TABLE [dbo].[UserRoles]
 	HouseName varchar(50) not null, 
 	Basement bit not null, 
 	Floors int not null,
-	SquareFootage int not null, 
+	SquareFootage float not null, 
 	Region varchar(50), 
-	Budget int not null, 
+	Budget decimal(max) not null, 
 
 	CONSTRAINT pk_HouseId PRIMARY KEY(HouseId),
 	CONSTRAINT fk_House_Users FOREIGN KEY(UserId) REFERENCES Users(UserId),
