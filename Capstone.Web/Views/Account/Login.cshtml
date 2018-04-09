@@ -3,34 +3,35 @@
 @{
     ViewBag.Title = "Log in";
 }
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="~/Scripts/particlesSetup.js"></script>
+}
+<div id="particles-js"></div>
 
-<h2>@ViewBag.Title.</h2>
-<section id="loginForm">
+
+<div class="accountFormContainer">
     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
     {
         @Html.AntiForgeryToken()
-        <h4>Use a local account to log in.</h4>
-        <div>
+        <h1 class="accountFormTitle">Use a local account to log in.</h1>
+        <div class="accountFormControl">
             @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
         </div>
-        <div>
+        <div class="accountFormControl">
             @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
         </div>
-        <div>
+        <div class="accountFormControl">
             @Html.CheckBoxFor(m => m.RememberMe)
-            @Html.LabelFor(m => m.RememberMe)
+            @Html.LabelFor(m => m.RememberMe, new { @class = "rememberMeText" })
         </div>
         <div>
-            <input type="submit" value="Log in" />
+            <input class="navbarBtn accountformbtn" type="submit" value="Log in" />
         </div>
         <p>
             @Html.ActionLink("Register as a new user", "Register")
         </p>
     }
-</section>
-    
+    </div>
 
 
-@section Scripts {
-
-}

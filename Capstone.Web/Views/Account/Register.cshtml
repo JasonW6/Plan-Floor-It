@@ -12,18 +12,18 @@
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
     {
         @Html.AntiForgeryToken()
-        <h4>Create a new account.</h4>
-        <div>
-            @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
+        <h1 class="accountFormTitle">Create a new account.</h1>
+        <div class="accountFormControl" id="regEmail">
+            @Html.TextBoxFor(m => m.Email, new { placeholder = "email", @class = "accountFormTextBox" })
+        </div>
+        <div class="accountFormControl" id="regPassword">
+            @Html.PasswordFor(m => m.Password, new { placeholder = "password", @class="accountFormTextBox" })
+        </div>
+        <div class="accountFormControl" id="regConfirm">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password", @class = "accountFormTextBox" })
         </div>
         <div>
-            @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
-        </div>
-        <div>
-            @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password" })
-        </div>
-        <div>
-            <input type="submit" value="Register" />
+            <input class="navbarBtn accountformbtn" type="submit" value="Register" />
         </div>
     }
 </div>

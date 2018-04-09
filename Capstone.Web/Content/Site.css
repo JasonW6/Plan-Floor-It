@@ -80,4 +80,26 @@ a:hover{
     top: 40%;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
+}
+
+.accountFormControl {
+    margin: 0.5em 0;
+    
+}
+
+.accountformbtn{
+    text-align: center;
+   
+}
+
+.accountFormTextBox{
+    border:2px solid #618aea;
+}
+.accountFormTitle{
+    font-size: 3rem;
+
+}
+.rememberMeText{
+    color: white;
 }
