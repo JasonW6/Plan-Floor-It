@@ -244,6 +244,7 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Project\NewProject.cshtml" />
+    <Content Include="Views\Project\Build.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
