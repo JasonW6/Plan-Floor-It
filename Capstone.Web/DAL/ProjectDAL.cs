@@ -84,7 +84,7 @@ namespace Capstone.Web.DAL
         {
             ProjectModel project = null;
             project.HouseId = Convert.ToInt32(reader["HouseId"]);
-            project.UserId = Convert.ToInt32(reader["UserId"]);
+            project.UserId = new Guid(Convert.ToString(reader["UserId"]));
             project.HouseName = Convert.ToString(reader["HouseName"]);
             project.Basement = Convert.ToBoolean(reader["Basement"]);
             project.Floors = Convert.ToInt32(reader["Floors"]);
