@@ -80,7 +80,8 @@ namespace Capstone.Web.Controllers
             if (user != null)
             {
                 await SignInManager.SignInAsync(user, model.RememberMe, rememberBrowser: false);
-                return RedirectToLocal(returnUrl);
+                //return RedirectToLocal(returnUrl);
+                return RedirectToAction("NewProject", "Project");
             }
             else
             {
@@ -123,7 +124,7 @@ namespace Capstone.Web.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("NewProject", "Project");
                 }
                 AddErrors(result);
             }
