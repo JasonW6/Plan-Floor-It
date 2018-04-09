@@ -34,11 +34,12 @@ namespace Capstone.Web.Controllers
         {
 			//dal - inset Model into database
 
-			model.UserId = new Guid();
+			model.UserId = new Guid("0C21BB2E-419F-4C92-8E88-D4C7EB893C89");
 
-			int houseId = dal.AddNewHouse(model);
 
-            return RedirectToAction("Build", houseId);
+            int id = dal.AddNewHouse(model);
+
+            return RedirectToAction("Build", new { houseId = id });
         }
 
         public ActionResult Build(int houseId)

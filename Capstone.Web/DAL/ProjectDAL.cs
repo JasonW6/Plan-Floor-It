@@ -13,7 +13,7 @@ namespace Capstone.Web.DAL
         private string connectionString;
 
         private const string SQL_SelectProjectByHouseId = @"SELECT * FROM house WHERE HouseId = @houseId;";
-		private const string SQL_AddNewHouse = @"INSERT INTO house UserId, HouseName, Basement, Floors, SquareFootage, Region, Budget VALUES (@userId, @houseName, @basement, @floors, @squareFootage, @region, @budget);";
+		private const string SQL_AddNewHouse = @"INSERT INTO house (UserId, HouseName, Basement, Floors, SquareFootage, Region, Budget) VALUES (@userId, @houseName, @basement, @floors, @squareFootage, @region, @budget);";
 
         public ProjectDAL(string connectionString)
         {
@@ -38,7 +38,7 @@ namespace Capstone.Web.DAL
 
 					cmd.ExecuteNonQuery();
 
-					cmd = new SqlCommand("SELECT MAX (HouseId) FROM House;", conn);
+					cmd = new SqlCommand("SELECT MAX(HouseId) FROM House;", conn);
 					int houseId = (int)cmd.ExecuteScalar();
 					return houseId;
 
@@ -82,15 +82,17 @@ namespace Capstone.Web.DAL
 
         public static ProjectModel MapProjectFromTable(SqlDataReader reader)
         {
-            ProjectModel project = null;
-            project.HouseId = Convert.ToInt32(reader["HouseId"]);
-            project.UserId = new Guid(Convert.ToString(reader["UserId"]));
-            project.HouseName = Convert.ToString(reader["HouseName"]);
-            project.Basement = Convert.ToBoolean(reader["Basement"]);
-            project.Floors = Convert.ToInt32(reader["Floors"]);
-            project.SquareFootage = Convert.ToDouble(reader["SquareFootage"]);
-            project.Region = Convert.ToString(reader["Region"]);
-            project.Budget = Convert.ToDecimal(reader["Budget"]);
+            ProjectModel project = new ProjectModel
+            {
+                HouseId = Convert.ToInt32(reader["HouseId"]),
+                UserId = new Guid(Convert.ToString(reader["UserId"])),
+                HouseName = Convert.ToString(reader["HouseName"]),
+                Basement = Convert.ToBoolean(reader["Basement"]),
+                Floors = Convert.ToInt32(reader["Floors"]),
+                SquareFootage = Convert.ToDouble(reader["SquareFootage"]),
+                Region = Convert.ToString(reader["Region"]),
+                Budget = Convert.ToDecimal(reader["Budget"])
+            };
 
             return project;
         }
