@@ -34,7 +34,7 @@ namespace Capstone.Web.Controllers
         {
 			//dal - inset Model into database
 
-			model.UserId = new Guid("0C21BB2E-419F-4C92-8E88-D4C7EB893C89");
+			model.UserId = Guid.Parse(User.Identity.GetUserId());
 
 
             int id = dal.AddNewHouse(model);
