@@ -20,6 +20,7 @@ namespace Capstone.Web.Models
 			{
 				return Length * Width;
 			}
+            set { }
 		}
 		public string Region { get; set; }
 		public decimal Budget { get; set; }
