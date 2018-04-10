@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Capstone.Web.Models;
 
 namespace Capstone.Web.Models
 {
@@ -10,8 +11,9 @@ namespace Capstone.Web.Models
 		public int HouseId { get; set; }
 		public Guid UserId { get; set; }
 		public string HouseName { get; set; }
-		public bool Basement { get; set; }
-		public int Floors { get; set; }
+		public bool HasBasement { get; set; }
+		public int NumberOfFloors { get; set; }
+        public List<FloorModel> ListOfFloors { get; set; }
 		public double Length { get; set; }
 		public double Width { get; set; }
 		public double SquareFootage
