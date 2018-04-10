@@ -60,7 +60,7 @@ CREATE TABLE [dbo].[UserRoles]
 	LowPrice decimal (7, 2) not null, 
 	MidPrice decimal (7, 2) not null, 
 	HighPrice decimal (7, 2) not null,
-	ImageSource varchar not null,
+	ImageSource varchar(75) not null,
 	
 	CONSTRAINT pk_MaterialId PRIMARY KEY(MaterialId),
 
