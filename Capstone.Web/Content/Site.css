@@ -122,5 +122,12 @@ a:hover{
 	margin-top: 20vh;
 }
 
+.text-danger li{
+    color: red;
+    font-size:1.5rem;
+    list-style: none;
+    display: block;
+}
+
 
 
