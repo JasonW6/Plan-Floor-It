@@ -1,5 +1,5 @@
 ﻿<build-menu>
-    <div class="menuContainer">
+    <div class="menuContainer" onload="{ getMaterials }">
 
         <div class="materialsContainer">
             <div class="materialScroll">
@@ -23,4 +23,18 @@
 
     </div>
 
+    <script>
+
+        function getMaterials() {
+            const materials = [];
+
+            const url = '/Build/GetMaterials';
+
+            fetch(url)
+                .then(response => response.materials)
+                .then(data => console.log(data));
+        }
+
+
+    </script>
 </build-menu>

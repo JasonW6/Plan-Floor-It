@@ -6,3 +6,12 @@
 
 <h2>@Model.HouseName</h2>
 
+@section scripts
+{
+    <script src="~/Tags/build-menu.tag" type="riot/tag"></script>
+    <script>
+        riot.mount('build-menu');
+    </script>
+}
+
+<build-menu></build-menu>

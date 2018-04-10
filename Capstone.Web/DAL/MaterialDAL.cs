@@ -52,7 +52,7 @@ namespace Capstone.Web.DAL
                 Name = Convert.ToString(reader["Material_Type_Item"]),
                 IsMaterial = Convert.ToBoolean(reader["IsMaterial"]),
                 LowPrice = Convert.ToDecimal(reader["LowPrice"]),
-                MediumPrice = Convert.ToDecimal(reader["MediumPrice"]),
+                MediumPrice = Convert.ToDecimal(reader["MidPrice"]),
                 HighPrice = Convert.ToDecimal(reader["HighPrice"]),
                 ImageSource = Convert.ToString(reader["ImageSource"])
             };
