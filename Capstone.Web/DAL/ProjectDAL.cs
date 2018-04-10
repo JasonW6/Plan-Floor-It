@@ -87,8 +87,8 @@ namespace Capstone.Web.DAL
                 HouseId = Convert.ToInt32(reader["HouseId"]),
                 UserId = new Guid(Convert.ToString(reader["UserId"])),
                 HouseName = Convert.ToString(reader["HouseName"]),
-                Basement = Convert.ToBoolean(reader["Basement"]),
-                Floors = Convert.ToInt32(reader["Floors"]),
+                HasBasement = Convert.ToBoolean(reader["Basement"]),
+                NumberOfFloors = Convert.ToInt32(reader["Floors"]),
                 SquareFootage = Convert.ToDouble(reader["SquareFootage"]),
                 Region = Convert.ToString(reader["Region"]),
                 Budget = Convert.ToDecimal(reader["Budget"])
