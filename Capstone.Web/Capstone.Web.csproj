@@ -249,6 +249,7 @@
     <Content Include="Views\Project\NewProject.cshtml" />
     <Content Include="Views\Project\Build.cshtml" />
     <Content Include="Tags\build-menu.tag" />
+    <Content Include="Tags\project-canvas.tag" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Build\" />
