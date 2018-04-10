@@ -14,6 +14,8 @@
     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
     {
         @Html.AntiForgeryToken()
+       @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
         <h1 class="accountFormTitle">Use a local account to log in.</h1>
         <div class="accountFormControl">
             @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
