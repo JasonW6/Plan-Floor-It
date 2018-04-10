@@ -11,7 +11,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="setFoundation()">
     <canvas id="c" width="1400" height="600"></canvas>
     <script>
         const canvas = new fabric.Canvas('c');
@@ -31,9 +31,9 @@
             var right = left + movingBox.width;
 
             var topBound = boundingBox.top;
-            var bottomBound = topBound + boundingBox.height - 5;
+            var bottomBound = topBound + boundingBox.height;
             var leftBound = boundingBox.left;
-            var rightBound = leftBound + boundingBox.width - 5;
+            var rightBound = leftBound + boundingBox.width;
 
             movingBox.set("left", Math.min(Math.max(left, leftBound), rightBound - movingBox.width));
             movingBox.set("top", Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
@@ -44,15 +44,12 @@
 // end canvas moving limit
     </script>
     <button type="button" onclick="setFoundation()">foundation</button>
-    <form type="text" name="area">
-        Width:
-        <input type="number" name="width"> Height:
-        <input type="number" name="height"> Color:
-        <input type="color" name="color">
-        <button type="button" onclick="newRect(width.value, height.value, color.value, false)">new</button>
-    </form>
-
+    <button type="button" onclick="newRoom()">new room</button>
     <form>
+        <button type="button" onclick="previousRoom()">&lt</button>
+        Room:
+        <span id="room"></span>
+        <button type="button" onclick="nextRoom()">&gt</button>
         Material:
         <select name="material">
             <option value="wood.jpg">Wood</option>
@@ -61,6 +58,14 @@
         </select>
         <button onclick="setMaterial(material.value)" type="button">set</button>
     </form>
+    <form>
+        Width:
+        <input type="number" name="width"> Height:
+        <input type="number" name="height">
+        <button type="button" onclick="setArea(width.value, height.value)">set</button>
+        <div>Room area: <span id="area"></span></div>
+    </form>
+    
 
     <div class="materials">
         <div draggable="true" ondragstart="drag(event)" class="material" id="brown"></div>
