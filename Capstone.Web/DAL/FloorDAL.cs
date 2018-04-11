@@ -11,6 +11,7 @@ namespace Capstone.Web.DAL
 	{
 		private string connectionString;
 		private const string SQL_GetFloorsByHouseId = @"SELECT * FROM Floor where HouseId = @houseId;";
+		private const string SQL_InsertFloor = @"INSERT INTO Floor VALUES (@houseId, @floorNo, null);";
 
 		public FloorDAL(string connectionString)
 		{
@@ -33,11 +34,14 @@ namespace Capstone.Web.DAL
 					SqlDataReader reader = cmd.ExecuteReader();
 					while (reader.Read())
 					{
-						FloorModel floor = new FloorModel();
-						floor.FloorId = Convert.ToInt32(reader["FloorId"]);
-						floor.HouseId = Convert.ToInt32(reader["HouseId"]);
-						floor.FloorNumber = Convert.ToInt32(reader["FloorNumber"]);
-						floor.FloorPlan = Convert.ToString(reader["FloorPlan"]);
+						FloorModel floor = new FloorModel
+						{
+							FloorId = Convert.ToInt32(reader["FloorId"]),
+							HouseId = Convert.ToInt32(reader["HouseId"]),
+							FloorNumber = Convert.ToInt32(reader["FloorNumber"]),
+							FloorPlan = Convert.ToString(reader["FloorPlan"])
+						};
+
 						houseFloors.Add(floor);
 					}
 				}
@@ -51,5 +55,31 @@ namespace Capstone.Web.DAL
 			return houseFloors;
 
 		}
+
+		public bool CreateFloor(int floorNumber, int houseId)
+		{
+			try
+			{
+				using(SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+
+					SqlCommand cmd = new SqlCommand(SQL_InsertFloor, conn);
+					cmd.Parameters.AddWithValue("@houseId", houseId);
+					cmd.Parameters.AddWithValue("@floorNo", floorNumber);
+
+					cmd.ExecuteNonQuery();
+
+					return true;
+				}
+
+			}
+			catch(SqlException)
+			{
+				return false;
+			}
+		}
 	}
+
+
 }

@@ -11,5 +11,6 @@ namespace Capstone.Web.DAL
 	public interface IFloorDAL
 	{
 		List<FloorModel> GetFloorsByHouseId(int houseId);
+		bool CreateFloor(int floorNumber, int id);
 	}
 }

@@ -27,5 +27,17 @@ namespace Capstone.Web.Models
 		public string Region { get; set; }
 		public decimal Budget { get; set; }
 
+
+		public int GetFloorCount()
+		{
+			int count = NumberOfFloors;
+
+			if(HasBasement)
+			{
+				count++;
+			}
+
+			return count;
+		}
 	}
 }

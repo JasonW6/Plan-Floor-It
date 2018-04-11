@@ -15,10 +15,12 @@ namespace Capstone.Web.Controllers
     {
 
 		IProjectDAL dal;
+		IFloorDAL fdal;
 
-		public ProjectController(IProjectDAL dal)
+		public ProjectController(IProjectDAL _dal, IFloorDAL _fdal)
 		{
-			this.dal = dal;
+			this.dal = _dal;
+			this.fdal = _fdal;
 		}
 
         // GET: Project
@@ -36,9 +38,10 @@ namespace Capstone.Web.Controllers
 			model.UserId = Guid.Parse(User.Identity.GetUserId());
 
 
-            int id = dal.AddNewHouse(model);
+            int houseId = dal.AddNewHouse(model);
+			MakeFloors(model.GetFloorCount(), houseId);
 
-            return RedirectToAction("Build", new { houseId = id });
+            return RedirectToAction("Build", new { houseId = houseId });
         }
 
         public ActionResult Build(int houseId)
@@ -54,6 +57,14 @@ namespace Capstone.Web.Controllers
 			var result = dal.GetUserProjects(Guid.Parse(User.Identity.GetUserId()));
 
 			return View("Dashboard", result);
+		}
+
+		private void MakeFloors(int numberOfFloors, int houseId)
+		{
+			for(int i = 0; i < numberOfFloors; i++)
+			{
+				fdal.CreateFloor(i, houseId);
+			}
 		}
     }
 }
