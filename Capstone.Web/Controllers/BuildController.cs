@@ -12,10 +12,12 @@ namespace Capstone.Web.Controllers
     public class BuildController : ApiController
     {
         IMaterialDAL dal;
+		IFloorDAL fdal;
 
-        public BuildController(IMaterialDAL _dal)
+        public BuildController(IMaterialDAL _dal, IFloorDAL _fdal)
         {
             dal = _dal;
+			fdal = _fdal;
         }
 
         [HttpGet]
@@ -25,5 +27,14 @@ namespace Capstone.Web.Controllers
             List<Material> materials = dal.GetAllMaterials();
             return Ok(materials);
         }
+
+		[HttpGet]
+		[Route("api/floors")]
+		public IHttpActionResult GetFloors(int houseId)
+		{
+			List<FloorModel> floors = fdal.GetFloorsByHouseId(houseId);
+			return Ok(floors);
+		}
+		
     }
 }

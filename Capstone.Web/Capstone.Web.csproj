@@ -194,6 +194,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="DAL\FloorDAL.cs" />
+    <Compile Include="DAL\IFloorDAL.cs" />
     <Compile Include="DAL\IMaterialDAL.cs" />
     <Compile Include="DAL\IProjectDAL.cs" />
     <Compile Include="DAL\MaterialDAL.cs" />
@@ -259,6 +261,8 @@
     <Content Include="Views\Project\Build.cshtml" />
     <Content Include="Tags\build-menu.tag" />
     <Content Include="Views\Project\Dashboard.cshtml" />
+    <Content Include="Tags\project-canvas.tag" />
+    <Content Include="Tags\room-menu.tag" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Build\" />
