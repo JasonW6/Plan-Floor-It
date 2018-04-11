@@ -31,8 +31,7 @@ namespace Capstone.Web.Controllers
 
         [HttpPost]
         public ActionResult NewProject(ProjectModel model)
-        {
-			//dal - inset Model into database
+		{ 
 
 			model.UserId = Guid.Parse(User.Identity.GetUserId());
 
@@ -48,5 +47,13 @@ namespace Capstone.Web.Controllers
 
             return View("Build", model);  
         }
+
+		public ActionResult Dashboard()
+		{
+			//Return list of user projects
+			var result = dal.GetUserProjects(Guid.Parse(User.Identity.GetUserId()));
+
+			return View("Dashboard", result);
+		}
     }
 }
