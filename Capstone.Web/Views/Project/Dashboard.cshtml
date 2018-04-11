@@ -4,25 +4,28 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	@model IList<Capstone.Web.Models.ProjectModel>
 }
+<section id="dashboardSection">
+    <h1 class="userDashboard">Your Dashboard</h1>
 
-<h2>Dashboard</h2>
-
-<div>
-	<form method="get" action="@Url.Action("NewProject", "Project")">
-		<button>Build a New House!</button>
-		<br />
-		<br />
-	</form>
-
-	@foreach (var project in Model)
-	{
-	<a href="@Url.Action("Build", "Project", new { houseId = project.HouseId })">
-		<div class="userProject">
-			<h4>@project.HouseName</h4>
-			<p>Budget: @project.Budget</p>
-			<p>Region: @project.Region</p>
-		</div>
-	</a>
-	}
-
-</div>
+    <div class="dashboardButton">
+        <form method="get" action="@Url.Action("NewProject", "Project")">
+            <button class="navbarBtn">Build a New House!</button>
+            <br />
+            <br />
+        </form>
+        <br />
+        <br />
+        
+        <div class="plannedHouses">
+            @foreach (var project in Model)
+            {
+                <a href="@Url.Action("Build", "Project", new { houseId = project.HouseId })">
+                    <div class="userProject navbarBtn">
+                        <h4>@project.HouseName</h4>
+                        <p>Budget: @project.Budget</p>
+                        <p>Region: @project.Region</p>
+                    </div>
+                </a>}
+        </div>
+    </div>
+</section>

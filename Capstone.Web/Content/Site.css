@@ -136,6 +136,37 @@ a:hover{
 	width: 10vw;
 	display: inline-block;
 }
+.dashboardButton{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
 
+.userDashboard {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+#dashboardSection {
+    background-image: url('houseplan.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 95vh;
+}
 
+#logoff {
+    margin-top: 5px;
+   
+}
+
+.userDashboard{
+    font-size: 40px;
+    color: black;
+    
+}
 
