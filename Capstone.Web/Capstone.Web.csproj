@@ -211,8 +211,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\carpet.jpg" />
+    <Content Include="Content\concrete.jpg" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\HouseOnHill.jpg" />
+    <Content Include="Content\marble.jpg" />
+    <Content Include="Content\plywood.jpg" />
     <Content Include="Content\tile.jpg" />
     <Content Include="Content\wood.jpg" />
     <Content Include="Global.asax" />

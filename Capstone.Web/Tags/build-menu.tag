@@ -1,7 +1,7 @@
 ﻿<build-menu>
     <div class="menuContainer">
         <div id="menuTabsContainer">
-            <div class="menuTab" id="materialTab" onclick="{switchMaterialType}">Material</div>
+            <div class="menuTab activeMenuTab" id="materialTab" onclick="{switchMaterialType}">Material</div>
             <div class="menuTab" id="otherTab" onclick="{switchMaterialType}">Other</div>
         </div>
 
@@ -10,26 +10,17 @@
             </div>
             <div class="materials">
                 <div class="material" each="{floors}">
+                    <div class="material-grade">
+                        <form>
+                            <!--THESE DONT WORK, K--> 
+                            <input class="low" onclick={getMaterialGrade} name="grade" value="low" type="radio" />
+                            <input class="mid" onclick={getMaterialGrade} name="grade" value="mid" type="radio" />
+                            <input class="high" onclick={getMaterialGrade} name="grade" value="high" type="radio" />
+                        </form>
+                    </div>
                     <img src="/Content/{ImageSource}" class="matImg" />
                     <p>{Name}</p>
                 </div>
-                <div id="blank"></div>
-                <!--<div class="material">
-                    <img src="/Content/wood.jpg" class="matImg" />
-                    <p>Woody</p>
-                </div>
-                <div class="material">
-                    <img src="/Content/wood.jpg" class="matImg" />
-                    <p>Woody</p>
-                </div>
-                <div class="material">
-                    <img src="/Content/wood.jpg" class="matImg" />
-                    <p>Woody</p>
-                </div>
-                <div class="material">
-                    <img src="/Content/wood.jpg" class="matImg" />
-                    <p>Woody</p>
-                </div>-->
             </div>
         </div>
 
@@ -38,7 +29,7 @@
             </div>
             <div class="materials">
                 <div class="material" each="{objects}">
-                    <img src="/Content/{ImageSource}" />
+                    <img src="/Content/{ImageSource}" class="matImg" />
                     <p>{Name}</p>
                 </div>
             </div>
@@ -60,20 +51,25 @@
             grid-template-columns: 6.25% 25% 6.25% 25% 6.25% 25% auto;
         }
 
-        .material:first-child {
-            grid-column: 2 / span 1;
+        .material {
+            position: relative;
         }
 
-        .material:nth-child(2) {
-            grid-column: 4 / span 1;
+        .material:nth-child(3n+1) {
+            grid-column: 2;
         }
 
-        .material:nth-child(3) {
-            grid-column: 6 / span 1;
+        .material:nth-child(3n+2) {
+            grid-column: 4;
+        }
+
+        .material:nth-child(3n+3) {
+            grid-column: 6;
         }
 
         .matImg {
-            height: 14em;
+            width: 100%;
+            margin: 0 auto;
         }
 
         #menuTabsContainer {
@@ -98,6 +94,7 @@
         this.objects = [];
         this.isFloors = true;
         this.currentMenuType = "material";
+        this.inputGrade = document.getElementsByName("grade");
         
 
         this.on("mount", function () {
@@ -134,6 +131,10 @@
                 this.materialTab.classList.remove('activeMenuTab');
             }
             this.update();
+        }
+
+        this.getMaterialGrade = function () {
+            console.log(this.inputGrade[0].value);
         }
         
     </script>
