@@ -81,7 +81,7 @@ namespace Capstone.Web.Controllers
             {
                 await SignInManager.SignInAsync(user, model.RememberMe, rememberBrowser: false);
                 //return RedirectToLocal(returnUrl);
-                return RedirectToAction("NewProject", "Project");
+                return RedirectToAction("Dashboard", "Project");
             }
             else
             {

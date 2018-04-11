@@ -14,6 +14,7 @@ namespace Capstone.Web.DAL
 
         private const string SQL_SelectProjectByHouseId = @"SELECT * FROM house WHERE HouseId = @houseId;";
 		private const string SQL_AddNewHouse = @"INSERT INTO house (UserId, HouseName, Basement, Floors, SquareFootage, Region, Budget) VALUES (@userId, @houseName, @basement, @floors, @squareFootage, @region, @budget);";
+		private const string SQL_GetUserProjects = @"SELECT * FROM House WHERE UserId = @userId;";
 
         public ProjectDAL(string connectionString)
         {
@@ -79,6 +80,37 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
+
+		public List<ProjectModel> GetUserProjects(Guid userId)
+		{
+			List<ProjectModel> userProjects = new List<ProjectModel>();
+
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+					SqlCommand cmd = new SqlCommand(SQL_GetUserProjects, conn);
+					cmd.Parameters.AddWithValue("@userId", userId);
+
+					SqlDataReader reader = cmd.ExecuteReader();
+
+					while(reader.Read())
+					{
+						ProjectModel project = MapProjectFromTable(reader);
+						userProjects.Add(project);
+					}
+
+				}
+
+			}
+			catch(SqlException)
+			{
+				throw;
+			}
+
+			return userProjects;
+		}
 
         public static ProjectModel MapProjectFromTable(SqlDataReader reader)
         {
