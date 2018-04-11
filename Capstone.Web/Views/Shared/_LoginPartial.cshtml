@@ -15,13 +15,16 @@
                 <button id="logoff"class="navbarBtn" href="javascript:document.getElementById('logoutForm').submit()">Log off</button>
             </li>
         </ul>
-        
+
     }
-}
-else
-{
+    <form method="get" action="@Url.Action("Dashboard", "Project")">
+    <button class="navbarBtn homePage">DashBoard</button>
+        </form>
+    }
+    else
+    {
 
     <button class="navbarBtn" id="navLink-Register">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</button>
-        <button class="navbarBtn" id="navLink-Login">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
+    <button class="navbarBtn" id="navLink-Login">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
 
-}
+    }

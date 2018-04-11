@@ -169,4 +169,9 @@ a:hover{
     color: black;
     
 }
+.homePage {
+    grid-column: 3;
+    grid-row: 2;
+    margin-top: 20px;
+}
 
