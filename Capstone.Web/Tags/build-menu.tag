@@ -104,7 +104,6 @@
 
         this.getMaterials = function () {
 
-
             const url = '/api/materials';
 
             fetch(url)
