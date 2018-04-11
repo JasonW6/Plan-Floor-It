@@ -10,6 +10,7 @@ GO
 CREATE TABLE [dbo].[Users]
 (
     [UserId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+	[Name] VARCHAR(25) not null,
     [UserName] VARCHAR(MAX) NOT NULL, 
     [PasswordHash] VARCHAR(MAX) NULL, 
     [SecurityStamp] VARCHAR(MAX) NULL

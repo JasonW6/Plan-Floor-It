@@ -259,6 +259,8 @@
     <Content Include="Views\Project\Build.cshtml" />
     <Content Include="Tags\build-menu.tag" />
     <Content Include="Views\Project\Dashboard.cshtml" />
+    <Content Include="Tags\project-canvas.tag" />
+    <Content Include="Tags\room-menu.tag" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Build\" />
