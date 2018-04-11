@@ -1,40 +1,140 @@
 ﻿<build-menu>
-    <div class="menuContainer" onload="{ getMaterials }">
+    <div class="menuContainer">
+        <div id="menuTabsContainer">
+            <div class="menuTab" id="materialTab" onclick="{switchMaterialType}">Material</div>
+            <div class="menuTab" id="otherTab" onclick="{switchMaterialType}">Other</div>
+        </div>
 
-        <div class="materialsContainer">
+        <div class="materialsContainer" id="materialSection" if={isFloors}>
             <div class="materialScroll">
-                <p><={materialTypeName}=></p>
-
             </div>
-            <div class="materialSection">
-                <div class="material" each="materials"> 
-
-                    <img src="materialImg" class="matImg" />
+            <div class="materials">
+                <div class="material" each="{floors}">
+                    <img src="/Content/{ImageSource}" class="matImg" />
+                    <p>{Name}</p>
                 </div>
-
+                <div id="blank"></div>
+                <!--<div class="material">
+                    <img src="/Content/wood.jpg" class="matImg" />
+                    <p>Woody</p>
+                </div>
+                <div class="material">
+                    <img src="/Content/wood.jpg" class="matImg" />
+                    <p>Woody</p>
+                </div>
+                <div class="material">
+                    <img src="/Content/wood.jpg" class="matImg" />
+                    <p>Woody</p>
+                </div>
+                <div class="material">
+                    <img src="/Content/wood.jpg" class="matImg" />
+                    <p>Woody</p>
+                </div>-->
             </div>
+        </div>
 
+        <div class="materialsContainer" id="otherSection" if={!isFloors}>
+            <div class="materialScroll">
+            </div>
+            <div class="materials">
+                <div class="material" each="{objects}">
+                    <img src="/Content/{ImageSource}" />
+                    <p>{Name}</p>
+                </div>
+            </div>
         </div>
 
         <div class="roomContainer">
 
         </div>
-
-
     </div>
 
-    <script>
-
-        function getMaterials() {
-            const materials = [];
-
-            const url = '/Build/GetMaterials';
-
-            fetch(url)
-                .then(response => response.materials)
-                .then(data => console.log(data));
+    <style type="text/css">
+        .menuContainer {
+            width: 55%;
+            display: inline-block;
         }
 
+        .materials {
+            display: grid;
+            grid-template-columns: 6.25% 25% 6.25% 25% 6.25% 25% auto;
+        }
 
+        .material:first-child {
+            grid-column: 2 / span 1;
+        }
+
+        .material:nth-child(2) {
+            grid-column: 4 / span 1;
+        }
+
+        .material:nth-child(3) {
+            grid-column: 6 / span 1;
+        }
+
+        .matImg {
+            height: 14em;
+        }
+
+        #menuTabsContainer {
+            display: flex;
+            width: 100%;
+        }
+        .menuTab {
+            display: inline-block;
+            width: 50%;
+            border: 1px solid black;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .activeMenuTab{
+            background-color: aliceblue;
+        }
+    </style>
+
+    <script type="text/javascript">
+        this.floors = [];
+        this.objects = [];
+        this.isFloors = true;
+        this.currentMenuType = "material";
+        
+
+        this.on("mount", function () {
+            console.log("loaded");
+            this.getMaterials();
+        });
+
+        this.getMaterials = function () {
+
+
+            const url = '/api/materials';
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    this.objects = data.filter(o => o.IsMaterial === false);
+                    this.floors = data.filter(o => o.IsMaterial === true);
+                    console.log(this.objects);
+                    console.log(this.floors);
+                    this.update();
+                });
+        }
+
+        this.switchMaterialType = function () {
+            this.isFloors = !this.isFloors;
+            this.materialTab = document.getElementById('materialTab');
+            this.otherTab = document.getElementById('otherTab');
+            if (this.isFloors) {
+                this.materialTab.classList.add('activeMenuTab');
+                this.otherTab.classList.remove('activeMenuTab');
+            }
+            else {
+                this.otherTab.classList.add('activeMenuTab');
+                this.materialTab.classList.remove('activeMenuTab');
+            }
+            this.update();
+        }
+        
     </script>
 </build-menu>

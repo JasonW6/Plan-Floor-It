@@ -210,8 +210,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\carpet.jpg" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\HouseOnHill.jpg" />
+    <Content Include="Content\tile.jpg" />
+    <Content Include="Content\wood.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="schema.sql" />
@@ -252,6 +255,7 @@
     <Content Include="Views\Project\NewProject.cshtml" />
     <Content Include="Views\Project\Build.cshtml" />
     <Content Include="Tags\build-menu.tag" />
+    <Content Include="Views\Project\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Build\" />

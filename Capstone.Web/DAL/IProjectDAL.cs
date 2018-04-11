@@ -11,6 +11,6 @@ namespace Capstone.Web.DAL
 	{
 		ProjectModel GetProjectByHouseId(int houseId);
 		int AddNewHouse(ProjectModel model);
-
+		List<ProjectModel> GetUserProjects(Guid userId);
 	}
 }
