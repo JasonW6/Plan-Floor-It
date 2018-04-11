@@ -36,7 +36,7 @@ namespace Capstone.Web
 			// kernel.Bind<interface>().To<class>();
 			kernel.Bind<IProjectDAL>().To<ProjectDAL>().WithConstructorArgument("connectionString", connectionString);
             kernel.Bind<IMaterialDAL>().To<MaterialDAL>().WithConstructorArgument("connectionString", connectionString);
-
+			kernel.Bind<IFloorDAL>().To<FloorDAL>().WithConstructorArgument("connectionString", connectionString);
 
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
 
