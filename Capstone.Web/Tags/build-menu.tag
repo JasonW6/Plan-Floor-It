@@ -110,18 +110,25 @@
             if (this.isFloors) {
                 this.materialTab.classList.add('activeMenuTab');
                 this.otherTab.classList.remove('activeMenuTab');
+                this.update();
+                $('#floorMaterials').slick({
+                    infinite: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                });
             }
             else {
                 this.otherTab.classList.add('activeMenuTab');
                 this.materialTab.classList.remove('activeMenuTab');
-                
+                this.update();
+                $('#objectMaterials').slick({
+                    infinite: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                });
             }
-            this.update();
-            $('#objectMaterials').slick({
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 3
-            });
+            
+            
         }
     </script>
 </build-menu>
