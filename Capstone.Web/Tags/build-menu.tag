@@ -10,14 +10,6 @@
             </div>
             <div class="materials">
                 <div class="material" each="{floors}">
-                    <div class="material-grade">
-                        <form>
-                            <!--THESE DONT WORK, K--> 
-                            <input class="low" onclick={getMaterialGrade} name="grade" value="low" type="radio" />
-                            <input class="mid" onclick={getMaterialGrade} name="grade" value="mid" type="radio" />
-                            <input class="high" onclick={getMaterialGrade} name="grade" value="high" type="radio" />
-                        </form>
-                    </div>
                     <img src="/Content/{ImageSource}" class="matImg" />
                     <p>{Name}</p>
                 </div>
@@ -131,10 +123,12 @@
             }
             this.update();
         }
-
-        this.getMaterialGrade = function () {
-            console.log(this.inputGrade[0].value);
-        }
-        
+        $(document).ready(function () {
+            $('.materials').slick({
+                infinite: false,
+                slidesToShow: 3,
+                slidesToScroll: 3
+            });
+        });
     </script>
 </build-menu>

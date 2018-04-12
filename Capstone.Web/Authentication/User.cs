@@ -29,7 +29,6 @@ namespace Capstone.Web.Authentication
             var claims = Roles.Select(role => new Claim(ClaimTypes.Role, role));
 
             userIdentity.AddClaims(claims);
-            userIdentity.AddClaim(new Claim("FirstName", this.FirstName));
 
             // Add custom user claims here
             return userIdentity;
