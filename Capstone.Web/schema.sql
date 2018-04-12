@@ -72,5 +72,8 @@ INSERT INTO Materials VALUES ('Tile', 1, 0.80, 2.50, 7.00, 'tile.jpg')
  INSERT INTO Materials VALUES ('Concrete', 1, 1.00, 3.00, 10.00, 'concrete.jpg')
 INSERT INTO Materials VALUES ('Plywood', 1, 0.50, 2.00, 8.00, 'plywood.jpg')
 INSERT INTO Materials VALUES ('Marble', 1, 3.80, 7.50, 20.00, 'marble.jpg')
-
-
+INSERT INTO Materials VALUES ('Chair', 0, 3.80, 7.50, 20.00, 'chair.jpg')
+INSERT INTO Materials VALUES ('Couch', 0, 3.80, 7.50, 20.00, 'couch.jpg')
+INSERT INTO Materials VALUES ('Toilet', 0, 3.80, 7.50, 20.00, 'toilet.jpg')
+INSERT INTO Materials VALUES ('Table', 0, 3.80, 7.50, 20.00, 'table.jpg')
+INSERT INTO Materials VALUES ('Desk', 0, 3.80, 7.50, 20.00, 'desk.jpg')
