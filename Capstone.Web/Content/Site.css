@@ -179,3 +179,16 @@ a:hover{
 	margin: auto;
 	background-image: url('grass.png');
 }
+
+#bottomMenu{
+    display: grid;
+    grid-template-columns: 65% 35%;
+}
+
+build-menu{
+    grid-column: 1;
+}
+
+room-menu{
+    grid-column: 2;
+}

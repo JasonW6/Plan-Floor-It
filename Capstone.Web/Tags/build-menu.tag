@@ -26,15 +26,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="roomContainer">
-
-        </div>
     </div>
 
     <style type="text/css">
         .menuContainer {
-            width: 55%;
+            width: 90%;
             display: inline-block;
         }
 
