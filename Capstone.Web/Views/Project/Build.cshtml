@@ -11,11 +11,11 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
 }
 
-<div class="canvas-container">
-	<canvas id="c" width="1000" height="600"></canvas>
-</div>
 
 <project-canvas houseId="@Model.HouseId"></project-canvas>
+<div class="canvas-container">
+	<canvas id="c" width="1200" height="700"></canvas>
+</div>
 <build-menu></build-menu>
 
 @section scripts
@@ -27,14 +27,14 @@
 	<script src="~/Scripts/fabric.min.js"></script>
 
 
-    <script>
-        riot.mount('build-menu');
-        riot.mount('project-canvas');
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script type="text/javascript">
+	<script>
+		riot.mount('build-menu');
+		riot.mount('project-canvas');
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+	<script type="text/javascript">
 
-    </script>
+	</script>
 
 }
 

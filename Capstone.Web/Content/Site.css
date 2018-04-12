@@ -175,3 +175,7 @@ a:hover{
     margin-top: 20px;
 }
 
+.canvas-container {
+	margin: auto;
+	background-image: url('grass.png');
+}

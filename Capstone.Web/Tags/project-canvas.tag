@@ -8,8 +8,6 @@
         <button onclick={downFloor} type="button">&lt</button>
         <h1 class="floor-number">Floor: {this.currentFloor.FloorNumber}</h1>
         <button onclick={upFloor} type="button">&gt</button>
-        <button onclick={buildFoundation} type="button">foundation</button>
-
     </div>
 
     <!--<div class="canvas-container">
@@ -68,7 +66,7 @@
 
             this.foundation = new fabric.Rect({
                 left: 0,
-                top: 50,
+                top: 0,
                 fill: "gray",
                 width: 800,
                 height: 500,
@@ -79,14 +77,15 @@
 
 
 
-            //this.canvas.add(this.foundation);
+			this.canvas.add(this.foundation);
+			this.foundation.center();
 
-            //console.log('canvas:' + this.canvas);
-            //console.log('foundation' + this.foundation.fill);
-            //console.log(this.floors);
-            //this.canvas.renderAll();
+            console.log('canvas:' + this.canvas);
+            console.log('foundation' + this.foundation.fill);
+            console.log(this.floors);
+            this.canvas.renderAll();
 
-            //this.update();
+            this.update();
 
         }
 
@@ -104,34 +103,6 @@
             }
 
             this.currentFloor = this.floors[this.floorId];
-        }
-
-
-        this.buildFoundation = function () {
-
-            this.foundation = new fabric.Rect({
-                left: 0,
-                top: 50,
-                fill: "gray",
-                width: 800,
-                height: 500,
-                stroke: "black",
-                strokeWidth: 5,
-                selectable: false
-            })
-
-
-
-            this.canvas.add(this.foundation);
-
-            console.log('canvas:' + this.canvas);
-            console.log('foundation' + this.foundation.fill);
-            console.log(this.floors);
-            this.canvas.renderAll();
-
-			this.update();
-
-
         }
 
 
