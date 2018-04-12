@@ -8,6 +8,7 @@
         <button onclick={downFloor} type="button">&lt</button>
         <h1 class="floor-number">Floor: {this.currentFloor.FloorNumber}</h1>
         <button onclick={upFloor} type="button">&gt</button>
+		<button onclick={saveJSON} type="button">Save!</button>
     </div>
 
     <!--<div class="canvas-container">
@@ -104,6 +105,22 @@
 
             this.currentFloor = this.floors[this.floorId];
         }
+
+		this.saveJSON = function () {
+			this.json = JSON.stringify(this.canvas.toJSON());
+
+			//fetch - SaveJSON
+			const url = "/api/floorplan?floorId=" + this.floors[this.floorId].FloorId;
+			const settings =
+				{
+					method: 'post',
+					body: this.json,
+					headers: { 'content-type': 'application/json' }
+				};
+			console.log("JSON:" + this.json);
+			fetch(url, settings)
+				.then(response => response.json())
+		}
 
 
     </script>

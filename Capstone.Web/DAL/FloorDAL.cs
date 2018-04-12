@@ -12,6 +12,7 @@ namespace Capstone.Web.DAL
 		private string connectionString;
 		private const string SQL_GetFloorsByHouseId = @"SELECT * FROM Floor where HouseId = @houseId;";
 		private const string SQL_InsertFloor = @"INSERT INTO Floor VALUES (@houseId, @floorNo, null);";
+		private const string SQL_UpdateFloorPlan = @"UPDATE Floor SET FloorPlan = @json WHERE FloorId = @floorId;";
 
 		public FloorDAL(string connectionString)
 		{
@@ -78,6 +79,28 @@ namespace Capstone.Web.DAL
 			{
 				return false;
 			}
+		}
+
+		public bool UpdateFloorPlan(int floorId, string json)
+		{
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+
+					SqlCommand cmd = new SqlCommand(SQL_UpdateFloorPlan, conn);
+					cmd.Parameters.AddWithValue("@floorId", floorId);
+					cmd.Parameters.AddWithValue("@json", json);
+					cmd.ExecuteNonQuery();
+				}
+			}
+			catch(SqlException)
+			{
+				return false;
+			}
+
+			return true;
 		}
 	}
 

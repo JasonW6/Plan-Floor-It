@@ -12,5 +12,6 @@ namespace Capstone.Web.DAL
 	{
 		List<FloorModel> GetFloorsByHouseId(int houseId);
 		bool CreateFloor(int floorNumber, int id);
+		bool UpdateFloorPlan(int floorId, string json);
 	}
 }

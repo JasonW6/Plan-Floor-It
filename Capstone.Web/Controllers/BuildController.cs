@@ -1,5 +1,6 @@
 ﻿using Capstone.Web.DAL;
 using Capstone.Web.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,5 +37,15 @@ namespace Capstone.Web.Controllers
 			return Ok(floors);
 		}
 		
+		[HttpPost]
+		[Route("api/floorplan")]
+		public IHttpActionResult SaveFloorPlan(int floorId, [FromBody]JObject json)
+		{
+			string json2 = json.ToString();
+
+			fdal.UpdateFloorPlan(floorId, json2);
+
+			return Ok();
+		}
     }
 }
