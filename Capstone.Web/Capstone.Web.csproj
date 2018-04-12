@@ -216,6 +216,7 @@
   <ItemGroup>
     <Content Include="Content\carpet.jpg" />
     <Content Include="Content\concrete.jpg" />
+    <Content Include="Content\grass.png" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\HouseOnHill.jpg" />
     <Content Include="Content\marble.jpg" />
@@ -227,6 +228,7 @@
     <Content Include="schema.sql" />
     <Content Include="Content\particlesjs-config.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\fabric.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
