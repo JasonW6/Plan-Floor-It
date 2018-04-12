@@ -1,45 +1,47 @@
 ﻿@model Capstone.Web.Models.ProjectModel
 @{
-    ViewBag.Title = "Build";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Build";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@Model.HouseName</h2>
 
 @section styles{
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
 }
 
 <div class="canvas-container">
-    <canvas id="c" width="1000" height="600"></canvas>
+	<canvas id="c" width="1000" height="600"></canvas>
 </div>
-
-@section scripts
-{
-    <script src="~/Tags/build-menu.tag" type="riot/tag">
-    </script>
-    <script src="~/Tags/project-canvas.tag" type="riot/tag">
-    </script>
-
-
-    <script>
-        riot.mount('build-menu');
-        riot.mount('project-canvas');
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.materials').slick({
-                infinite: false,
-                slidesToShow: 3,
-                slidesToScroll: 3
-            });
-            
-        });
-    </script>
-
-}
 
 <project-canvas houseId="@Model.HouseId"></project-canvas>
 <build-menu></build-menu>
+
+@section scripts
+{
+	<script src="~/Tags/build-menu.tag" type="riot/tag">
+	</script>
+	<script src="~/Tags/project-canvas.tag" type="riot/tag">
+	</script>
+	<script src="~/Scripts/fabric.min.js"></script>
+
+
+	<script>
+		riot.mount('build-menu');
+		riot.mount('project-canvas');
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.materials').slick({
+				infinite: false,
+				slidesToShow: 3,
+				slidesToScroll: 3
+			});
+
+		});
+	</script>
+
+}
+

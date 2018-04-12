@@ -2,7 +2,7 @@
 
 <project-canvas>
 
-    <script src="~/Scripts/fabric.min.js"></script>
+    
 
     <div class="head">
         <button onclick={downFloor} type="button">&lt</button>
@@ -12,9 +12,9 @@
 
     </div>
 
-    <div class="canvas-container">
+    <!--<div class="canvas-container">
         <canvas id="c" width="1000" height="600"></canvas>
-    </div>
+    </div>-->
 
     <style>
 
@@ -79,14 +79,14 @@
 
 
 
-            this.canvas.add(this.foundation);
+            //this.canvas.add(this.foundation);
 
-            console.log('canvas:' + this.canvas);
-            console.log('foundation' + this.foundation.fill);
-            console.log(this.floors);
-            this.canvas.renderAll();
+            //console.log('canvas:' + this.canvas);
+            //console.log('foundation' + this.foundation.fill);
+            //console.log(this.floors);
+            //this.canvas.renderAll();
 
-            this.update();
+            //this.update();
 
         }
 
@@ -129,7 +129,7 @@
             console.log(this.floors);
             this.canvas.renderAll();
 
-            this.update();
+			this.update();
 
 
         }
