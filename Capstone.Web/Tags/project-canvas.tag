@@ -1,4 +1,6 @@
-﻿<project-canvas>
+﻿
+
+<project-canvas>
 
     <h1 class="floor-number"></h1>
 
@@ -13,8 +15,20 @@
 
     <script>
 
+        this.floors = [];
 
-        //add
+        this.getFloors = function () {
+
+            const url = '/api/floors';
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    this.floors = data;
+                    console.log(this.floors);
+                    this.update();
+                });
+        }
 
     </script>
 
