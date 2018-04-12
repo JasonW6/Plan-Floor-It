@@ -8,10 +8,10 @@
         <div class="materialsContainer" id="materialSection" if={isFloors}>
             <div class="materialScroll">
             </div>
-            <div class="materials">
-                <div class="material" each="{floors}">
-                    <img src="/Content/{ImageSource}" class="matImg" />
-                    <p>{Name}</p>
+            <div class="materials" id="floorMaterials">
+                <div class="material" each="{floor, index in floors}" id="floor-{index}">
+                    <img src="/Content/{floor.ImageSource}" class="matImg" />
+                    <p>{floor.Name}</p>
                 </div>
             </div>
         </div>
@@ -19,10 +19,10 @@
         <div class="materialsContainer" id="otherSection" if={!isFloors}>
             <div class="materialScroll">
             </div>
-            <div class="materials">
-                <div class="material" each="{objects}">
-                    <img src="/Content/{ImageSource}" class="matImg" />
-                    <p>{Name}</p>
+            <div class="materials" id="objectMaterials">
+                <div class="material" each="{object, index in objects}" id="object-{index}">
+                    <img src="/Content/{object.ImageSource}" class="matImg" />
+                    <p>{object.Name}</p>
                 </div>
             </div>
         </div>
@@ -38,25 +38,8 @@
             display: inline-block;
         }
 
-        .materials {
-            display: grid;
-            grid-template-columns: 6.25% 25% 6.25% 25% 6.25% 25% auto;
-        }
-
-        .material {
-            position: relative;
-        }
-
-        .material:nth-child(3n+1) {
-            grid-column: 2;
-        }
-
-        .material:nth-child(3n+2) {
-            grid-column: 4;
-        }
-
-        .material:nth-child(3n+3) {
-            grid-column: 6;
+        .materials{
+            height: 12em;
         }
 
         .matImg {
@@ -79,6 +62,11 @@
         .activeMenuTab{
             background-color: aliceblue;
         }
+        .material {
+            width: 12em !important;
+            margin: 0 1em;
+        }
+
     </style>
 
     <script type="text/javascript">
@@ -88,7 +76,6 @@
         this.currentMenuType = "material";
         this.inputGrade = document.getElementsByName("grade");
         
-
         this.on("mount", function () {
             console.log("loaded");
             this.getMaterials();
@@ -106,6 +93,11 @@
                     console.log(this.objects);
                     console.log(this.floors);
                     this.update();
+                    $('#floorMaterials').slick({
+                        infinite: true,
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    });
                 });
         }
 
@@ -120,15 +112,14 @@
             else {
                 this.otherTab.classList.add('activeMenuTab');
                 this.materialTab.classList.remove('activeMenuTab');
+                
             }
             this.update();
-        }
-        $(document).ready(function () {
-            $('.materials').slick({
-                infinite: false,
+            $('#objectMaterials').slick({
+                infinite: true,
                 slidesToShow: 3,
                 slidesToScroll: 3
             });
-        });
+        }
     </script>
 </build-menu>
