@@ -45,6 +45,7 @@
         .matImg {
             width: 100%;
             margin: 0 auto;
+            height: 80%;
         }
 
         #menuTabsContainer {
@@ -65,6 +66,7 @@
         .material {
             width: 12em !important;
             margin: 0 1em;
+            height: 12em !important;
         }
 
     </style>
