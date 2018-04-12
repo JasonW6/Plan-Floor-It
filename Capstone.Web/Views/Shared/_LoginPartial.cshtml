@@ -1,4 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Capstone.Web.DAL;
+@{ 
+    var dal = new UserDAL();
+}
 
 
 @if (Request.IsAuthenticated)
@@ -9,7 +13,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li >
-                <button class="navbarBtn"> @Html.ActionLink("Hello " + User.Identity. + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
+                <button class="navbarBtn"> @Html.ActionLink("Hello " + dal.GetFirstName(User.Identity.GetUserId()) + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
             </li>
             <li>
                 <button id="logoff"class="navbarBtn" href="javascript:document.getElementById('logoutForm').submit()">Log off</button>

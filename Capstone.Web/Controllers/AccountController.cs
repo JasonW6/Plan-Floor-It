@@ -110,7 +110,7 @@ namespace Capstone.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, FirstName = model.Name };
+                var user = new User { UserName = model.Email, FirstName = model.FirstName };
 
                 // Add the roles here to the user
                 //user.Roles.Add("Administrator");

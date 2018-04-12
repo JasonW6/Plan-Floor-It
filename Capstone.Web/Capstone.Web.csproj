@@ -198,8 +198,10 @@
     <Compile Include="DAL\IFloorDAL.cs" />
     <Compile Include="DAL\IMaterialDAL.cs" />
     <Compile Include="DAL\IProjectDAL.cs" />
+    <Compile Include="DAL\IUserDAL.cs" />
     <Compile Include="DAL\MaterialDAL.cs" />
     <Compile Include="DAL\ProjectDAL.cs" />
+    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
