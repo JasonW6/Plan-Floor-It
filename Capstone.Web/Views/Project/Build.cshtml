@@ -7,15 +7,17 @@
 <h2>@Model.HouseName</h2>
 
 @section styles{
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
 }
 
 @section scripts
 {
     <script src="~/Tags/build-menu.tag" type="riot/tag"></script>
+    <script src="~/Tags/project-canvas.tag" type="riot/tag"></script>
     <script>
         riot.mount('build-menu');
+        riot.mount('project-canvas');
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script type="text/javascript">
@@ -25,10 +27,11 @@
                 slidesToShow: 2,
                 slidesToScroll: 3
             });
-            
+
         });
     </script>
-    
+
 }
 
+<project-canvas houseId="@Model.HouseId"></project-canvas>
 <build-menu></build-menu>
