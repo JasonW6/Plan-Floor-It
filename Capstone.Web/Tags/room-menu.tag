@@ -1,15 +1,15 @@
 ﻿<room-menu>
     <div class="room-name">
-        <button onclick="{ downRoom }" type="button">&lt</button>
+        <button if="{roomIndex >= 0}" onclick="{ downRoom }" type="button">&lt</button>
         <input id="roomNameTextBox" type="text" />
         <button onclick="{ upRoom }" type="button">&gt</button>
     </div>
-    <div class="roomContainer newRoom">
+    <div class="roomContainer newRoom" if="{currentRoom === null}">
         <button class="roomBtn" onclick="{addRoom}">New Room</button>
     </div>
 
-    <div id="room-{roomIndex}" class="roomContainer createdRoom">
-        <p></p>
+    <div id="room-{roomIndex}" class="roomContainer createdRoom" if="{currentRoom !== null}">
+        <p>{currentRoom.name}</p>
     </div>
 
 
@@ -35,54 +35,52 @@
         function Room(name) {
             this.name = name;
         }
-        
 
-        const living = new Room("Living");
-        const family = new Room("Family");
+        //const living = new Room("Living");
+        //const family = new Room("Family");
+        //const rooms = [living, family];
 
-        const rooms = [living, family];
-
-        this.roomIndex = 0;
-        this.rooms = []; //new Room [];
+        this.roomIndex = -1;
+        this.rooms = [];
+        this.currentRoom = null;
         this.createdRooms = [];
         this.createdRooms = document.querySelectorAll('.createdRoom');
 
         this.downRoom = function () {
-            let currentRoom = document.querySelector("#room-" + this.roomIndex);
-            if (currentRoom !== null) {
-                currentRoom.setAttribute("style", "display: none");
+            let element = document.querySelector('#roomNameTextBox');
+            if (this.roomIndex > 0) {
                 this.roomIndex--;
-                let newRoom = document.querySelector("#room-" + this.roomIndex);
-                newRoom.setAttribute("style", "display: block");
+                this.currentRoom = this.rooms[this.roomIndex];
             }
+            else {
+                this.currentRoom = null;
+                element.value = "";
+            }
+            this.update();
         }
 
         this.upRoom = function () {
-            
-            let currentRoom = document.querySelector("#room-" + this.roomIndex);
-            if(currentRoom !== null){
-            currentRoom.setAttribute("style", "display: none");
-            this.roomIndex++;
-            let newRoom = document.querySelector("#room-" + this.roomIndex);
-            newRoom.setAttribute("style", "display: block");
+            let element = document.querySelector('#roomNameTextBox');
+            if (this.roomIndex < this.rooms.length - 1) {
+                this.roomIndex++;
+                this.currentRoom = this.rooms[this.roomIndex];
             }
+            else {
+                this.currentRoom = null;
+                element.value = "";
+            }
+            this.update();
         }
 
         this.addRoom = function () {
-            let element = document.querySelector('#roomNameTextBox')
+            let element = document.querySelector('#roomNameTextBox');
             var room = new Room(element.value);
-            
-
-            
             this.rooms.push(room);
             console.log(this.rooms);
+            
+            this.currentRoom = room;
             this.update();
-            let currentRoom = document.querySelector("#room-" + this.roomIndex);
-            currentRoom.setAttribute("style", "display: block");
-            
-            this.createdRooms = document.querySelectorAll('.createdRoom');
-            this.newRoom = document.querySelector('.newRoom');
-            
+            this.roomIndex++;
         }
 
 
