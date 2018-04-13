@@ -1,15 +1,17 @@
 ﻿<room-menu>
     <div class="room-name">
-        <button type="button">&lt</button>
-        <input type="text" />
-        <button type="button">&gt</button>
+        <button onclick="{ downRoom }" type="button">&lt</button>
+        <input id="roomNameTextBox" type="text" />
+        <button onclick="{ upRoom }" type="button">&gt</button>
     </div>
     <div class="roomContainer newRoom">
         <button class="roomBtn" onclick="{addRoom}">New Room</button>
     </div>
-    <div class="roomContainer createdRoom" each="{room in rooms}">
-        <p>{room.name}</p>
+
+    <div id="room-{roomIndex}" class="roomContainer createdRoom">
+        <p></p>
     </div>
+
 
     <style>
         .roomContainer {
@@ -17,7 +19,7 @@
             position: relative;
         }
 
-        .room-name{
+        .room-name {
             text-align: center;
         }
 
@@ -27,35 +29,62 @@
             left: 50%;
             transform: translateX(-50%);
         }
-
-        .createdRoom{
-            visibility: hidden;
-        }
     </style>
     <script>
-        this.rooms = [];
+
+        function Room(name) {
+            this.name = name;
+        }
+        
+
+        const living = new Room("Living");
+        const family = new Room("Family");
+
+        const rooms = [living, family];
+
+        this.roomIndex = 0;
+        this.rooms = []; //new Room [];
         this.createdRooms = [];
         this.createdRooms = document.querySelectorAll('.createdRoom');
-       
 
-        this.addRoom = function () {
-            var room = { "name": 'kitchen' };
-            
-            
-            if (this.createdRooms.length === 0) {
-                this.rooms.push(room);
-            }
-            this.update();
-            this.createdRooms = document.querySelectorAll('.createdRoom');
-            this.newRoom = document.querySelector('.newRoom');
-            this.newRoom.setAttribute("style", "display: none");
-
-            for (var i = 0; i < this.createdRooms.length; i++) {
-                
-                this.createdRooms[i].setAttribute("style", "visibility: visible");
-
+        this.downRoom = function () {
+            let currentRoom = document.querySelector("#room-" + this.roomIndex);
+            if (currentRoom !== null) {
+                currentRoom.setAttribute("style", "display: none");
+                this.roomIndex--;
+                let newRoom = document.querySelector("#room-" + this.roomIndex);
+                newRoom.setAttribute("style", "display: block");
             }
         }
+
+        this.upRoom = function () {
+            
+            let currentRoom = document.querySelector("#room-" + this.roomIndex);
+            if(currentRoom !== null){
+            currentRoom.setAttribute("style", "display: none");
+            this.roomIndex++;
+            let newRoom = document.querySelector("#room-" + this.roomIndex);
+            newRoom.setAttribute("style", "display: block");
+            }
+        }
+
+        this.addRoom = function () {
+            let element = document.querySelector('#roomNameTextBox')
+            var room = new Room(element.value);
+            
+
+            
+            this.rooms.push(room);
+            console.log(this.rooms);
+            this.update();
+            let currentRoom = document.querySelector("#room-" + this.roomIndex);
+            currentRoom.setAttribute("style", "display: block");
+            
+            this.createdRooms = document.querySelectorAll('.createdRoom');
+            this.newRoom = document.querySelector('.newRoom');
+            
+        }
+
 
     </script>
 </room-menu>
