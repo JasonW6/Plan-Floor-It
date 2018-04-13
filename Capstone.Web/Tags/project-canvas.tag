@@ -50,6 +50,7 @@
         this.floors = [];
         this.floorId = 1;
         this.currentFloor = {};
+        this.currentFoundation = {};
 
         this.on("mount", function () {
             console.log("loaded");
@@ -66,19 +67,11 @@
                     this.floors = data;
 					console.log("Floors:" + this.floors);
 					console.log("Floorplan:" + this.floors[1].FloorPlan)
-					this.currentFloor = this.floors[1];
+                    this.currentFloor = this.floors[1];
 					this.setFloorPlan();
 					this.update();
-					
-					
                 });
 
-
-
-			
-
-            console.log('canvas:' + this.canvas);
-            console.log('foundation' + this.foundation.fill);
             console.log(this.floors);
             this.canvas.renderAll();
 
@@ -94,7 +87,7 @@
             }
 
 			this.currentFloor = this.floors[this.floorId];
-
+            this.setFloorPlan();
 			
         }
 
@@ -107,13 +100,13 @@
 			}
 
 			this.currentFloor = this.floors[this.floorId];
-
+            this.setFloorPlan();
 			
         }
 
 		this.saveJSON = function () {
 			this.json = JSON.stringify(this.canvas.toJSON());
-
+            this.currentFloor.FloorPlan = this.json;
 			//fetch - SaveJSON
 			const url = "/api/floorplan?floorId=" + this.floors[this.floorId].FloorId;
 			const settings =
@@ -139,7 +132,7 @@
 			});
 
 			this.canvas.add(rect);
-			rect.bringToFront();
+
 
 		}
 
@@ -163,20 +156,23 @@
 				selectable: false
 			})
 
+            this.canvas.add(this.foundation);
+            this.foundation.center();
 		}
 
 		this.setFloorPlan = function () {
 
-			if (this.floors[this.floorId].FloorPlan == null) {
-				this.createFoundation(100, 200);
-				this.canvas.add(this.foundation);
-				this.foundation.center();
+			if (this.floors[this.floorId].FloorPlan == "") {
+                this.createFoundation(100, 200);
+                console.log("no floor plan dude");
 			}
 
 			else {
-				this.loadCanvas(this.floors[this.floorId].FloorPlan);
+                this.loadCanvas(this.floors[this.floorId].FloorPlan);
+                this.foundation.selectable = false;
 			}
 
+            this.canvas.renderAll();
 		}
 		
 
