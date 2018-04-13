@@ -3,31 +3,34 @@
     ViewBag.Title = "Register";
 }
 @section scripts{
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="~/Scripts/particlesSetup.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="~/Scripts/particlesSetup.js"></script>*@
 }
 
-<div id="particles-js"></div>
-<div class="accountFormContainer">
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-        <h1 class="accountFormTitle">Create a new account.</h1>
-        <div class="accountFormControl" id="regName">
-            @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name", @class = "accountFormTextBox" })
-        </div>
-        <div class="accountFormControl" id="regEmail">
-            @Html.TextBoxFor(m => m.Email, new { placeholder = "email", @class = "accountFormTextBox" })
-        </div>
-        <div class="accountFormControl" id="regPassword">
-            @Html.PasswordFor(m => m.Password, new { placeholder = "password", @class = "accountFormTextBox" })
-        </div>
-        <div class="accountFormControl" id="regConfirm">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password", @class = "accountFormTextBox" })
-        </div>
-        <div>
-            <input class="navbarBtn accountformbtn" type="submit" value="Register" />
-        </div>
-    }
-</div>
+<body id="register">
+    <div class="accountFormContainer">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <h1 class="accountFormTitle">Welcome.</h1>
+            <div class="accountFormControl" id="regName">
+                @Html.TextBoxFor(m => m.FirstName, new { placeholder = "first name", @class = "accountFormTextBox" })
+            </div>
+            <div class="accountFormControl" id="regEmail">
+                @Html.TextBoxFor(m => m.Email, new { placeholder = "email", @class = "accountFormTextBox" })
+            </div>
+            <div class="accountFormControl" id="regPassword">
+                @Html.PasswordFor(m => m.Password, new { placeholder = "password", @class = "accountFormTextBox" })
+            </div>
+            <div class="accountFormControl" id="regConfirm">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password", @class = "accountFormTextBox" })
+            </div>
+            <div>
+                <input class="navbarBtn accountformbtn" type="submit" value="Register" />
+            </div>
+        }
+    </div>
+</body>
+
+

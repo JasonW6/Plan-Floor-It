@@ -1,46 +1,51 @@
 ﻿
 @{
-	ViewBag.Title = "NewProject";
-	Layout = "~/Views/Shared/_Layout.cshtml";
-	@model Capstone.Web.Models.ProjectModel
+    ViewBag.Title = "NewProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @model Capstone.Web.Models.ProjectModel
 }
 
 
 <section id="newProject">
-	<form method="post" action="@Url.Action("NewProject", "Project")" id="newProjectForm">
-		<label>Project Name: @Html.TextBoxFor(m => m.HouseName, new { placeholder = "Enter Project Name" })</label>
-		<br />
-		<br />
-		<label>Basement:  @Html.RadioButtonFor(m => m.HasBasement, "true") Yes @Html.RadioButtonFor(m => m.HasBasement, "false") No</label>
-		<br />
-		<br />
-		<label>
-			Floors:
-			<select name="NumberOfFloors">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-			</select>
-		</label>
-		<br />
-		<br />
-		<label>
-			Region:
-			<select name="Region">
-				<option value="Cleveland-Elyria">Cleveland-Elyria</option>
-				<option value="Akron">Akron</option>
-				<option value="Canton-Massillon">Canton-Massillon</option>
-			</select>
-		</label>
-		<br />
-		<br />
-		<label>Budget: @Html.TextBoxFor(m => m.Budget)</label>
-		<br />
-		<br />
-		<label>Foundation Size: @Html.TextBoxFor(m => m.Length, new { placeholder = "Length" }) X @Html.TextBoxFor(m => m.Width, new { placeholder = "Width" })</label>
-		<br />
-		<br />
-		<button>Build It!</button>
-	</form>
+    <form method="post" action="@Url.Action("NewProject", "Project")" id="newProjectForm">
+        <h1 id="new-project">New project.</h1>
+        <div class="form-container">
+            <label>Project Name @Html.TextBoxFor(m => m.HouseName)</label>
+            <br />
+            <br />
+            <label>Basement @Html.RadioButtonFor(m => m.HasBasement, "true") Yes @Html.RadioButtonFor(m => m.HasBasement, "false") No</label>
+            <label>
+                <br />
+                <br />
+                Floors
+                <select name="NumberOfFloors">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </label>
+            <br />
+            <br />
+            <label>
+                Region
+                <select name="Region">
+                    <option value="Cleveland-Elyria">Cleveland-Elyria</option>
+                    <option value="Akron">Akron</option>
+                    <option value="Canton-Massillon">Canton-Massillon</option>
+                </select>
+            </label>
+            <br />
+            <br />
+            <label>Budget @Html.TextBoxFor(m => m.Budget)</label>
+            <br />
+            <br />
+            <label>Foundation Size<br /> @Html.TextBoxFor(m => m.Length, new { placeholder = "Length" }) X @Html.TextBoxFor(m => m.Width, new { placeholder = "Width" })</label>
+            <br />
+            <br />
+            <input class="navbarBtn accountformbtn" type="submit" value="Build" />
+        </div>
+        
+
+    </form>
 </section>
 
