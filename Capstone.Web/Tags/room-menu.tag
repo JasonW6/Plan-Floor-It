@@ -37,10 +37,8 @@
         this.createdRooms = [];
         this.createdRooms = document.querySelectorAll('.createdRoom');
        
-
         this.addRoom = function () {
             var room = { "name": 'kitchen' };
-            
             
             if (this.createdRooms.length === 0) {
                 this.rooms.push(room);
