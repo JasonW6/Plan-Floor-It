@@ -123,8 +123,6 @@
                     slidesToScroll: 3
                 });
             }
-            
-            
         }
     </script>
 </build-menu>
