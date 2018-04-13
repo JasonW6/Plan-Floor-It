@@ -1,6 +1,7 @@
 ﻿body {
     height: 100vh;
     margin: 0;
+    font-family: sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -43,14 +44,12 @@ nav {
     transition-duration: 0.4s;
     background-color: white;
     color: black;
-    border: 2px solid #618aea;
     border-radius: 4px;
     margin: 0 auto;
 }
 
-    .navbarBtn:hover {
-        background-color: #618aea;
-        color: white;
+    .navbarBtn:hover, input:hover {
+        background-color: #FFF;
         cursor: pointer;
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     }
@@ -60,67 +59,197 @@ a{
     color: black;
 }
 
-a:hover{
-    color: white;
+
+/* HOME PAGE */
+
+body.home {
+    background: linear-gradient(#8AF3FF, #18A999, #39222E);
 }
 
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #1847b6;
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
+img#house.svg {
+    display: block;
+    margin: auto;
+    width: 200px;
+}
+
+h1#homeTitle {
+    background-color: #FFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border-style: none;
+    font-family: sans-serif;
+    box-shadow: inset 0 0 10px #000;
+}
+
+button.accountHomeButton {
+    font-family: sans-serif;
+    font-weight: bolder;
+}
+
+button#loginBtn.accountHomeBtn {
+    padding: 5px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    border-style: none;
+}
+
+button#registerBtn.accountHomeBtn {
+    padding: 5px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    border-style: none;
+}
+
+
+/* LOGIN */
+
+body#login {
+    background: linear-gradient(#8AF3FF, #18A999, #95C623);
 }
 
 .accountFormContainer {
+    display: inline-block;
     position: absolute;
-    top: 40%;
     left: 50%;
+    top: 30%;
     transform: translateX(-50%);
     text-align: center;
 }
 
+h1.accountFormTitle {
+    font-size: 3rem;
+    background-color: #FFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border-style: none;
+    font-family: sans-serif;
+    box-shadow: inset 0 0 10px #000;
+}
+
+#login input {
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+input#RememberMe {
+    box-shadow: none;
+}
+
+.rememberMeText {
+    color: white;
+    margin: 10px 0;
+}
+
+#login input.navbarBtn.accountformbtn {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+/* REGISTER */
+
+body#register {
+    background: linear-gradient(#8AF3FF, #18A999, #CF098D);
+}
+
+#register input {
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+#register input.navbarBtn.accountformbtn {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+/*NEW PROJECT*/
+
+#newProject {
+    background: linear-gradient(#FFFA00, #5AFF15, #00FF7B);
+    height: 100vh;
+}
+
+#newProjectForm {
+    position: absolute;
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    left: 50%;
+    top: 15%;
+    transform: translateX(-50%);
+}
+
+#newProject .form-container label {
+    margin-top: 100px;
+}
+
+h1#new-project {
+    font-size: 3rem;
+    text-align: center;
+    padding: 10px 20px;
+    border-style: none;
+    font-family: sans-serif;
+}
+
+div.form-container {
+    background-color: rgba(255, 255, 255, 0.30);
+    position: relative;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#newProject input[type="text"] {
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: none;
+    box-shadow: none;
+    cursor: text;
+}
+
+input#HasBasement {
+    box-shadow: none;
+}
+
+#newProject input.navbarBtn.accountformbtn {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 5px;
+    border-style: none;
+    width: 26%;
+    margin-left: 37%;
+    margin-right: 37%
+}
+
 .accountFormControl {
-    margin: 0.5em 0;
+    margin: 10px 0;
     
 }
 
 .accountformbtn{
     text-align: center;
-   
 }
 
 .accountFormTextBox{
     border:2px solid #618aea;
 }
-.accountFormTitle{
-    font-size: 3rem;
 
-}
-.rememberMeText{
-    color: white;
-}
 
-#newProject {
-	background-image: url('HouseOnHill.jpg');
-	background-size: cover; 
-	background-repeat: no-repeat;
-	background-position: center center;
-	height: 95vh;
-}
 
-#newProjectForm {
-	background-color: rgba(251, 210, 125, 0.66);
-	border: solid white;
-	padding: 20px;
-	width: 40vw;
-	display: inline-block;
-	margin-left: 10vw;
-	margin-top: 20vh;
-}
+
+
+
 
 .text-danger li{
     color: red;
@@ -167,7 +296,6 @@ a:hover{
 .userDashboard{
     font-size: 40px;
     color: black;
-    
 }
 .homePage {
     grid-column: 3;

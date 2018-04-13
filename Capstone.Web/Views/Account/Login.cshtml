@@ -4,36 +4,34 @@
     ViewBag.Title = "Log in";
 }
 @section scripts{
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="~/Scripts/particlesSetup.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="~/Scripts/particlesSetup.js"></script>*@
 }
-<div id="particles-js"></div>
 
 
-<div class="accountFormContainer">
-    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-       @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+<body id="login">
+    <div class="accountFormContainer">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-        <h1 class="accountFormTitle">Use a local account to log in.</h1>
-        <div class="accountFormControl">
-            @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
-        </div>
-        <div class="accountFormControl">
-            @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
-        </div>
-        <div class="accountFormControl">
-            @Html.CheckBoxFor(m => m.RememberMe)
-            @Html.LabelFor(m => m.RememberMe, new { @class = "rememberMeText" })
-        </div>
-        <div>
-            <input class="navbarBtn accountformbtn" type="submit" value="Log in" />
-        </div>
-        <p>
-            @Html.ActionLink("Register as a new user", "Register")
-        </p>
-    }
+            <h1 class="accountFormTitle">Hello.</h1>
+            <div class="accountFormControl">
+                @Html.TextBoxFor(m => m.Email, new { placeholder = "email" })
+            </div>
+            <div class="accountFormControl">
+                @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
+            </div>
+            <div class="accountFormControl">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "rememberMeText" })
+            </div>
+            <div>
+                <input class="navbarBtn accountformbtn" type="submit" value="Log in" />
+            </div>
+           
+        }
     </div>
 
-
+</body>
