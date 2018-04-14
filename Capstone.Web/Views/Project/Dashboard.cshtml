@@ -5,16 +5,11 @@
 	@model IList<Capstone.Web.Models.ProjectModel>
 }
 <section id="dashboardSection">
-    <h1 class="userDashboard"> Dashboard</h1>
-
+    <img id="plan" class="svg" src="~/Content/plan.svg" />
     <div class="dashboardButton">
         <form method="get" action="@Url.Action("NewProject", "Project")">
-            <button class="navbarBtn">Build a New House!</button>
-            <br />
-            <br />
+            <input class="navbarBtn accountformbtn" type="submit" value="New house" />
         </form>
-        <br />
-        <br />
         
         <div class="plannedHouses">
             @foreach (var project in Model)

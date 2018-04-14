@@ -1,7 +1,17 @@
 ﻿body {
-    height: 100vh;
+    height: 100%;
     margin: 0;
     font-family: sans-serif;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    height: 100%;
+    background-attachment: fixed;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -62,8 +72,9 @@ a{
 
 /* HOME PAGE */
 
-body.home {
+body#home {
     background: linear-gradient(#8AF3FF, #18A999, #39222E);
+    background-attachment: fixed;
 }
 
 img#house.svg {
@@ -105,18 +116,27 @@ button#registerBtn.accountHomeBtn {
 
 body#login {
     background: linear-gradient(#8AF3FF, #18A999, #95C623);
+    background-attachment: fixed;
+}
+
+img#trees.svg {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 32vw;
 }
 
 .accountFormContainer {
     display: inline-block;
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 10%;
     transform: translateX(-50%);
     text-align: center;
 }
 
 h1.accountFormTitle {
+    display: inline-block;
     font-size: 3rem;
     background-color: #FFF;
     padding: 10px 20px;
@@ -153,6 +173,14 @@ input#RememberMe {
 
 body#register {
     background: linear-gradient(#8AF3FF, #18A999, #CF098D);
+    background-attachment: fixed;
+}
+
+img#paint.svg {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 32vw;
 }
 
 #register input {
@@ -169,11 +197,26 @@ body#register {
     margin: 10px 0;
 }
 
+.text-danger li {
+    color: white;
+    text-align: left;
+    font-size: 1.5rem;
+    list-style: symbols(*);
+}
+
 /*NEW PROJECT*/
 
 #newProject {
     background: linear-gradient(#FFFA00, #5AFF15, #00FF7B);
-    height: 100vh;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+img#hills.svg {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 32vw;
 }
 
 #newProjectForm {
@@ -245,33 +288,72 @@ input#HasBasement {
     border:2px solid #618aea;
 }
 
+/* DASHBOARD */
 
+#dashboardSection {
+    /*background-image: url('houseplan.jpg');
+    
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 95vh;*/
+    background: linear-gradient(#FBBAFF, #EF73E9, #763C89);
+    height: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+}
 
-
-
-
-
-.text-danger li{
-    color: red;
-    font-size:1.5rem;
-    list-style: none;
-    display: block;
+img#plan.svg {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 32vw;
 }
 
 .userProject {
-	background-color: lightblue;
-	border: solid black;
-	padding: 10px;
-	width: 10vw;
+	background-color: rgba(255, 255, 255, 0.3);
+    margin: 10px 5px;
+    border-radius: 10px;
+	width: 150px;
 	display: inline-block;
+    height: 180px;
+
 }
 .dashboardButton{
     position: absolute;
-    top: 35%;
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
 }
+
+#dashboardSection input {
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 10px;
+    border-style: none;
+}
+
+#dashboardSection input.navbarBtn.accountformbtn {
+    font-size: 3rem;
+    font-weight: 600;
+    padding: 10px;
+    margin: 10px;
+}
+
+
+div.plannedHouses {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 80vh;
+    justify-content: center;
+    overflow: scroll;
+}
+
+    div.plannedHouses::-webkit-scrollbar {
+        display: none;
+    }
 
 .userDashboard {
     position: absolute;
@@ -280,13 +362,7 @@ input#HasBasement {
     transform: translateX(-50%);
     text-align: center;
 }
-#dashboardSection {
-    background-image: url('houseplan.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 95vh;
-}
+
 
 #logoff {
     margin-top: 5px;

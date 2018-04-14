@@ -7,8 +7,9 @@
 
 
 <section id="newProject">
+    <img id="hills" class="svg" src="~/Content/house-hills.svg" />
     <form method="post" action="@Url.Action("NewProject", "Project")" id="newProjectForm">
-        <h1 id="new-project">New project.</h1>
+
         <div class="form-container">
             <label>Project Name @Html.TextBoxFor(m => m.HouseName)</label>
             <br />
@@ -44,7 +45,7 @@
             <br />
             <input class="navbarBtn accountformbtn" type="submit" value="Build" />
         </div>
-        
+
 
     </form>
 </section>

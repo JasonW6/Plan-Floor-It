@@ -10,7 +10,9 @@
 
 
 <body id="login">
+    <img id="trees" class="svg" src="~/Content/house-trees.svg" />
     <div class="accountFormContainer">
+
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
         {
             @Html.AntiForgeryToken()
@@ -30,7 +32,7 @@
             <div>
                 <input class="navbarBtn accountformbtn" type="submit" value="Log in" />
             </div>
-           
+
         }
     </div>
 

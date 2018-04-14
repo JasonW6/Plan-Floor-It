@@ -215,16 +215,21 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\brick-wall.svg" />
     <Content Include="Content\bungalow.jpeg" />
     <Content Include="Content\carpet.jpg" />
     <Content Include="Content\chair.png" />
     <Content Include="Content\concrete.jpg" />
     <Content Include="Content\couch.png" />
     <Content Include="Content\desk.png" />
+    <Content Include="Content\drawing.svg" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\house.svg" />
     <Content Include="Content\HouseOnHill.jpg" />
     <Content Include="Content\marble.jpg" />
+    <Content Include="Content\note.svg" />
+    <Content Include="Content\paint-roller.svg" />
+    <Content Include="Content\plan.svg" />
     <Content Include="Content\plywood.jpg" />
     <Content Include="Content\sink.png" />
     <Content Include="Content\table.png" />
