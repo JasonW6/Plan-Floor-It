@@ -33,27 +33,7 @@
 	<script src="~/Scripts/fabric.min.js"></script>
 
 	<script>
-		const canvas = new fabric.Canvas('c', {
-			preserveObjectStacking: true
-		});
 
-		canvas.on("object:moving", function (e) {
-			let movingBox = e.target;
-			const boundingBox = canvas.item(0);
-			var top = movingBox.top;
-			var bottom = top + movingBox.height;
-			var left = movingBox.left;
-			var right = left + movingBox.width;
-
-			var topBound = boundingBox.top;
-			var bottomBound = topBound + boundingBox.height;
-			var leftBound = boundingBox.left;
-			var rightBound = leftBound + boundingBox.width;
-
-			movingBox.set("left", Math.min(Math.max(left, leftBound), rightBound - movingBox.width));
-			movingBox.set("top", Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
-
-		});
 	</script>
 
 	<script>

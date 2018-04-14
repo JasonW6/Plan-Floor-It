@@ -33,6 +33,8 @@ CREATE TABLE [dbo].[UserRoles]
 	HouseName varchar(50) not null, 
 	Basement bit not null, 
 	Floors int not null,
+	[Length] int not null,
+	[Width] int not null,
 	SquareFootage float not null, 
 	Region varchar(50), 
 	Budget decimal not null, 
@@ -42,7 +44,7 @@ CREATE TABLE [dbo].[UserRoles]
 
  );
 
- CREATE TABLE Floor
+ CREATE TABLE [Floor]
  (
 	FloorId int identity(1, 1),
 	HouseId int,
