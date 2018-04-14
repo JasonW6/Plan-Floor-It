@@ -66,10 +66,15 @@ CREATE TABLE [dbo].[UserRoles]
 	CONSTRAINT pk_MaterialId PRIMARY KEY(MaterialId),
 
  );
- INSERT INTO Materials VALUES ('Wood', 1, 1.00, 3.00, 10.00, 'wood.jpg')
-INSERT INTO Materials VALUES ('Carpet', 1, 0.50, 2.00, 8.00, 'carpet.jpg')
-INSERT INTO Materials VALUES ('Tile', 1, 0.80, 2.50, 7.00, 'tile.jpg')
- INSERT INTO Materials VALUES ('Concrete', 1, 1.00, 3.00, 10.00, 'concrete.jpg')
+
+
+ DROP TABLE Materials
+
+INSERT INTO Materials VALUES ('Wood', 1, 1.00, 3.00, 10.00, 'wood.png')
+INSERT INTO Materials VALUES ('Carpet', 1, 0.50, 2.00, 8.00, 'CARPET-DARK.png')
+INSERT INTO Materials VALUES ('Carpet', 1, 0.50, 2.00, 8.00, 'CARPET-LIGHT.png')
+INSERT INTO Materials VALUES ('Tile', 1, 0.80, 2.50, 7.00, 'tile.png')
+INSERT INTO Materials VALUES ('Concrete', 1, 1.00, 3.00, 10.00, 'concrete.png')
 INSERT INTO Materials VALUES ('Plywood', 1, 0.50, 2.00, 8.00, 'plywood.jpg')
 INSERT INTO Materials VALUES ('Marble', 1, 3.80, 7.50, 20.00, 'marble.jpg')
 INSERT INTO Materials VALUES ('Chair', 0, 3.80, 7.50, 20.00, 'chair.png')
