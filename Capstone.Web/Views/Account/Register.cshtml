@@ -8,12 +8,15 @@
 }
 
 <body id="register">
+    <img id="paint" class="svg" src="~/Content/drawing.svg" />
     <div class="accountFormContainer">
+        
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
         {
+            <h1 class="accountFormTitle">Welcome.</h1>
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-            <h1 class="accountFormTitle">Welcome.</h1>
+            
             <div class="accountFormControl" id="regName">
                 @Html.TextBoxFor(m => m.FirstName, new { placeholder = "first name", @class = "accountFormTextBox" })
             </div>
