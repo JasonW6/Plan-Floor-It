@@ -1,8 +1,8 @@
 ﻿<build-menu>
     <div class="menuContainer">
         <div id="menuTabsContainer">
-            <div class="menuTab activeMenuTab" id="materialTab" onclick="{switchMaterialType}">Material</div>
-            <div class="menuTab" id="otherTab" onclick="{switchMaterialType}">Other</div>
+            <div class="menuTab activeMenuTab" id="materialTab" onclick="{switchMaterialType}"><i class="fa fa-th"></i></div>
+            <div class="menuTab" id="otherTab" onclick="{switchMaterialType}"><i class="fa fa-couch-l"></i></div>
         </div>
 
         <div class="materialsContainer" id="materialSection" if={isFloors}>
@@ -34,6 +34,10 @@
             display: inline-block;
         }
 
+        .materialsContainer{
+            margin-top: 1em;
+        }
+
         .materials{
             height: 12em;
         }
@@ -42,11 +46,14 @@
             width: 100%;
             margin: 0 auto;
             height: 80%;
+            border: 1px solid black;
+            border-radius: 5px;
         }
 
         #menuTabsContainer {
             display: flex;
             width: 100%;
+            margin-top: 0.5em;
         }
         .menuTab {
             display: inline-block;
@@ -64,6 +71,8 @@
             margin: 0 1em;
             height: 12em !important;
         }
+
+        
 
     </style>
 
