@@ -17,7 +17,7 @@
         <div class="sideRoomPanel">
             <i onclick="{ switchZoom }" class="fa fa-search-plus {activated: isZoom}"></i>
             <i onclick="{ switchLock }" class="fa fa-lock {activated: isLocked}" ></i>
-            <i class="fa fa-trash"></i>
+            <i onclick="{ deleteRoom }" class="fa fa-trash"></i>
         </div>
         <div class="addPaintAndLights">
             <div class="paintLightButton">
@@ -32,7 +32,7 @@
 
     <style>
         .roomContainer {
-            height: 100%;
+            height: 90%;
             position: relative;
         }
 
@@ -50,6 +50,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: 25%;
+            top: 5%;
         }
         .roomImg{
             width: 100%;
@@ -81,8 +82,14 @@
             width: 100%;
         }
         
-        
+        .room-name{
+            height: 10%;
+        }
+        #roomNameTextBox {
+            margin-top: 0.5em;
+        }
     </style>
+
     <script>
 
         function Room(name) {
@@ -131,6 +138,22 @@
                 arrowButton.setAttribute("style", "display: none");
             }
             
+            this.update();
+        }
+
+        this.deleteRoom = function () {
+            let element = document.querySelector('#roomNameTextBox');
+            this.rooms.splice(this.rooms.indexOf(this.rooms.find(r => r.name === this.currentRoom.name)), 1);
+            if (this.rooms.length > 0) {
+                this.currentRoom = this.rooms[0];
+                this.roomIndex = 0;
+                element.value = this.currentRoom.name;
+            }
+            else {
+                this.currentRoom = null;
+                this.roomIndex = -1;
+                element.value = "";
+            }
             this.update();
         }
 

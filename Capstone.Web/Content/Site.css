@@ -391,8 +391,11 @@ div.plannedHouses {
 
 build-menu{
     grid-column: 1;
+    border-right: 2px solid lightgray;
+    height: 27vh;
 }
 
 room-menu{
     grid-column: 2;
+    height: 27vh;
 }
