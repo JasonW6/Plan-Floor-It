@@ -17,14 +17,14 @@
 	<canvas id="c" width="1200" height="700"></canvas>
 </div>
 <div id="bottomMenu">
-    <build-menu></build-menu>
-    <room-menu></room-menu>
+	<build-menu></build-menu>
+	<room-menu></room-menu>
 </div>
 
 @section scripts
 {
-<script src="~/Tags/room-menu.tag" type="riot/tag">
-</script>
+	<script src="~/Tags/room-menu.tag" type="riot/tag">
+	</script>
 	<script src="~/Tags/build-menu.tag" type="riot/tag">
 	</script>
 	<script src="~/Tags/project-canvas.tag" type="riot/tag">
@@ -32,18 +32,41 @@
 	</script>
 	<script src="~/Scripts/fabric.min.js"></script>
 
+	<script>
+		const canvas = new fabric.Canvas('c', {
+			preserveObjectStacking: true
+		});
+
+		canvas.on("object:moving", function (e) {
+			let movingBox = e.target;
+			const boundingBox = canvas.item(0);
+			var top = movingBox.top;
+			var bottom = top + movingBox.height;
+			var left = movingBox.left;
+			var right = left + movingBox.width;
+
+			var topBound = boundingBox.top;
+			var bottomBound = topBound + boundingBox.height;
+			var leftBound = boundingBox.left;
+			var rightBound = leftBound + boundingBox.width;
+
+			movingBox.set("left", Math.min(Math.max(left, leftBound), rightBound - movingBox.width));
+			movingBox.set("top", Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
+
+		});
+	</script>
 
 	<script>
-        riot.mount('room-menu');
-        riot.mount('build-menu');
-        riot.mount('project-canvas');
-        
+		riot.mount('room-menu');
+		riot.mount('build-menu');
+		riot.mount('project-canvas');
+
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 	<script type="text/javascript">
-        class Room {
-            constructor(name) { this.name = name;}
-        }
+		class Room {
+			constructor(name) { this.name = name; }
+		}
 	</script>
 
 }

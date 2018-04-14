@@ -45,6 +45,11 @@
 
     <script>
 
+		this.concrete = new fabric.Pattern({
+			source: '/Content/concrete.png',
+			repeat: "repeat"
+		});
+
         this.canvas = new fabric.Canvas('c', { preserveObjectStacking: true });
 
         this.floors = [];
@@ -150,25 +155,33 @@
                 // ... do some stuff ...
             });
 
+			
         }
 
         this.createFoundation = function (h, w) {
 
-            this.foundation = new fabric.Rect({
-                left: 0,
-                top: 0,
-                fill: "gray",
-                width: (w * 5),
-                height: (h * 5),
-                stroke: "black",
-                strokeWidth: 5,
-                selectable: false
-            })
+			this.foundation = new fabric.Rect({
+				id: "Foundation",
+				left: 0,
+				top: 0,
+				fill: "gray",
+				width: (w * 5),
+				height: (h * 5),
+				stroke: "black",
+				strokeWidth: 5,
+				selectable: false
+	
+			});
 
+			//this.foundation.set("fill", this.concrete);
+			console.log("ID: " + this.foundation.id);
             this.canvas.add(this.foundation);
-            this.foundation.center();
+			this.foundation.center();
+			this.canvas.renderAll();
 
-        }
+		}
+
+
 
         this.setFloorPlan = function () {
 
@@ -184,8 +197,6 @@
                 this.createFoundation(100, 200);
                 console.log("no floor plan dude");
             }
-
-
 
             this.canvas.renderAll();
 
