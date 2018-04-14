@@ -147,7 +147,7 @@
             this.canvas.loadFromJSON(json, this.canvas.renderAll.bind(this.canvas), function (o, object) {
                 // `o` = json object
                 console.log("Fabric object: " + object.selectable);
-                if (object.name == "foundation") {
+                if (object.fill == "gray") {
                     object.selectable = false;
                 }
                 
@@ -161,9 +161,10 @@
         this.createFoundation = function (h, w) {
 
 			this.foundation = new fabric.Rect({
+				id: "Foundation",
 				left: 0,
 				top: 0,
-				fill: this.concrete,
+				fill: "gray",
 				width: (w * 5),
 				height: (h * 5),
 				stroke: "black",
@@ -172,10 +173,8 @@
 	
 			});
 
-			this.foundation.name = "foundation";
-
 			//this.foundation.set("fill", this.concrete);
-
+			console.log("ID: " + this.foundation.id);
             this.canvas.add(this.foundation);
 			this.foundation.center();
 			this.canvas.renderAll();
@@ -199,8 +198,6 @@
                 console.log("no floor plan dude");
             }
 
-
-			//this.canvas.item(0).selectable = false;
             this.canvas.renderAll();
 
         }
