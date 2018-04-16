@@ -10,7 +10,7 @@
             </div>
             <div class="materials" id="floorMaterials">
                 <div class="material" each="{floor, index in floors}" id="floor-{index}">
-                    <img src="/Content/{floor.ImageSource}" class="matImg" />
+                    <img onclick="{ setMaterial }" src="/Content/{floor.ImageSource}" class="matImg" />
                     <p>{floor.Name}</p>
                 </div>
             </div>
@@ -21,7 +21,7 @@
             </div>
             <div class="materials" id="objectMaterials">
                 <div class="material" each="{object, index in objects}" id="object-{index}">
-                    <img src="/Content/{object.ImageSource}" class="matImg" />
+                    <img src="/Content/{object.ImageSource}" class="matImg" style="border-style:none; box-shadow: none" />
                     <p>{object.Name}</p>
                 </div>
             </div>
@@ -30,24 +30,50 @@
 
     <style type="text/css">
         .menuContainer {
-            width: 90%;
+            background-color: #18A999;
+            width: 100%;
+            height: 100%;
             display: inline-block;
+            box-shadow: inset 0 0 10px #000;
         }
 
-        .materialsContainer{
+        .materialsContainer {
             margin-top: 1em;
         }
 
-        .materials{
-            height: 12em;
+        .materials {
+            height: 100%;
         }
 
+            .materials p {
+                display: inline-block;
+                background-color: white;
+                padding: 5px;
+                font-size: 1.5rem;
+                align-self: center;
+                font-weight: 600;
+                text-align: center;
+                vertical-align: bottom;
+                border-radius: 5px;
+                box-shadow: 0 0 10px #000;
+            }
+
         .matImg {
-            width: 100%;
+            width: 60%;
+            transition-duration: 0.4s;
             margin: 0 auto;
-            height: 80%;
-            border: 1px solid black;
+            border: 2px solid white;
             border-radius: 5px;
+            box-shadow: 0 0 10px #000;
+            cursor: pointer;
+        }
+
+            .matImg:hover {
+                box-shadow: 0 0 10px #FFF;
+            }
+
+        div.slick-track {
+            height: 100%;
         }
 
         #menuTabsContainer {
@@ -55,25 +81,31 @@
             width: 100%;
             margin-top: 0.5em;
         }
+
         .menuTab {
             display: inline-block;
             width: 50%;
-            border: 1px solid black;
+            margin: 0 2px;
+            height: 20px;
+            border: 2px solid #FFF;
             text-align: center;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        .activeMenuTab{
-            background-color: aliceblue;
+        .activeMenuTab {
+            background-color: #FFF;
+            margin: 0 2px;
+            border: 2px solid black;
         }
+
         .material {
-            width: 12em !important;
-            margin: 0 1em;
-            height: 12em !important;
+            display: flex;
+            flex-direction: column;
+            width: 10em !important;
+            margin: 10px 0;
+            height: 10em !important;
         }
-
-        
-
     </style>
 
     <script type="text/javascript">
@@ -82,7 +114,7 @@
         this.isFloors = true;
         this.currentMenuType = "material";
         this.inputGrade = document.getElementsByName("grade");
-        
+
         this.on("mount", function () {
             console.log("loaded");
             this.getMaterials();
@@ -106,6 +138,12 @@
                         slidesToScroll: 3
                     });
                 });
+        }
+
+        this.setMaterial = function () {
+            console.log("Set Material " + this.floor.ImageSource);
+
+            this.opts.bus.trigger("setMaterial", this.floor.ImageSource);
         }
 
         this.switchMaterialType = function () {

@@ -32,7 +32,7 @@
 
     <style>
         .roomContainer {
-            height: 90%;
+            height: 100%;
             position: relative;
         }
 
@@ -88,6 +88,8 @@
         #roomNameTextBox {
             margin-top: 0.5em;
         }
+
+
     </style>
 
     <script>
@@ -142,8 +144,13 @@
         }
 
         this.deleteRoom = function () {
+
             let element = document.querySelector('#roomNameTextBox');
+
+            this.opts.bus.trigger("deleteRoom", this.currentRoom);
+
             this.rooms.splice(this.rooms.indexOf(this.rooms.find(r => r.name === this.currentRoom.name)), 1);
+
             if (this.rooms.length > 0) {
                 this.currentRoom = this.rooms[0];
                 this.roomIndex = 0;
@@ -154,10 +161,14 @@
                 this.roomIndex = -1;
                 element.value = "";
             }
+
+            
+
             this.update();
         }
 
         this.upRoom = function () {
+
             let element = document.querySelector('#roomNameTextBox');
             if (this.roomIndex < this.rooms.length - 1) {
                 this.roomIndex++;
@@ -181,6 +192,9 @@
             this.currentRoom = this.rooms[this.roomIndex];
             element.value = this.currentRoom.name;
             this.currentRoom.flooring = "wood";
+
+            this.opts.bus.trigger("newRoom", this.currentRoom);
+
             this.update();
         }
 

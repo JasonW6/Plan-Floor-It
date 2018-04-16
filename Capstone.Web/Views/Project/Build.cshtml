@@ -4,7 +4,6 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.HouseName</h2>
 
 @section styles{
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
@@ -12,7 +11,7 @@
 }
 
 
-<project-canvas houseId="@Model.HouseId" length="@Model.Length" width="@Model.Width"></project-canvas>
+<project-canvas houseName="@Model.HouseName" houseId="@Model.HouseId" length="@Model.Length" width="@Model.Width"></project-canvas>
 <div class="canvas-container">
 	<canvas id="c" width="1200" height="700"></canvas>
 </div>
@@ -37,9 +36,14 @@
 	</script>
 
 	<script>
-		riot.mount('room-menu');
-		riot.mount('build-menu');
-		riot.mount('project-canvas');
+
+        let bus = {};
+
+        riot.observable(bus);
+
+        riot.mount('room-menu', { bus: bus });
+        riot.mount('build-menu', { bus: bus });
+        riot.mount('project-canvas', { bus: bus });
 
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>

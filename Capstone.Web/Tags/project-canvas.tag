@@ -5,12 +5,15 @@
 
 
     <div class="head">
-        <button onclick={removeFloor} type="button">Remove Floor</button>
-        <button if="{currentFloor != floors[0]}" onclick={downFloor} type="button">&lt</button>
-        <h1 class="floor-number">Floor: {this.currentFloor.FloorNumber}</h1>
-        <button if="{currentFloor != floors[floors.length - 1]}" onclick={upFloor} type="button">&gt</button>
-        <button onclick={saveJSON} type="button">Save!</button>
-        <button onclick={newRect} type="button">Rectangle</button>
+        <!--<button onclick={removeFloor} type="button">Remove Floor</button>-->
+        <div id="house-name">{opts.housename}</div>
+        <div class="floor-container">
+            <button if="{currentFloor != floors[0]}" onclick={downFloor} type="button">&lt</button>
+            <h1 class="floor-number">Floor: {this.currentFloor.FloorNumber}</h1>
+            <button if="{currentFloor != floors[floors.length - 1]}" onclick={upFloor} type="button">&gt</button>
+        </div>
+
+        <button id="save" onclick={saveJSON} type="button">Save</button>
     </div>
 
     <!--<div class="canvas-container">
@@ -24,28 +27,64 @@
         }
 
         .head {
-            align-items: center;
-            align-content: space-between;
-            display: flex;
-            flex-direction: row;
+            background-color: #8AF3FF;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            min-height: 80px;
+            height: 7vh;
+            box-shadow: 0 0 10px #000;
+            z-index: 2;
+            box-shadow: inset 0 0 10px #000;
+        }
+
+        #house-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: auto;
         }
 
         .floor-number {
-            display: inline-block;
+            grid-column-start: 2;
+        }
+
+        .floor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin: auto;
+            grid-column-start: 2;
         }
 
         button {
-            display: inline-block;
+            transition-duration: 0.4s;
+            font-weight: 700;
+            height: 50%;
+            transform: translateY(50%);
+            font-family: sans-serif;
+            background-color: #FFF;
             margin-left: 10px;
             margin-right: 10px;
+            font-size: 2rem;
+            padding: 0;
+            line-height: 0;
+            border-radius: 5px;
+            border-style: none;
+        }
+
+        button:hover {
+            background-color: #FFF;
+            cursor: pointer;
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+
+        button#save {
+            grid-column-start: 3;
+            padding: 0;
         }
     </style>
 
 
 
     <script>
-
-
 
         var canvas = new fabric.Canvas('c', { preserveObjectStacking: true });
 
@@ -59,8 +98,21 @@
         this.isTopFloor;
         this.isBottomFloor;
 
+
         this.on("mount", function () {
             console.log("loaded");
+
+            this.opts.bus.on("newRoom", data => {
+                this.newRoom(data);
+            });
+
+            this.opts.bus.on("deleteRoom", data => {
+                this.deleteRoom();
+            });
+
+            this.opts.bus.on("setMaterial", data => {
+                this.setMaterial(data);
+            });
 
             concrete = new fabric.Pattern({
                 source: '/Content/concrete.png',
@@ -102,6 +154,8 @@
 
             });
         });
+
+        
 
         this.getFloors = function () {
 
@@ -167,11 +221,45 @@
             fetch(url, settings)
         }
 
-        this.newRect = function () {
-            var rect = new fabric.Rect({
+        this.newRoom = function (room) {
+
+            this.newRect(room.name);
+
+        }
+
+        this.deleteRoom = function () {
+
+            let room = canvas.getActiveObject();
+
+            canvas.remove(room);
+            canvas.renderAll();
+        }
+
+        this.setMaterial = function (image) {
+
+            let room = canvas.getActiveObject();
+
+            material = new fabric.Pattern({
+                source: `/Content/${image}`,
+                repeat: 'repeat'
+            });
+
+
+            room.set('fill', material);
+
+            canvas.renderAll();
+
+            this.saveJSON();
+            canvas.renderAll();
+        }
+
+        this.newRect = function (_name) {
+
+            let rect = new fabric.Rect({
+                name: _name,
                 left: 500,
                 top: 250,
-                fill: plywood,
+                fill: '',
                 width: 100,
                 height: 100,
                 stroke: "black",
@@ -180,8 +268,9 @@
             });
 
             canvas.add(rect);
-
-
+            rect.center();
+            canvas.setActiveObject(rect);
+            this.saveJSON();
         }
 
         this.loadCanvas = function (json) {
@@ -192,6 +281,8 @@
                 // `object` = fabric.Object instance
                 // ... do some stuff ...
             });
+
+            canvas.renderAll();
 			
         }
 
