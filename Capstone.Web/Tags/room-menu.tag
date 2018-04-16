@@ -94,6 +94,11 @@
 
     <script>
 
+        this.opts.bus.on("updateCurrentRoom", data => {
+            this.updateCurrentRoom(data);
+            console.log("12312312321");
+        })
+
         function Room(name) {
             this.name = name;
             this.flooring;
@@ -122,7 +127,8 @@
 
         this.roomIndex = -1;
         this.rooms = [];
-        this.currentRoom = null;
+        this.currentRoom = null; 
+
         this.createdRooms = [];
         this.createdRooms = document.querySelectorAll('.createdRoom');
         this.isZoom = false;
@@ -139,7 +145,9 @@
                 let arrowButton = document.querySelector("#roomBackButton");
                 arrowButton.setAttribute("style", "display: none");
             }
-            
+
+            this.opts.bus.trigger("changeRoom", this.roomIndex);
+
             this.update();
         }
 
@@ -149,7 +157,7 @@
 
             this.opts.bus.trigger("deleteRoom", this.currentRoom);
 
-            this.rooms.splice(this.rooms.indexOf(this.rooms.find(r => r.name === this.currentRoom.name)), 1);
+            this.rooms.splice(this.roomIndex, 1);
 
             if (this.rooms.length > 0) {
                 this.currentRoom = this.rooms[0];
@@ -179,7 +187,10 @@
                 let arrowButton = document.querySelector("#roomForwardButton");
                 arrowButton.setAttribute("style", "display: none");
             }
-           
+
+            console.log("uppppdoorooom");
+            this.opts.bus.trigger("changeRoom", this.roomIndex);
+
             this.update();
         }
 
@@ -198,6 +209,16 @@
             this.update();
         }
 
+        this.updateCurrentRoom = function (index) {
+            console.log("indndnndnndnd " + index);
+
+            this.currentRoom = this.rooms[this.roomIndex];
+
+            let element = document.querySelector('#roomNameTextBox');
+            element.value = this.currentRoom.name;
+
+            this.update();
+        }
 
     </script>
 </room-menu>
