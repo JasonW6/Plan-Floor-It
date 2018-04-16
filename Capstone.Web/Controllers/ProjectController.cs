@@ -36,8 +36,6 @@ namespace Capstone.Web.Controllers
 		{ 
 
 			model.UserId = Guid.Parse(User.Identity.GetUserId());
-
-
             int houseId = dal.AddNewHouse(model);
 			MakeFloors(model.GetFloorCount(), houseId);
 

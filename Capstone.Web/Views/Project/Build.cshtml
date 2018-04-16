@@ -14,6 +14,7 @@
 <project-canvas houseName="@Model.HouseName" houseId="@Model.HouseId" length="@Model.Length" width="@Model.Width"></project-canvas>
 <div class="canvas-container">
 	<canvas id="c" width="1200" height="700"></canvas>
+    <cost-menu baseCost="@Model.BaseCost"></cost-menu>
 </div>
 <div id="bottomMenu">
 	<build-menu></build-menu>
@@ -26,25 +27,18 @@
 	</script>
 	<script src="~/Tags/build-menu.tag" type="riot/tag">
 	</script>
-	<script src="~/Tags/project-canvas.tag" type="riot/tag">
-
-	</script>
+	<script src="~/Tags/project-canvas.tag" type="riot/tag"></script>
 	<script src="~/Scripts/fabric.min.js"></script>
-
 	<script>
-
-	</script>
-
-	<script>
-
         let bus = {};
-
         riot.observable(bus);
-
+        riot.mount('cost-menu');
         riot.mount('room-menu', { bus: bus });
-        riot.mount('build-menu', { bus: bus });
-        riot.mount('project-canvas', { bus: bus });
 
+        riot.mount('build-menu', { bus: bus });
+
+        riot.mount('project-canvas', { bus: bus });
+        
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 	<script type="text/javascript">
@@ -52,6 +46,5 @@
 			constructor(name) { this.name = name; }
 		}
 	</script>
-
 }
 

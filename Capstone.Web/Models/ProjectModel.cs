@@ -6,38 +6,46 @@ using Capstone.Web.Models;
 
 namespace Capstone.Web.Models
 {
-	public class ProjectModel
-	{
-		public int HouseId { get; set; }
-		public Guid UserId { get; set; }
-		public string HouseName { get; set; }
-		public bool HasBasement { get; set; }
-		public int NumberOfFloors { get; set; }
+    public class ProjectModel
+    {
+        public int HouseId { get; set; }
+        public Guid UserId { get; set; }
+        public string HouseName { get; set; }
+        public bool HasBasement { get; set; }
+        public int NumberOfFloors { get; set; }
         public List<FloorModel> ListOfFloors { get; set; }
-		public double Length { get; set; }
-		public double Width { get; set; }
-		public double SquareFootage
-		{
-			get
-			{
-				return Length * Width;
-			}
+        public double Length { get; set; }
+        public double Width { get; set; }
+        public double SquareFootage
+        {
+            get
+            {
+                return Length * Width;
+            }
             set { }
-		}
-		public string Region { get; set; }
-		public decimal Budget { get; set; }
+        }
+        public string Region { get; set; }
+        public decimal Budget { get; set; }
 
+        public double BaseCost
+        {
+            get
+            {
+                return (Length * Width) * NumberOfFloors;
+            }
+            set { }
+        }
 
-		public int GetFloorCount()
-		{
-			int count = NumberOfFloors;
+        public int GetFloorCount()
+        {
+            int count = NumberOfFloors;
 
-			if(HasBasement)
-			{
-				count++;
-			}
+            if (HasBasement)
+            {
+                count++;
+            }
 
-			return count;
-		}
-	}
+            return count;
+        }
+    }
 }

@@ -157,7 +157,7 @@
                 this.update();
                 $('#floorMaterials').slick({
                     infinite: false,
-                    slidesToShow: 7,
+                    slidesToShow: 5,
                     slidesToScroll: 1,
                     arrows: true
                 });

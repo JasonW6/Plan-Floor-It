@@ -36,6 +36,7 @@ CREATE TABLE [dbo].[UserRoles]
 	[Length] int not null,
 	[Width] int not null,
 	SquareFootage float not null, 
+	BaseCost decimal not null,
 	Region varchar(50), 
 	Budget decimal not null, 
 
@@ -69,9 +70,6 @@ CREATE TABLE [dbo].[UserRoles]
 
  );
 
-
- 
-
 INSERT INTO Materials VALUES ('Wood', 1, 1.00, 3.00, 10.00, 'wood.png')
 INSERT INTO Materials VALUES ('Carpet', 1, 0.50, 2.00, 8.00, 'CARPET-DARK.png')
 INSERT INTO Materials VALUES ('Carpet', 1, 0.50, 2.00, 8.00, 'CARPET-LIGHT.png')
@@ -84,3 +82,10 @@ INSERT INTO Materials VALUES ('Couch', 0, 3.80, 7.50, 20.00, 'couch.png')
 INSERT INTO Materials VALUES ('Toilet', 0, 3.80, 7.50, 20.00, 'toilet.png')
 INSERT INTO Materials VALUES ('Table', 0, 3.80, 7.50, 20.00, 'table.png')
 INSERT INTO Materials VALUES ('Desk', 0, 3.80, 7.50, 20.00, 'desk.png')
+
+INSERT INTO Materials VALUES ('Furnace', 0, 3.80, 7.50, 20.00, 'Furnace.png')
+INSERT INTO Materials VALUES ('Fridge', 0, 3.80, 7.50, 20.00, 'Fridge.png')
+INSERT INTO Materials VALUES ('Sink', 0, 3.80, 7.50, 20.00, 'sink.png')
+INSERT INTO Materials VALUES ('Washer', 0, 3.80, 7.50, 20.00, 'Washer.png')
+INSERT INTO Materials VALUES ('Dryer', 0, 3.80, 7.50, 20.00, 'Washer.png')
+INSERT INTO Materials VALUES ('Bed', 0, 3.80, 7.50, 20.00, 'bed.png')
