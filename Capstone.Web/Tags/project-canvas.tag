@@ -226,7 +226,8 @@
                     headers: { 'content-type': 'application/json' }
                 };
             console.log("JSON:" + this.json);
-            fetch(url, settings)
+            fetch(url, settings);
+            
         }
 
         this.newRoom = function (room) {
@@ -264,9 +265,12 @@
 
             room.set('fill', material);
 
+
             canvas.renderAll();
 
             this.saveJSON();
+
+
             canvas.renderAll();
         }
 

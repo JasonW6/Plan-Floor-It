@@ -129,8 +129,9 @@
 
     <script>
 
-		this.opts.bus.on("setMaterial", data => {
-			this.currentMaterial = `/Content/${data}`;
+        this.opts.bus.on("setMaterial", data => {
+            this.setMaterial(data);
+			
 			console.log("Material: " + data);
 			this.update();
 		})
@@ -194,6 +195,8 @@
                 arrowButton.setAttribute("style", "display: none");
             }
 
+            this.currentMaterial = this.currentRoom.flooring;
+
             this.opts.bus.trigger("changeRoom", this.roomIndex);
 
             this.update();
@@ -234,7 +237,8 @@
                 arrowButton.setAttribute("style", "display: none");
             }
 
-            console.log("uppppdoorooom");
+            this.currentMaterial = this.currentRoom.flooring;
+
             this.opts.bus.trigger("changeRoom", this.roomIndex);
 
             this.update();
@@ -254,12 +258,18 @@
             console.log(this.rooms);
             this.roomIndex++;
             this.currentRoom = this.rooms[this.roomIndex];
-            this.currentRoom.flooring = "wood";
+            this.currentRoom.flooring = "/Content/plywood.jpg";
 
             this.opts.bus.trigger("newRoom", this.currentRoom);
 			this.element.setAttribute("type", "hidden");
 			this.span.setAttribute("style", "display: inline");
 			this.save.setAttribute("type", "hidden");
+            this.update();
+        }
+
+        this.setMaterial = function (material) {
+            this.currentMaterial = `/Content/${material}`;
+            this.currentRoom.flooring = this.currentMaterial;
             this.update();
         }
 
