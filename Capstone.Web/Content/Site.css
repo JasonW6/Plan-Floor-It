@@ -37,7 +37,7 @@ textarea {
 nav {
     display: grid;
     background-color: #000000;
-    grid-template-columns: auto 5% 5% 5%;
+    grid-template-columns: 5% 5% 5% auto 5% 5%;
 }
 
 #navLink-Register {
@@ -56,6 +56,7 @@ nav {
     color: black;
     border-radius: 4px;
     margin: 0 auto;
+    grid-column: 2/ span 1;
 }
 
     .navbarBtn:hover, input:hover {
@@ -366,6 +367,7 @@ div.plannedHouses {
 
 #logoff {
     margin-top: 5px;
+    display: inline-block;
    
 }
 
@@ -374,9 +376,9 @@ div.plannedHouses {
     color: black;
 }
 .homePage {
-    grid-column: 3;
-    grid-row: 2;
-    margin-top: 20px;
+    grid-column: 3/ span 1;
+    grid-row: 1;
+    margin-top: 5px;
 }
 
 .canvas-container {
@@ -402,4 +404,8 @@ build-menu{
 room-menu{
     grid-column: 2;
     height: 27vh;
+}
+
+#logoutForm{
+    grid-column: 5/ span 1;
 }

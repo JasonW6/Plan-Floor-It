@@ -1,8 +1,8 @@
 ﻿<build-menu>
     <div class="menuContainer">
         <div id="menuTabsContainer">
-            <div class="menuTab activeMenuTab" id="materialTab" onclick="{switchMaterialType}"><i class="fa fa-th"></i></div>
-            <div class="menuTab" id="otherTab" onclick="{switchMaterialType}"><i class="fa fa-couch-l"></i></div>
+            <div class="menuTab activeMenuTab" id="materialTab" onclick="{switchMaterialType}"><i class="fa fa-th"></i> Flooring <i class="fa fa-th"></i></div>
+            <div class="menuTab" id="otherTab" onclick="{switchMaterialType}"><i class="fa fa-couch-l"></i> Appliances & Furniture <i class="fa fa-couch-l"></i></div>
         </div>
 
         <div class="materialsContainer" id="materialSection" if={isFloors}>
@@ -133,9 +133,10 @@
                     console.log(this.floors);
                     this.update();
                     $('#floorMaterials').slick({
-                        infinite: true,
-                        slidesToShow: 3,
-                        slidesToScroll: 3
+                        infinite: false,
+                        slidesToShow: 5,
+                        slidesToScroll: 2,
+                        arrows: true
                     });
                 });
         }
@@ -155,9 +156,10 @@
                 this.otherTab.classList.remove('activeMenuTab');
                 this.update();
                 $('#floorMaterials').slick({
-                    infinite: true,
-                    slidesToShow: 3,
-                    slidesToScroll: 3
+                    infinite: false,
+                    slidesToShow: 7,
+                    slidesToScroll: 1,
+                    arrows: true
                 });
             }
             else {
@@ -165,9 +167,10 @@
                 this.materialTab.classList.remove('activeMenuTab');
                 this.update();
                 $('#objectMaterials').slick({
-                    infinite: true,
+                    infinite: false,
                     slidesToShow: 3,
-                    slidesToScroll: 3
+                    slidesToScroll: 1,
+                    arrows: true
                 });
             }
         }

@@ -1,34 +1,34 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Capstone.Web.DAL;
-@{ 
+@{
     var dal = new UserDAL();
 }
 
 
 @if (Request.IsAuthenticated)
 {
+    <button class="navbarBtn"> @Html.ActionLink("Hello " + dal.GetFirstName(User.Identity.GetUserId()) + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right">
-            <li >
-                <button class="navbarBtn"> @Html.ActionLink("Hello " + dal.GetFirstName(User.Identity.GetUserId()) + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
-            </li>
-            <li>
-                <button id="logoff"class="navbarBtn" href="javascript:document.getElementById('logoutForm').submit()">Log off</button>
-            </li>
-        </ul>
+        //<div class="nav navbar-nav navbar-right">
+
+            
+
+            <button id="logoff" class="navbarBtn" href="javascript:document.getElementById('logoutForm').submit()">Log off</button>
+
+        //</div>
 
     }
-    <form method="get" action="@Url.Action("Dashboard", "Project")">
-    <button class="navbarBtn homePage">DashBoard</button>
-        </form>
-    }
-    else
-    {
+    //<form method="get" action="@Url.Action("Dashboard", "Project")">
+        <button class="navbarBtn homePage"> @Html.ActionLink("Dashboard", "Dashboard", "Project")</button>
+    //</form>
+}
+else
+{
 
     <button class="navbarBtn" id="navLink-Register">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</button>
     <button class="navbarBtn" id="navLink-Login">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
 
-    }
+}

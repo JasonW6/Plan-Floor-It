@@ -70,7 +70,7 @@ CREATE TABLE [dbo].[UserRoles]
  );
 
 
- DROP TABLE Materials
+ 
 
 INSERT INTO Materials VALUES ('Wood', 1, 1.00, 3.00, 10.00, 'wood.png')
 INSERT INTO Materials VALUES ('Carpet', 1, 0.50, 2.00, 8.00, 'CARPET-DARK.png')
