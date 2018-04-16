@@ -97,7 +97,7 @@
         this.currentFoundation = {};
         this.isTopFloor;
         this.isBottomFloor;
-
+        this.roomArea;
 
         this.on("mount", function () {
             console.log("loaded");
@@ -141,6 +141,8 @@
             canvas.on('object:scaling', function () {
                 const active = canvas.getActiveObject();
                 active.set({ width: active.width * active.scaleX, scaleX: 1, height: active.height * active.scaleY, scaleY: 1 });
+                this.roomArea = active.width * active.height;
+                console.log("Area: " + this.roomArea);
                 active.setCoords();
             });
 
@@ -151,7 +153,7 @@
                 var bottom = top + movingBox.height;
                 var left = movingBox.left;
                 var right = left + movingBox.width;
-
+                
                 var topBound = boundingBox.top;
                 var bottomBound = topBound + boundingBox.height;
                 var leftBound = boundingBox.left;
