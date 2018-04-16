@@ -114,6 +114,10 @@
                 this.setMaterial(data);
             });
 
+            this.opts.bus.on("changeRoom", data => {
+                this.changeRoom(data);
+            })
+
             concrete = new fabric.Pattern({
                 source: '/Content/concrete.png',
                 repeat: "repeat"
@@ -129,6 +133,10 @@
             //this.isTopFloor = this.currentFloor == this.floors[this.floors.length - 1];
             //this.isBottomFloor = this.currentFloor == this.floors[0];
 
+            canvas.on("mouse:dblclick", function (e) {
+                let index = canvas.getObjects().indexOf(e.target);
+                opts.bus.trigger("updateCurrentRoom", index);
+            });
 
             canvas.on('object:scaling', function () {
                 const active = canvas.getActiveObject();
@@ -234,6 +242,15 @@
             canvas.remove(room);
             canvas.renderAll();
         }
+
+        this.changeRoom = function (index) {
+
+            canvas.setActiveObject(canvas.item(index + 1));
+            console.log("indeexxx " + canvas.item(index + 1));
+            canvas.renderAll();
+
+        }
+
 
         this.setMaterial = function (image) {
 
