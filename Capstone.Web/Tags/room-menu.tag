@@ -1,36 +1,37 @@
 ﻿<room-menu>
-    <div class="room-name">
-        <button if="{roomIndex > 0}" id="roomBackButton" onclick="{ downRoom }" type="button">&lt</button>
-        <input id="roomNameTextBox" type="text" />
-        <button if="{roomIndex < rooms.length - 1}" onclick="{ upRoom }" id="roomForwardButton" type="button">&gt</button>
-        <button class="roomBtn newRoom" onclick="{addRoom}">New Room</button>
-    </div>
+	<div class="room-name">
+		<i onclick="{ switchLock }" class="fa fa-lock {activated: isLocked}"></i>
+		<i onclick="{ switchZoom }" class="fa fa-search-plus {activated: isZoom}"></i>
+		<button if="{roomIndex > 0}" id="roomBackButton" onclick="{ downRoom }" type="button">&lt</button>
+		<input id="roomNameTextBox" type="hidden">
+		<span id="roomName">{currentRoom.name}</span>
+		<button if="{roomIndex < rooms.length - 1}" onclick="{ upRoom }" id="roomForwardButton" type="button">&gt</button>
+		<button class="roomBtn newRoom" onclick="{newRoom}">+</button>
+		<i onclick="{ deleteRoom }" class="fa fa-trash"></i>
+	</div>
     <div class="roomContainer " if="{currentRoom === null}">
         
     </div>
 
+	<input type="hidden" class="saveRoom" onclick="{ addRoom }" value="Save Room!">
+
     <div id="room-{roomIndex}" class="roomContainer createdRoom " if="{currentRoom !== null}">
         
         <div class="roomImgContainer">
-            <img class="roomImg" src="/Content/{currentRoom.flooring}.png" />
+            <img class="roomImg" src= {currentMaterial} />
         </div>
-        <div class="sideRoomPanel">
-            <i onclick="{ switchZoom }" class="fa fa-search-plus {activated: isZoom}"></i>
-            <i onclick="{ switchLock }" class="fa fa-lock {activated: isLocked}" ></i>
-            <i onclick="{ deleteRoom }" class="fa fa-trash"></i>
-        </div>
-        <div class="addPaintAndLights">
-            <div class="paintLightButton">
+            <!--<div class="paintLightButton">
                 <button class="switchButtons {activated: currentRoom.hasPaint}" onclick="{ switchPaint }" >paint</button>
             </div>
             <div class="paintLightButton">
                 <button class="switchButtons  {activated: currentRoom.hasLights} " onclick="{ switchLights }" >light</button> 
-            </div>
+            </div>-->
         </div>
-    </div>
-    
+
 
     <style>
+
+
         .roomContainer {
             height: 100%;
             position: relative;
@@ -38,20 +39,54 @@
 
         .room-name {
             text-align: center;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 1fr 1fr 1fr;
+			height: 50px;
         }
-        /*.createdRoom{
+
+		#roomBackButton {
+			grid-column-start: 4;
+			height: 25px;
+		}
+
+		#roomNameTextBox {
+			grid-column-start: 5;
+			height: 25px;
+		}
+
+		.fa {
+			height: 25px;
+			vertical-align: top;
+			font-size: 1rem;
+		}
+
+		#roomForwardButton {
+			grid-column-start: 6;
+			height: 25px;
+		}
+		
+		.roomBtn.newRoom {
+			grid-column-start: 7;
+			height: 25px;
+		}
+
+		.fa.fa-trash {
+			grid-column-start: 9;
+		}
+
+		/*.createdRoom{
             border: 1px solid black;
 
         }*/
-        .roomImgContainer {
-            display: inline-block;
-            margin: 0 auto;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 25%;
-            top: 5%;
-        }
+		.roomImgContainer {
+			display: inline-block;
+			margin: 0 auto;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 25%;
+			top: 5%;
+		}
         .roomImg{
             width: 100%;
         }
@@ -94,7 +129,13 @@
 
     <script>
 
-        this.opts.bus.on("updateCurrentRoom", data => {
+		this.opts.bus.on("setMaterial", data => {
+			this.currentMaterial = `/Content/${data}`;
+			console.log("Material: " + data);
+			this.update();
+		})
+
+        this.opts.bus.on("updateCurrentRoom", data => {d
             this.updateCurrentRoom(data);
             console.log("12312312321");
         })
@@ -127,7 +168,16 @@
 
         this.roomIndex = -1;
         this.rooms = [];
-        this.currentRoom = null; 
+		this.currentRoom = null; 
+		this.currentMaterial = "/Content/plywood.jpg";
+
+		this.on("mount", function () {
+
+			this.span = document.querySelector("#roomName");
+			this.element = document.querySelector('#roomNameTextBox');
+			this.save = document.querySelector(".saveRoom");
+		});
+		
 
         this.createdRooms = [];
         this.createdRooms = document.querySelectorAll('.createdRoom');
@@ -135,11 +185,9 @@
         this.isLocked = false;
 
         this.downRoom = function () {
-            let element = document.querySelector('#roomNameTextBox');
             if (this.roomIndex > 0) {
                 this.roomIndex--;
                 this.currentRoom = this.rooms[this.roomIndex];
-                element.value = this.currentRoom.name;
             }
             else {
                 let arrowButton = document.querySelector("#roomBackButton");
@@ -177,11 +225,9 @@
 
         this.upRoom = function () {
 
-            let element = document.querySelector('#roomNameTextBox');
             if (this.roomIndex < this.rooms.length - 1) {
                 this.roomIndex++;
                 this.currentRoom = this.rooms[this.roomIndex];
-                element.value = this.currentRoom.name;
             }
             else {
                 let arrowButton = document.querySelector("#roomForwardButton");
@@ -192,20 +238,28 @@
             this.opts.bus.trigger("changeRoom", this.roomIndex);
 
             this.update();
-        }
+		}
+
+		this.newRoom = function () {
+			this.span.setAttribute("style", "display: none");
+			this.element.setAttribute("type", "text");
+			this.currentRoom = null;
+			this.save.setAttribute("type", "button");
+
+		}
 
         this.addRoom = function () {
-            let element = document.querySelector('#roomNameTextBox');
-            var room = new Room(element.value);
+            var room = new Room(this.element.value);
             this.rooms.push(room);
             console.log(this.rooms);
             this.roomIndex++;
             this.currentRoom = this.rooms[this.roomIndex];
-            element.value = this.currentRoom.name;
             this.currentRoom.flooring = "wood";
 
             this.opts.bus.trigger("newRoom", this.currentRoom);
-
+			this.element.setAttribute("type", "hidden");
+			this.span.setAttribute("style", "display: inline");
+			this.save.setAttribute("type", "hidden");
             this.update();
         }
 
