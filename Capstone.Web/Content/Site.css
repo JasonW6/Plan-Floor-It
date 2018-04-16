@@ -412,3 +412,13 @@ room-menu{
     grid-column: 6 / span 1;
     margin-top: 0.5em;
 }
+
+cost-menu {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding: 1em;
+    border: 5px solid black;
+}

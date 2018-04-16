@@ -27,11 +27,11 @@ namespace Capstone.Web.Models
         public string Region { get; set; }
         public decimal Budget { get; set; }
 
-        public double BaseCost
+        public decimal BaseCost
         {
             get
             {
-                return (Length * Width) * NumberOfFloors;
+                return (decimal)(Length * Width) * NumberOfFloors;
             }
             set { }
         }
