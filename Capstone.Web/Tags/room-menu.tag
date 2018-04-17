@@ -211,9 +211,11 @@
             console.log("12312312321");
         });
 
-        this.opts.bus.on("updateRoomArea", data => {
-            console.log("Room Area: " + data);
+        this.opts.bus.on("updateRoomCost", data => {
+            console.log("Room Cost: " + data);
         });
+
+        
 
         function Room(name) {
             this.name = name;
@@ -247,6 +249,7 @@
         this.roomIndex = -1;
         this.rooms = [];
         this.currentRoom = null;
+        
         this.currentMaterial = "/Content/plywood.jpg";
 
         this.on("mount", function () {

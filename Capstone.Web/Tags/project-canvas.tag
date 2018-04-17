@@ -1,8 +1,4 @@
-﻿
-
-<project-canvas>
-
-
+﻿<project-canvas>
 
     <div class="head">
         <!--<button onclick={removeFloor} type="button">Remove Floor</button>-->
@@ -21,7 +17,6 @@
     </div>-->
 
     <style>
-
         canvas {
             border: 5px solid #000;
         }
@@ -82,12 +77,8 @@
         }
     </style>
 
-
-
     <script>
-
         var canvas = new fabric.Canvas('c', { preserveObjectStacking: true });
-
         let concrete = {};
         let plywood = {};
 
@@ -98,6 +89,9 @@
         this.isTopFloor;
         this.isBottomFloor;
         this.roomArea;
+        this.floorCostsLow = {};
+        this.floorCostsMid = {};
+        this.floorCostsHig = {};
 
         this.on("mount", function () {
             console.log("loaded");
@@ -114,8 +108,6 @@
                 this.setMaterial(data);
             });
 
-
-
             this.opts.bus.on("getActive", () => {
                 this.opts.bus.trigger("sendActive", canvas.getActiveObject());
             })
@@ -129,7 +121,6 @@
                 source: '/Content/plywood.jpg',
                 repeat: "repeat"
             });
-
             this.getFloors();
 
             //this.isTopFloor = this.currentFloor == this.floors[this.floors.length - 1];
@@ -146,8 +137,8 @@
                 const active = canvas.getActiveObject();
                 active.set({ width: active.width * active.scaleX, scaleX: 1, height: active.height * active.scaleY, scaleY: 1 });
                 this.roomArea = active.width * active.height;
-                console.log("Area: " + this.roomArea);
-                opts.bus.trigger("updateRoomArea", this.roomArea);
+                console.log(this.floorCostsMid);
+                opts.bus.trigger("updateRoomCost", (this.roomArea * this.floorCostsMid[active.flooring]) + ((20 * active.width) + (20 * active.height)));
                 active.setCoords();
             });
 
@@ -167,6 +158,14 @@
                 movingBox.set("left", Math.min(Math.max(left, leftBound), rightBound - movingBox.width));
                 movingBox.set("top", Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
 
+            });
+
+            this.opts.bus.on("getFloorCosts", data => {
+                console.log("Costs:" + data);
+                for (var i = 0; i < data.length; i++) {
+                    this.floorCostsMid["/Content/" + data[i].Name.toLowerCase() + ".png"] = data[i].MediumPrice;
+                }
+                console.log("Mid Costs: " + this.floorCostsMid);
             });
         });
 
@@ -188,10 +187,11 @@
                 });
 
             console.log(this.floors);
+      
             canvas.renderAll();
 
             this.update();
-
+            
         }
 
         this.downFloor = () => {
@@ -238,9 +238,7 @@
         }
 
         this.newRoom = function (room) {
-
             this.newRect(room.name, room.flooring);
-
         }
 
         this.deleteRoom = function () {
