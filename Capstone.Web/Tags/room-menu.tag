@@ -196,19 +196,23 @@
 
             console.log("Material: " + data);
             this.update();
-        })
+        });
 
         this.opts.bus.on("updateCurrentRoom", data => {
-            d
             this.updateCurrentRoom(data);
             console.log("12312312321");
-        })
+        });
+
+        this.opts.bus.on("updateRoomArea", data => {
+            console.log("Room Area: " + data);
+        });
 
         function Room(name) {
             this.name = name;
             this.flooring;
             this.hasPaint = false;
             this.hasLights = false;
+            this.area;
         }
 
         this.switchPaint = function () {

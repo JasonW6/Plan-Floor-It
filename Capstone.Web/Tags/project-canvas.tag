@@ -147,6 +147,7 @@
                 active.set({ width: active.width * active.scaleX, scaleX: 1, height: active.height * active.scaleY, scaleY: 1 });
                 this.roomArea = active.width * active.height;
                 console.log("Area: " + this.roomArea);
+                opts.bus.trigger("updateRoomArea", this.roomArea);
                 active.setCoords();
             });
 

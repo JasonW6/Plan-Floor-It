@@ -31,7 +31,7 @@ namespace Capstone.Web.DAL
 					SqlCommand cmd = new SqlCommand(SQL_AddNewHouse, conn);
 					cmd.Parameters.AddWithValue("@userId", model.UserId);
 					cmd.Parameters.AddWithValue("@houseName", model.HouseName);
-					cmd.Parameters.AddWithValue("@basement", model.HasBasement);
+					cmd.Parameters.AddWithValue("@basement", true);
 					cmd.Parameters.AddWithValue("@floors", model.NumberOfFloors);
                     cmd.Parameters.AddWithValue("@length", model.Length);
                     cmd.Parameters.AddWithValue("width", model.Width);
