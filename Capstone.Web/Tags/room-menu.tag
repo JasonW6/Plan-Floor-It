@@ -1,95 +1,157 @@
 ﻿<room-menu>
-	<div class="room-name">
-		<i onclick="{ switchLock }" class="fa fa-lock {activated: isLocked}"></i>
-		<i onclick="{ switchZoom }" class="fa fa-search-plus {activated: isZoom}"></i>
-		<button if="{roomIndex > 0}" id="roomBackButton" onclick="{ downRoom }" type="button">&lt</button>
-		<input id="roomNameTextBox" type="hidden">
-		<span id="roomName">{currentRoom.name}</span>
-		<button if="{roomIndex < rooms.length - 1}" onclick="{ upRoom }" id="roomForwardButton" type="button">&gt</button>
-		<button class="roomBtn newRoom" onclick="{newRoom}">+</button>
-		<i onclick="{ deleteRoom }" class="fa fa-trash"></i>
-	</div>
-    <div class="roomContainer " if="{currentRoom === null}">
-        
+    <div class="roomContainer">
+        <img src="/Content/padlock-key.svg" onclick="{ switchLock }" class="lock">
+        <!--<i onclick="{ switchZoom }" class="fa fa-search-plus {activated: isZoom}"></i>-->
+        <div class="room-btn-container">
+            <button if="{roomIndex > 0}" id="roomBackButton" onclick="{ downRoom }" type="button">&lt</button>
+            <button if="{roomIndex < rooms.length - 1}" onclick="{ upRoom }" id="roomForwardButton" type="button">&gt</button>
+            <button class="roomBtn newRoom accountformbtn" onclick="{newRoom}">New room</button>
+        </div>
+        <img src="/Content/garbage.svg" onclick="{ deleteRoom }" class="trash">
+
+        <input id="roomNameTextBox" type="hidden" placeholder="New room">
+        <span if="{currentRoom != null}"id="roomName">{currentRoom.name}</span>
+
+
+        <input type="hidden" class="saveRoom" onclick="{ addRoom }" value="Save">
+
+        <!--<div class="paintLightButton">
+            <button class="switchButtons {activated: currentRoom.hasPaint}" onclick="{ switchPaint }" >paint</button>
+        </div>
+        <div class="paintLightButton">
+            <button class="switchButtons  {activated: currentRoom.hasLights} " onclick="{ switchLights }" >light</button>
+        </div>-->
     </div>
-
-	<input type="hidden" class="saveRoom" onclick="{ addRoom }" value="Save Room!">
-
-    <div id="room-{roomIndex}" class="roomContainer createdRoom " if="{currentRoom !== null}">
-        
-        <div class="roomImgContainer">
-            <img class="roomImg" src= {currentMaterial} />
-        </div>
-            <!--<div class="paintLightButton">
-                <button class="switchButtons {activated: currentRoom.hasPaint}" onclick="{ switchPaint }" >paint</button>
-            </div>
-            <div class="paintLightButton">
-                <button class="switchButtons  {activated: currentRoom.hasLights} " onclick="{ switchLights }" >light</button> 
-            </div>-->
-        </div>
-
 
     <style>
 
 
         .roomContainer {
             height: 100%;
+            display: grid;
+            grid-template-areas: '... new new new new lock' '... name name name name ...' '... name name name name ...' '... details details details details ...' 'cost cost ... ... ... trash';
             position: relative;
+            background-image: url("/Content/PLYWOOD.jpg");
+            box-shadow: inset 0 0 10px #000;
+            z-index: 0;
         }
 
-        .room-name {
+            .roomContainer button {
+                background-color: white;
+                transition-duration: 0.4s;
+                border-radius: 5px;
+                border-style: none;
+                cursor: pointer;
+            }
+
+                .roomContainer button:hover {
+                    cursor: pointer;
+                    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+                }
+
+        .room-btn-container {
+            grid-area: new;
+            display: grid;
+            grid-template-columns: 30% 40% 30%;
+        }
+
+        #roomBackButton {
+            grid-area: 1 / 1 / 2 / 2;
+            margin: auto;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 5px 10px;
+        }
+
+        .roomBtn.newRoom {
+            margin: auto;
+            grid-area: 1 / 2 / 2 / 3;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 5px;
+        }
+
+        #roomForwardButton {
+            grid-area: 1 / 3 / 2 / 4;
+            margin: auto;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 5px 10px;
+        }
+
+        .saveRoom {
+            grid-area: details;
+            transition-duration: 0.4s;
+            display: inline-block;
+            margin: auto;
+            background-color: white;
+            font-weight: 600;
+            font-size: 2rem;
+            border-radius: 5px;
+            border-style: none;
+        }
+
+        #roomName {
+            background-color: white;
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 600;
+            margin: auto;
             text-align: center;
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 1fr 1fr 1fr;
-			height: 50px;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: inset 0 0 10px #000;
+            grid-area: name;
         }
 
-		#roomBackButton {
-			grid-column-start: 4;
-			height: 25px;
-		}
+        #roomNameTextBox {
+            text-align: center;
+            font-size: 3rem;
+            grid-area: name;
+            border-radius: 5px;
+            border-style: none;
+            margin: auto;
+        }
 
-		#roomNameTextBox {
-			grid-column-start: 5;
-			height: 25px;
-		}
+        .fa {
+            height: 25px;
+            vertical-align: top;
+            font-size: 1rem;
+        }
 
-		.fa {
-			height: 25px;
-			vertical-align: top;
-			font-size: 1rem;
-		}
 
-		#roomForwardButton {
-			grid-column-start: 6;
-			height: 25px;
-		}
-		
-		.roomBtn.newRoom {
-			grid-column-start: 7;
-			height: 25px;
-		}
+        img.trash {
+            margin: auto;
+            grid-area: trash;
+            width: 2.2rem;
+            cursor: pointer;
+        }
 
-		.fa.fa-trash {
-			grid-column-start: 9;
-		}
+        img.lock {
+            margin: auto;
+            grid-area: lock;
+            width: 2.2rem;
+            cursor: pointer;
+        }
 
-		/*.createdRoom{
+        .createdRoom {
             border: 1px solid black;
+        }
 
-        }*/
-		.roomImgContainer {
-			display: inline-block;
-			margin: 0 auto;
-			position: absolute;
-			left: 50%;
-			transform: translateX(-50%);
-			width: 25%;
-			top: 5%;
-		}
-        .roomImg{
+        .roomImgContainer {
+            display: inline-block;
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25%;
+            top: 5%;
+        }
+
+        .roomImg {
             width: 100%;
         }
+
         .addPaintAndLights {
             position: absolute;
             bottom: 0;
@@ -97,46 +159,47 @@
             display: flex;
             text-align: center;
         }
-        .paintLightButton{
+
+        .paintLightButton {
             width: 50%;
         }
-        .sideRoomPanel{
+
+        .sideRoomPanel {
             position: absolute;
             right: 10%;
         }
-        i{
+
+        i {
             font-size: 2.5rem !important;
             margin: .5em 0;
             display: block !important;
         }
-        .activated{
+
+        .activated {
             background-color: black;
             color: white;
         }
-        .switchButtons{
+
+        .switchButtons {
             width: 100%;
         }
-        
-        .room-name{
+
+        .room-name {
             height: 10%;
         }
-        #roomNameTextBox {
-            margin-top: 0.5em;
-        }
-
-
     </style>
 
     <script>
 
         this.opts.bus.on("setMaterial", data => {
             this.setMaterial(data);
-			
-			console.log("Material: " + data);
-			this.update();
-		})
 
-        this.opts.bus.on("updateCurrentRoom", data => {d
+            console.log("Material: " + data);
+            this.update();
+        })
+
+        this.opts.bus.on("updateCurrentRoom", data => {
+            d
             this.updateCurrentRoom(data);
             console.log("12312312321");
         })
@@ -167,18 +230,21 @@
         //const family = new Room("Family");
         //const rooms = [living, family];
 
+        this.activeRoom = null;
+
         this.roomIndex = -1;
         this.rooms = [];
-		this.currentRoom = null; 
-		this.currentMaterial = "/Content/plywood.jpg";
+        this.currentRoom = null;
+        this.currentMaterial = "/Content/plywood.jpg";
 
-		this.on("mount", function () {
+        this.on("mount", function () {
 
-			this.span = document.querySelector("#roomName");
-			this.element = document.querySelector('#roomNameTextBox');
-			this.save = document.querySelector(".saveRoom");
-		});
-		
+            this.span = document.querySelector("#roomName");
+            this.element = document.querySelector('#roomNameTextBox');
+            this.save = document.querySelector(".saveRoom");
+            this.mainDiv = document.querySelector(".roomContainer");
+        });
+
 
         this.createdRooms = [];
         this.createdRooms = document.querySelectorAll('.createdRoom');
@@ -186,6 +252,7 @@
         this.isLocked = false;
 
         this.downRoom = function () {
+
             if (this.roomIndex > 0) {
                 this.roomIndex--;
                 this.currentRoom = this.rooms[this.roomIndex];
@@ -196,6 +263,7 @@
             }
 
             this.currentMaterial = this.currentRoom.flooring;
+            this.setBackgroundStyle(this.currentMaterial);
 
             this.opts.bus.trigger("changeRoom", this.roomIndex);
 
@@ -221,7 +289,7 @@
                 element.value = "";
             }
 
-            
+
 
             this.update();
         }
@@ -238,21 +306,24 @@
             }
 
             this.currentMaterial = this.currentRoom.flooring;
+            this.setBackgroundStyle(this.currentMaterial);
 
             this.opts.bus.trigger("changeRoom", this.roomIndex);
 
             this.update();
-		}
+        }
 
-		this.newRoom = function () {
-			this.span.setAttribute("style", "display: none");
-			this.element.setAttribute("type", "text");
-			this.currentRoom = null;
-			this.save.setAttribute("type", "button");
+        this.newRoom = function () {
 
-		}
+            this.element.setAttribute("type", "text");
+            this.element.value = '';
+            this.currentRoom = null;
+            this.save.setAttribute("type", "button");
+            this.update();
+        }
 
         this.addRoom = function () {
+
             var room = new Room(this.element.value);
             this.rooms.push(room);
             console.log(this.rooms);
@@ -260,16 +331,18 @@
             this.currentRoom = this.rooms[this.roomIndex];
             this.currentRoom.flooring = "/Content/plywood.jpg";
 
+
             this.opts.bus.trigger("newRoom", this.currentRoom);
-			this.element.setAttribute("type", "hidden");
-			this.span.setAttribute("style", "display: inline");
-			this.save.setAttribute("type", "hidden");
+            this.element.setAttribute("type", "hidden");
+
+            this.save.setAttribute("type", "hidden");
             this.update();
         }
 
         this.setMaterial = function (material) {
             this.currentMaterial = `/Content/${material}`;
             this.currentRoom.flooring = this.currentMaterial;
+            this.setBackgroundStyle(this.currentMaterial);
             this.update();
         }
 
@@ -282,6 +355,28 @@
             element.value = this.currentRoom.name;
 
             this.update();
+        }
+
+        this.setBackgroundStyle = function (material) {
+
+            if (material == null) {
+                material = "/Content/plywood.jpg";
+            }
+
+            this.mainDiv.style.backgroundImage =  `url('${material}')`;
+            console.log("main div --- " + this.mainDiv);
+            this.update();
+        }
+
+        this.getActive = function () {
+
+            this.opts.bus.trigger("getActive");
+
+            this.opts.bus.on("sendActive", data => {
+                this.activeRoom = data;
+            });
+
+            return this.activeRoom;
         }
 
     </script>

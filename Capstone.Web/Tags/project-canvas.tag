@@ -118,6 +118,10 @@
                 this.changeRoom(data);
             })
 
+            this.opts.bus.on("getActive", () => {
+                this.opts.bus.trigger("sendActive", canvas.getActiveObject());
+            })
+
             concrete = new fabric.Pattern({
                 source: '/Content/concrete.png',
                 repeat: "repeat"
@@ -217,7 +221,7 @@
         }
 
         this.saveJSON = function () {
-            this.json = JSON.stringify(canvas.toJSON(['id','selectable']));
+            this.json = JSON.stringify(canvas.toJSON(['id', 'selectable', 'lockRotation', '_controlsVisibility']));
             this.currentFloor.FloorPlan = this.json;
             //fetch - SaveJSON
             const url = "/api/floorplan?floorId=" + this.floors[this.floorId].FloorId;
@@ -248,7 +252,15 @@
 
         this.changeRoom = function (index) {
 
+            let currentRoom = canvas.getActiveObject();
+
+            currentRoom.stroke = "black";
+
             canvas.setActiveObject(canvas.item(index + 1));
+            currentRoom = canvas.getActiveObject();
+
+            currentRoom.stroke = "white";
+
             console.log("indeexxx " + canvas.item(index + 1));
             canvas.renderAll();
 
@@ -294,7 +306,12 @@
                 height: 100,
                 stroke: "black",
                 strokeWidth: 5,
+                lockRotation: true,
                 selectable: true
+            });
+
+            rect.setControlsVisibility({
+                mtr: false
             });
 
             canvas.add(rect);

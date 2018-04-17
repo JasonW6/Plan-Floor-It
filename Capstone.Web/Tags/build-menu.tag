@@ -114,7 +114,7 @@
         .menuTab {
             background-color: rgba(255, 255, 255, 0);
             width: 80%;
-            margin-left: 25%;
+            margin-left: 50%;
             height: 20px;
             border: 2px solid #FFF;
             text-align: center;

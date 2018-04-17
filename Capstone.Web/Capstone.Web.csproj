@@ -226,11 +226,14 @@
     <Content Include="Content\couch.png" />
     <Content Include="Content\desk.png" />
     <Content Include="Content\drawing.svg" />
+    <Content Include="Content\garbage.svg" />
+    <Content Include="Content\grass-1.png" />
     <Content Include="Content\grass.png" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\HouseOnHill.jpg" />
     <Content Include="Content\marble.jpg" />
     <Content Include="Content\note.svg" />
+    <Content Include="Content\padlock-key.svg" />
     <Content Include="Content\paint-roller.svg" />
     <Content Include="Content\plan.svg" />
     <Content Include="Content\plywood.jpg" />
