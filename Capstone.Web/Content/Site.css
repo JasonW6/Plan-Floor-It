@@ -250,6 +250,12 @@ div.form-container {
     position: relative;
     border-radius: 10px;
     padding: 20px;
+    z-index: 2;
+}
+
+div.form-container::before {
+    filter: blur(10px);
+    content: '';
 }
 
 #newProject input[type="text"] {

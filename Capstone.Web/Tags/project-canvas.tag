@@ -259,16 +259,23 @@
 
             let room = canvas.getActiveObject();
 
-            material = new fabric.Pattern({
-                source: `/Content/${image}`,
-                repeat: 'repeat'
+            //material = new fabric.Pattern({
+            //    source: ,
+            //    repeat: 'repeat'
+            //});
+
+            fabric.util.loadImage(`/Content/${image}`, function (img) {
+                room.set('fill', new fabric.Pattern({
+                    source: img,
+                    repeat: 'repeat'
+                }));
+                canvas.renderAll();
             });
 
+            //room.set('fill', material);
 
-            room.set('fill', material);
 
-
-            canvas.renderAll();
+            //canvas.renderAll();
 
             this.saveJSON();
 

@@ -1,17 +1,25 @@
 ﻿<build-menu>
     <div class="menuContainer">
+
         <div id="menuTabsContainer">
-            <div class="menuTab activeMenuTab" id="materialTab" onclick="{switchMaterialType}"><i class="fa fa-th"></i> Flooring <i class="fa fa-th"></i></div>
-            <div class="menuTab" id="otherTab" onclick="{switchMaterialType}"><i class="fa fa-couch-l"></i> Appliances & Furniture <i class="fa fa-couch-l"></i></div>
+            <div class="glass tab">
+                <div class="menuTab activeMenuTab" id="materialTab" onclick="{switchMaterialType}">Flooring</i></div>
+            </div>
+            <div class="glass tab">
+                <div class="menuTab" id="otherTab" onclick="{switchMaterialType}"><i class="fa fa-couch-l"></i> Appliances & Furniture <i class="fa fa-couch-l"></i></div>
+            </div>
         </div>
 
         <div class="materialsContainer" id="materialSection" if={isFloors}>
             <div class="materialScroll">
             </div>
             <div class="materials" id="floorMaterials">
+                
                 <div class="material" each="{floor, index in floors}" id="floor-{index}">
-                    <img onclick="{ setMaterial }" src="/Content/{floor.ImageSource}" class="matImg" />
-                    <p>{floor.Name}</p>
+                    <div class="glass tiles">
+                        <img onclick="{ setMaterial }" src="/Content/{floor.ImageSource}" class="matImg" />
+                        <p>{floor.Name}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -20,9 +28,12 @@
             <div class="materialScroll">
             </div>
             <div class="materials" id="objectMaterials">
+                
                 <div class="material" each="{object, index in objects}" id="object-{index}">
-                    <img src="/Content/{object.ImageSource}" class="matImg" style="border-style:none; box-shadow: none" />
-                    <p>{object.Name}</p>
+                    <div class="glass tiles">
+                        <img src="/Content/{object.ImageSource}" class="matImg" style="border-style:none; box-shadow: none" />
+                        <p>{object.Name}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,15 +41,28 @@
 
     <style type="text/css">
         .menuContainer {
-            background-color: #18A999;
+            background-image: url("/Content/concrete.png");
+            background-repeat: repeat;
             width: 100%;
-            height: 100%;
             display: inline-block;
             box-shadow: inset 0 0 10px #000;
         }
 
+        div.glass.tiles {
+            background-color: rgba(255, 255, 255, 0.44);
+            height: 80%;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            box-shadow: 0 0 10px #000;
+        }
+
+            div.glass::before {
+                filter: blur(4px);
+                content: '';
+            }
+
         .materialsContainer {
-            margin-top: 1em;
         }
 
         .materials {
@@ -46,30 +70,32 @@
         }
 
             .materials p {
-                display: inline-block;
-                background-color: white;
+                display: block;
+                color: white;
+                margin: 5px auto;
                 padding: 5px;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
                 align-self: center;
                 font-weight: 600;
                 text-align: center;
-                vertical-align: bottom;
+                box-shadow: inset 0 0 5px #000;
                 border-radius: 5px;
-                box-shadow: 0 0 10px #000;
+
             }
 
         .matImg {
             width: 60%;
+            min-height: 87px;
             transition-duration: 0.4s;
             margin: 0 auto;
             border: 2px solid white;
             border-radius: 5px;
-            box-shadow: 0 0 10px #000;
+            box-shadow: inset 0 0 10px #000;
             cursor: pointer;
         }
 
             .matImg:hover {
-                box-shadow: 0 0 10px #FFF;
+                box-shadow: 0 0 10px #000;
             }
 
         div.slick-track {
@@ -77,15 +103,18 @@
         }
 
         #menuTabsContainer {
+            color: white;
             display: flex;
-            width: 100%;
+            font-family: sans-serif;
+            font-weight: 600;
+            width: 75%;
             margin-top: 0.5em;
         }
 
         .menuTab {
-            display: inline-block;
-            width: 50%;
-            margin: 0 2px;
+            background-color: rgba(255, 255, 255, 0);
+            width: 80%;
+            margin-left: 25%;
             height: 20px;
             border: 2px solid #FFF;
             text-align: center;
@@ -94,10 +123,17 @@
         }
 
         .activeMenuTab {
-            background-color: #FFF;
-            margin: 0 2px;
-            border: 2px solid black;
+            background-color: rgba(255, 255, 255, 0.44);
+            border: 2px solid #FFF;
         }
+
+        .glass.tab {
+            justify-content: space-around;
+            text-align: center;
+            width: 50%;
+        }
+
+        
 
         .material {
             display: flex;
