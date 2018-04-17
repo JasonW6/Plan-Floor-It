@@ -42,7 +42,7 @@ nav {
 }
 
 #navLink-Register {
-    grid-column: 3;
+    grid-column: 4;
     grid-row: 1;
 }
 
@@ -355,7 +355,6 @@ div.plannedHouses {
     flex-direction: row;
     flex-wrap: wrap;
     width: 600px;
-    height: 80vh;
     justify-content: center;
     overflow: scroll;
 }

@@ -271,6 +271,11 @@
             //    source: ,
             //    repeat: 'repeat'
             //});
+            if (room.flooring === null) {
+                image = "plywood.png";
+            }
+
+            room.flooring = "/Content/" + image;
 
             fabric.util.loadImage(`/Content/${image}`, function (img) {
                 room.set('fill', new fabric.Pattern({

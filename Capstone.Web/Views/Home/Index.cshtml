@@ -12,10 +12,12 @@
     <div id="accountButtonContainer">
         <img id="house" class="svg" src="~/Content/house.svg" />
 
-        <div><h1 id="homeTitle">Plan On It.</h1></div>
+        <div><h1 id="homeTitle">Plan Floor It.</h1></div>
 
-        <button class="accountHomeBtn" id="loginBtn">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
-        <button class="accountHomeBtn" id="registerBtn">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</button>
+            <button class="accountHomeBtn" id="loginBtn" onclick="location.href='@Url.Action("Login", "Account")'">Log In</button>
+
+        
+        <button class="accountHomeBtn" id="registerBtn" onclick="location.href='@Url.Action("Register", "Account")'">Register</button>
     </div>
 
 </body>
