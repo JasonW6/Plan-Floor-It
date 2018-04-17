@@ -304,7 +304,7 @@
             this.roomIndex++;
             this.activeRoom = this.rooms[this.roomIndex];
             this.activeRoom.flooring = "/Content/plywood.jpg";
-
+            this.setBackgroundStyle(this.activeRoom.flooring);
             this.opts.bus.trigger("newRoom", this.activeRoom);
             this.element.setAttribute("type", "hidden");
 

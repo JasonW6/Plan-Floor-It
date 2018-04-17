@@ -22,13 +22,11 @@
 
     }
     //<form method="get" action="@Url.Action("Dashboard", "Project")">
-        <button class="navbarBtn homePage"> @Html.ActionLink("Dashboard", "Dashboard", "Project")</button>
+        <button class="navbarBtn homePage" onclick="location.href='@Url.Action("Dashboard", "Project")'">Dashboard</button>
     //</form>
 }
 else
 {
-
     <button class="navbarBtn" id="navLink-Register">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</button>
     <button class="navbarBtn" id="navLink-Login">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
-
 }
