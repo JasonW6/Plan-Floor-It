@@ -31,7 +31,7 @@
                 
                 <div class="material" each="{object, index in objects}" id="object-{index}">
                     <div class="glass tiles">
-                        <img src="/Content/{object.ImageSource}" class="matImg" style="border-style:none; box-shadow: none" />
+                        <img ondblclick="{ addObject }" src="/Content/{object.ImageSource}" class="matImg" style="border-style:none; box-shadow: none" />
                         <p>{object.Name}</p>
                     </div>
                 </div>
@@ -182,7 +182,13 @@
             console.log("Set Material " + this.floor.ImageSource);
 
             this.opts.bus.trigger("setMaterial", this.floor.ImageSource);
-        }
+		}
+
+		this.addObject = function () {
+			console.log("Object: " + this.object.ImageSource);
+			this.opts.bus.trigger("addObject", this.object.ImageSource);
+
+		}
 
         this.switchMaterialType = function () {
             this.isFloors = !this.isFloors;

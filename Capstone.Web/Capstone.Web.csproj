@@ -225,6 +225,9 @@
     <Content Include="Content\concrete.png" />
     <Content Include="Content\couch.png" />
     <Content Include="Content\desk.png" />
+    <Content Include="Content\DOOR-BLACK.png" />
+    <Content Include="Content\DOOR-TRANSPARENT.png" />
+    <Content Include="Content\DOOR-WHITE.png" />
     <Content Include="Content\drawing.svg" />
     <Content Include="Content\garbage.svg" />
     <Content Include="Content\grass-1.png" />
@@ -238,10 +241,15 @@
     <Content Include="Content\plan.svg" />
     <Content Include="Content\plywood.jpg" />
     <Content Include="Content\sink.png" />
+    <Content Include="Content\STAIRS-DRAWN.png" />
+    <Content Include="Content\STAIRS.png" />
     <Content Include="Content\table.png" />
     <Content Include="Content\tile.jpg" />
     <Content Include="Content\TILE.png" />
     <Content Include="Content\toilet.png" />
+    <Content Include="Content\WINDOW-BLACK.png" />
+    <Content Include="Content\WINDOW-TRANSPARENT.png" />
+    <Content Include="Content\WINDOW-WHITE.png" />
     <Content Include="Content\wood.jpg" />
     <Content Include="Content\wood.png" />
     <Content Include="Global.asax" />
