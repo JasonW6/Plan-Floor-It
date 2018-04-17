@@ -137,8 +137,9 @@
             //this.isTopFloor = this.currentFloor == this.floors[this.floors.length - 1];
             //this.isBottomFloor = this.currentFloor == this.floors[0];
 
-            canvas.on("mouse:dblclick", function (e) {
+            canvas.object.on("mouse:down", function (e) {
                 let index = canvas.getObjects().indexOf(e.target);
+                console.log("PLOAOSDOFOOSDOFsdfooOOOSDAF");
                 opts.bus.trigger("updateCurrentRoom", index);
             });
 
