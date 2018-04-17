@@ -112,13 +112,17 @@
 
             this.opts.bus.on("setMaterial", data => {
                 this.setMaterial(data);
-            });
+			});
+
+			this.opts.bus.on("addObject", data => {
+				this.addObject(data);
+			});
 
 
 
-            this.opts.bus.on("getActive", () => {
-                this.opts.bus.trigger("sendActive", canvas.getActiveObject());
-            })
+			this.opts.bus.on("getActive", () => {
+				this.opts.bus.trigger("sendActive", canvas.getActiveObject());
+			});
 
             concrete = new fabric.Pattern({
                 source: '/Content/concrete.png',
@@ -260,7 +264,41 @@
             console.log("indeexxxxxxx " + canvas.item(index + 1));
             canvas.renderAll();
 
-        }
+		}
+
+		this.addObject = function (image) {
+
+			//let activeRoom = canvas.getActiveObject();
+
+			//if (activeRoom == null) {
+	
+			//}
+
+			fabric.Image.fromURL(('/Content/' + image), function (myImg) {
+
+				console.log("Add Object: " + myImg);
+
+				if (image === "DOOR-WHITE.png") {
+					myImg.set("width", 5);
+					myImg.set("height", 5);
+	
+				}
+
+				//if (image === "WINDOW-WHITE.png") {
+
+				//}
+
+				//if (image === "STAIRS.png") {
+
+
+				//}
+
+				canvas.add(myImg);
+				canvas.renderAll();
+			});
+
+			
+		}
 
 
         this.setMaterial = function (image) {
