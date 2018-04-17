@@ -59,7 +59,7 @@ namespace Capstone.Web.Controllers
 
 		private void MakeFloors(int numberOfFloors, int houseId)
 		{
-			for(int i = 0; i < numberOfFloors; i++)
+			for(int i = 0; i <= numberOfFloors; i++)
 			{
 				fdal.CreateFloor(i, houseId);
 			}

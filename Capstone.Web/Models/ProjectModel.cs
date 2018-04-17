@@ -39,13 +39,7 @@ namespace Capstone.Web.Models
         public int GetFloorCount()
         {
             int count = NumberOfFloors;
-
-            if (HasBasement)
-            {
-                count++;
-            }
-
-            return count;
+            return count++;
         }
     }
 }
