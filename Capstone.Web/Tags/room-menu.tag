@@ -10,7 +10,7 @@
         <img src="/Content/garbage.svg" onclick="{ deleteRoom }" class="trash">
 
         <input id="roomNameTextBox" type="hidden" placeholder="New room">
-        <span if="{currentRoom != null}"id="roomName">{currentRoom.name}</span>
+        <span if="{activeRoom != null}"id="roomName">{activeRoom.name}</span>
 
 
         <input type="hidden" class="saveRoom" onclick="{ addRoom }" value="Save">
@@ -198,6 +198,14 @@
             this.update();
         });
 
+        this.opts.bus.on("changeRoom", data => {
+            this.activeRoom = data;
+            this.setBackgroundStyle(data.flooring);
+            console.log("****");
+            this.update();
+            
+        });
+
         this.opts.bus.on("updateCurrentRoom", data => {
             this.updateCurrentRoom(data);
             console.log("12312312321");
@@ -255,25 +263,6 @@
         this.isZoom = false;
         this.isLocked = false;
 
-        this.downRoom = function () {
-
-            if (this.roomIndex > 0) {
-                this.roomIndex--;
-                this.currentRoom = this.rooms[this.roomIndex];
-            }
-            else {
-                let arrowButton = document.querySelector("#roomBackButton");
-                arrowButton.setAttribute("style", "display: none");
-            }
-
-            this.currentMaterial = this.currentRoom.flooring;
-            this.setBackgroundStyle(this.currentMaterial);
-
-            this.opts.bus.trigger("changeRoom", this.roomIndex);
-
-            this.update();
-        }
-
         this.deleteRoom = function () {
 
             let element = document.querySelector('#roomNameTextBox');
@@ -298,30 +287,11 @@
             this.update();
         }
 
-        this.upRoom = function () {
-
-            if (this.roomIndex < this.rooms.length - 1) {
-                this.roomIndex++;
-                this.currentRoom = this.rooms[this.roomIndex];
-            }
-            else {
-                let arrowButton = document.querySelector("#roomForwardButton");
-                arrowButton.setAttribute("style", "display: none");
-            }
-
-            this.currentMaterial = this.currentRoom.flooring;
-            this.setBackgroundStyle(this.currentMaterial);
-
-            this.opts.bus.trigger("changeRoom", this.roomIndex);
-
-            this.update();
-        }
-
         this.newRoom = function () {
 
             this.element.setAttribute("type", "text");
             this.element.value = '';
-            this.currentRoom = null;
+            this.activeRoom = null;
             this.save.setAttribute("type", "button");
             this.update();
         }
@@ -332,11 +302,10 @@
             this.rooms.push(room);
             console.log(this.rooms);
             this.roomIndex++;
-            this.currentRoom = this.rooms[this.roomIndex];
-            this.currentRoom.flooring = "/Content/plywood.jpg";
+            this.activeRoom = this.rooms[this.roomIndex];
+            this.activeRoom.flooring = "/Content/plywood.jpg";
 
-
-            this.opts.bus.trigger("newRoom", this.currentRoom);
+            this.opts.bus.trigger("newRoom", this.activeRoom);
             this.element.setAttribute("type", "hidden");
 
             this.save.setAttribute("type", "hidden");
@@ -345,7 +314,7 @@
 
         this.setMaterial = function (material) {
             this.currentMaterial = `/Content/${material}`;
-            this.currentRoom.flooring = this.currentMaterial;
+            this.activeRoom.flooring = this.currentMaterial;
             this.setBackgroundStyle(this.currentMaterial);
             this.update();
         }
@@ -363,7 +332,7 @@
 
         this.setBackgroundStyle = function (material) {
 
-            if (material == null) {
+            if (material === null) {
                 material = "/Content/plywood.jpg";
             }
 

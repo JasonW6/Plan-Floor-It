@@ -114,9 +114,7 @@
                 this.setMaterial(data);
             });
 
-            this.opts.bus.on("changeRoom", data => {
-                this.changeRoom(data);
-            })
+
 
             this.opts.bus.on("getActive", () => {
                 this.opts.bus.trigger("sendActive", canvas.getActiveObject());
@@ -137,10 +135,11 @@
             //this.isTopFloor = this.currentFloor == this.floors[this.floors.length - 1];
             //this.isBottomFloor = this.currentFloor == this.floors[0];
 
-            canvas.object.on("mouse:down", function (e) {
-                let index = canvas.getObjects().indexOf(e.target);
-                console.log("PLOAOSDOFOOSDOFsdfooOOOSDAF");
-                opts.bus.trigger("updateCurrentRoom", index);
+            canvas.on('mouse:down', function (e) {
+                if (e.target.id != 'Foundation') {
+                    let currentRoom = canvas.getActiveObject();
+                    opts.bus.trigger("changeRoom", currentRoom);
+                }
             });
 
             canvas.on('object:scaling', function () {
@@ -223,7 +222,7 @@
         }
 
         this.saveJSON = function () {
-            this.json = JSON.stringify(canvas.toJSON(['id', 'selectable', 'lockRotation', '_controlsVisibility']));
+            this.json = JSON.stringify(canvas.toJSON(['id', 'selectable', 'lockRotation','name', 'flooring', '_controlsVisibility']));
             this.currentFloor.FloorPlan = this.json;
             //fetch - SaveJSON
             const url = "/api/floorplan?floorId=" + this.floors[this.floorId].FloorId;
@@ -240,7 +239,7 @@
 
         this.newRoom = function (room) {
 
-            this.newRect(room.name);
+            this.newRect(room.name, room.flooring);
 
         }
 
@@ -252,18 +251,13 @@
             canvas.renderAll();
         }
 
-        this.changeRoom = function (index) {
+        this.changeRoom = function () {
 
             let currentRoom = canvas.getActiveObject();
 
-            currentRoom.stroke = "black";
+            this.opts.bus.trigger("changeRoom", currentRoom);
 
-            canvas.setActiveObject(canvas.item(index + 1));
-            currentRoom = canvas.getActiveObject();
-
-            currentRoom.stroke = "white";
-
-            console.log("indeexxx " + canvas.item(index + 1));
+            console.log("indeexxxxxxx " + canvas.item(index + 1));
             canvas.renderAll();
 
         }
@@ -297,10 +291,11 @@
             canvas.renderAll();
         }
 
-        this.newRect = function (_name) {
+        this.newRect = function (_name, _flooring) {
 
             let rect = new fabric.Rect({
                 name: _name,
+                flooring: _flooring,
                 left: 500,
                 top: 250,
                 fill: '',

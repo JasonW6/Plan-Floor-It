@@ -3,7 +3,7 @@
 
         <div id="menuTabsContainer">
             <div class="glass tab">
-                <div class="menuTab activeMenuTab" id="materialTab" onclick="{switchMaterialType}">Flooring</i></div>
+                <div class="menuTab activeMenuTab" id="materialTab" onclick="{switchMaterialType}">Flooring</div>
             </div>
             <div class="glass tab">
                 <div class="menuTab" id="otherTab" onclick="{switchMaterialType}"><i class="fa fa-couch-l"></i> Appliances & Furniture <i class="fa fa-couch-l"></i></div>
