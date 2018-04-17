@@ -13,7 +13,7 @@ namespace Capstone.Web.DAL
         private string connectionString;
 
         private const string SQL_SelectProjectByHouseId = @"SELECT * FROM house WHERE HouseId = @houseId;";
-		private const string SQL_AddNewHouse = @"INSERT INTO house (UserId, HouseName, Basement, Floors, Length, Width, SquareFootage, Region, Budget, BaseCost) VALUES (@userId, @houseName, @basement, @floors, @length, @width, @squareFootage, @region, @budget, @baseCost);";
+		private const string SQL_AddNewHouse = @"INSERT INTO house (UserId, HouseName, Basement, Floors, Length, Width, SquareFootage, Region, Budget, BaseCost) VALUES (@userId, @houseName, 1, @floors, @length, @width, @squareFootage, @region, @budget, @baseCost);";
 		private const string SQL_GetUserProjects = @"SELECT * FROM House WHERE UserId = @userId;";
 
         public ProjectDAL(string connectionString)
@@ -31,7 +31,6 @@ namespace Capstone.Web.DAL
 					SqlCommand cmd = new SqlCommand(SQL_AddNewHouse, conn);
 					cmd.Parameters.AddWithValue("@userId", model.UserId);
 					cmd.Parameters.AddWithValue("@houseName", model.HouseName);
-					cmd.Parameters.AddWithValue("@basement", true);
 					cmd.Parameters.AddWithValue("@floors", model.NumberOfFloors);
                     cmd.Parameters.AddWithValue("@length", model.Length);
                     cmd.Parameters.AddWithValue("width", model.Width);
