@@ -115,6 +115,10 @@
                 this.opts.bus.trigger("sendActive", canvas.getActiveObject());
             });
 
+            this.opts.bus.on("addDoor", () => {
+                this.addDoor();
+            })
+
             concrete = new fabric.Pattern({
                 source: '/Content/concrete.png',
                 repeat: "repeat"
@@ -260,6 +264,17 @@
             console.log("indeexxxxxxx " + canvas.item(index + 1));
             canvas.renderAll();
 
+        }
+
+        this.addDoor = function () {
+
+            fabric.Image.fromURL(("/Content/DOOR-WHITE-small.png"), function (myImg) {
+
+                console.log("../Content/DOOR-WHITE-small.png");
+
+                canvas.add(myImg);
+                canvas.renderAll();
+            });
         }
 
         this.addObject = function (image) {
