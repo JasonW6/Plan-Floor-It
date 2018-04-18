@@ -44,6 +44,7 @@
             background-image: url("/Content/concrete.png");
             background-repeat: repeat;
             width: 100%;
+			height: 100%;
             display: inline-block;
             box-shadow: inset 0 0 10px #000;
         }

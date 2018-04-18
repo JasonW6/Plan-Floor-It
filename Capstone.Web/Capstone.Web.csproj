@@ -227,6 +227,7 @@
     <Content Include="Content\desk.png" />
     <Content Include="Content\DOOR-BLACK.png" />
     <Content Include="Content\DOOR-TRANSPARENT.png" />
+    <Content Include="Content\DOOR-WHITE-small.png" />
     <Content Include="Content\DOOR-WHITE.png" />
     <Content Include="Content\drawing.svg" />
     <Content Include="Content\garbage.svg" />

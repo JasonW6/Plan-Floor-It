@@ -12,7 +12,7 @@
         <input id="roomNameTextBox" type="hidden" placeholder="New room">
         <span if="{activeRoom != null}"id="roomName">{activeRoom.name}</span>
 
-
+        <button type="button" id="door" onclick="{ addDoor }">Door</button>
         <input type="hidden" class="saveRoom" onclick="{ addRoom }" value="Save">
 
         <!--<div class="paintLightButton">
@@ -29,7 +29,7 @@
         .roomContainer {
             height: 100%;
             display: grid;
-            grid-template-areas: '... new new new new lock' '... name name name name ...' '... name name name name ...' '... details details details details ...' 'cost cost ... ... ... trash';
+            grid-template-areas: '... new new new new lock' 'door name name name name ...' '... name name name name ...' '... details details details details ...' 'cost cost ... ... ... trash';
             position: relative;
             background-image: url("/Content/PLYWOOD.jpg");
             box-shadow: inset 0 0 10px #000;
@@ -77,6 +77,10 @@
             font-size: 1.5rem;
             font-weight: 700;
             padding: 5px 10px;
+        }
+
+        #door {
+            grid-area: door;
         }
 
         .saveRoom {
@@ -286,6 +290,10 @@
             }
 
             this.update();
+        }
+
+        this.addDoor = function () {
+            this.opts.bus.trigger("addDoor");
         }
 
         this.newRoom = function () {
