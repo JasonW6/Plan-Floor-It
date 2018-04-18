@@ -9,9 +9,7 @@
 @section styles{
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
-
 }
-
 
 <project-canvas houseName="@Model.HouseName" houseId="@Model.HouseId" length="@Model.Length" width="@Model.Width"></project-canvas>
 <div class="canvas-container" style="padding-top: 5vh">
@@ -19,9 +17,6 @@
     <cost-menu baseCost="@Model.BaseCost.ToString("C")" budget="@Model.Budget.ToString("C")" balance="@((Model.Budget - Model.BaseCost).ToString("C"))" isOver="@(isOver)"></cost-menu>
     <img id="legend" src="~/Content/legend.svg" />
 </div>
-
-
-
 <div id="bottomMenu">
     <build-menu></build-menu>
     <room-menu></room-menu>

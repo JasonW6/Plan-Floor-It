@@ -14,11 +14,13 @@ namespace Capstone.Web.Controllers
     {
         IMaterialDAL dal;
 		IFloorDAL fdal;
+        IProjectDAL pdal;
 
-        public BuildController(IMaterialDAL _dal, IFloorDAL _fdal)
+        public BuildController(IMaterialDAL _dal, IFloorDAL _fdal, IProjectDAL _pdal)
         {
             dal = _dal;
 			fdal = _fdal;
+            pdal = _pdal;
         }
 
         [HttpGet]
@@ -47,5 +49,20 @@ namespace Capstone.Web.Controllers
 
 			return Ok();
 		}
+
+        [HttpPost]
+        [Route("api/deleteProject")]
+        public IHttpActionResult DeleteProject(int projectId)
+        {
+            try
+            {
+                pdal.DeleteProject(projectId);
+                return Ok();
+            }
+            catch(Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
