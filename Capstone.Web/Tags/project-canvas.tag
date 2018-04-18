@@ -79,8 +79,10 @@
 
     <script>
         var canvas = new fabric.Canvas('c', { preserveObjectStacking: true });
-        let concrete = {};
-        let plywood = {};
+
+		let concrete = '/Content/concrete.png';
+		let plywood = '/Content/plywood.jpg';
+
         this.floors = [];
         this.floorId = 1;
         this.currentFloor = {};
@@ -385,29 +387,42 @@
 
         this.createFoundation = function (h, w) {
 
-            let foundFill = concrete;
+			let foundFill = concrete;
+			let foundation = {};
 
             if (this.floorId > 0) {
                 foundFill = plywood;
-            }
+			};
 
-            this.foundation = new fabric.Rect({
-                id: "Foundation",
-                left: 0,
-                top: 0,
-                cost: 0,
-                fill: foundFill,
-                width: (w * 5),
-                height: (h * 5),
-                stroke: "black",
-                strokeWidth: 5,
-                selectable: false
-            });
+			foundation = new fabric.Rect({
+				id: "Foundation",
+				left: 0,
+				top: 0,
+				fill: "",
+				width: (w * 5),
+				height: (h * 5),
+				stroke: "black",
+				strokeWidth: 5,
+				selectable: false
 
-            console.log("ID: " + this.foundation.id);
-            canvas.add(this.foundation);
-            this.foundation.center();
-            canvas.renderAll();
+			});
+
+
+			fabric.util.loadImage(`${foundFill}`, function (img) {
+			
+				foundation.set('fill', new fabric.Pattern({
+					source: img,
+					repeat: 'repeat',
+				}));
+
+				canvas.renderAll();
+			});
+
+
+			console.log("ID: " + foundation.id);
+            canvas.add(foundation);
+			foundation.center();
+			canvas.renderAll();
 
         }
 
