@@ -42,7 +42,7 @@
     <script>
         let bus = {};
         riot.observable(bus);
-        riot.mount('cost-menu');
+        riot.mount('cost-menu', { bus: bus });
         riot.mount('room-menu', { bus: bus });
         riot.mount('build-menu', { bus: bus });
 

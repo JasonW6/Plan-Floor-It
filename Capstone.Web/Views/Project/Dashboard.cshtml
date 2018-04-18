@@ -1,8 +1,8 @@
 ﻿
 @{
-	ViewBag.Title = "Dashboard";
-	Layout = "~/Views/Shared/_Layout.cshtml";
-	@model IList<Capstone.Web.Models.ProjectModel>
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @model IList<Capstone.Web.Models.ProjectModel>
 }
 <section id="dashboardSection">
     <img id="plan" class="svg" src="~/Content/plan.svg" />
@@ -10,7 +10,7 @@
         <form method="get" action="@Url.Action("NewProject", "Project")">
             <input class="navbarBtn accountformbtn" type="submit" value="New house" />
         </form>
-        
+
         <div class="plannedHouses">
             @foreach (var project in Model)
             {
@@ -20,7 +20,10 @@
                         <p>Budget: @project.Budget</p>
                         <p>Region: @project.Region</p>
                     </div>
-                </a>}
+
+                </a>
+                <button class="deleteButton" onclick="location.href='@Url.Action("Delete", "Project", new {projectId = project.HouseId })'">Delete</button>
+            }
         </div>
     </div>
 </section>

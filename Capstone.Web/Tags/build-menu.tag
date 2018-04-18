@@ -166,6 +166,7 @@
                 .then(data => {
                     this.objects = data.filter(o => o.IsMaterial === false);
                     this.floors = data.filter(o => o.IsMaterial === true);
+                    this.opts.bus.trigger("getFloorCosts", this.floors);
                     console.log(this.objects);
                     console.log(this.floors);
                     this.update();

@@ -3,8 +3,6 @@
         <h2 id="costHeader">Cost Analysis</h2>
         <p>Budget: {budget}</p>
         <p>Base Cost: {baseCost}</p>
-        <p>Total Room Cost: </p>
-        <p>Total Cost: </p>
         <p id="balance" class="{over: overBalance}">Balance: {balance}</p>
     </div>
 

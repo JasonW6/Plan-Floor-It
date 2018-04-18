@@ -132,5 +132,18 @@ namespace Capstone.Web.DAL
 
             return project;
         }
+
+        public void DeleteProject(int projectID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("DELETE from House WHERE HouseId = @projectId", conn);
+                cmd.Parameters.AddWithValue("@projectId", projectID);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
