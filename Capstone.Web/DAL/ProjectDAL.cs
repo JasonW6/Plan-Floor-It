@@ -139,7 +139,7 @@ namespace Capstone.Web.DAL
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("DELETE from House WHERE HouseId = @projectId", conn);
+                SqlCommand cmd = new SqlCommand("DELETE FROM Floor WHERE HouseId = @projectId; DELETE from House WHERE HouseId = @projectId", conn);
                 cmd.Parameters.AddWithValue("@projectId", projectID);
 
                 cmd.ExecuteNonQuery();
