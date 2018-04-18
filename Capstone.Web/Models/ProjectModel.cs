@@ -31,7 +31,7 @@ namespace Capstone.Web.Models
         {
             get
             {
-                return (decimal)(Length * Width) * NumberOfFloors;
+                return (decimal)((Length * Width) * NumberOfFloors)* (decimal)117;
             }
             set { }
         }
