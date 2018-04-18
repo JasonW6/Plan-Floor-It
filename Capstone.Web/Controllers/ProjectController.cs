@@ -64,5 +64,12 @@ namespace Capstone.Web.Controllers
 				fdal.CreateFloor(i, houseId);
 			}
 		}
+
+        public void Delete(int projectId)
+        {
+            dal.DeleteProject(projectId);
+
+           
+        }
     }
 }
