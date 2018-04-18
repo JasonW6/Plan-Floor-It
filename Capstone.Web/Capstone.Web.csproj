@@ -244,6 +244,7 @@
     <Content Include="Content\plywood.jpg" />
     <Content Include="Content\sink.png" />
     <Content Include="Content\STAIRS-DRAWN.png" />
+    <Content Include="Content\STAIRS-small.png" />
     <Content Include="Content\STAIRS.png" />
     <Content Include="Content\table.png" />
     <Content Include="Content\tile.jpg" />
@@ -251,6 +252,7 @@
     <Content Include="Content\toilet.png" />
     <Content Include="Content\WINDOW-BLACK.png" />
     <Content Include="Content\WINDOW-TRANSPARENT.png" />
+    <Content Include="Content\WINDOW-WHITE-small.png" />
     <Content Include="Content\WINDOW-WHITE.png" />
     <Content Include="Content\wood.jpg" />
     <Content Include="Content\wood.png" />

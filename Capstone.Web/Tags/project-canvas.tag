@@ -118,28 +118,32 @@
             });
 
             this.opts.bus.on("addDoor", () => {
-                this.addDoor();
-            })
-
-            concrete = new fabric.Pattern({
-                source: '/Content/concrete.png',
-                repeat: "repeat"
+                this.addEssential('door');
             });
 
-            plywood = new fabric.Pattern({
-                source: '/Content/plywood.jpg',
-                repeat: "repeat"
+            this.opts.bus.on("addStairs", () => {
+                this.addEssential('stairs');
             });
+
+            this.opts.bus.on("addWindow", () => {
+                this.addEssential('window');
+            });
+
             this.getFloors();
 
             //this.isTopFloor = this.currentFloor == this.floors[this.floors.length - 1];
             //this.isBottomFloor = this.currentFloor == this.floors[0];
 
             canvas.on('mouse:down', function (e) {
-                if (e.target.id != 'Foundation') {
+
+                if (e.target.id === 'room') {
                     let currentRoom = canvas.getActiveObject();
                     opts.bus.trigger("changeRoom", currentRoom);
+                } else if (e.target.id === 'object') {
+                    opts.bus.trigger("objectView", e.target);
                 }
+
+                console.log(e.target.id);
             });
 
             canvas.on('object:scaling', function () {
@@ -190,12 +194,13 @@
                 .then(response => response.json())
                 .then(data => {
                     this.floors = data;
-                    console.log("Floors:" + this.floors);
                     console.log("Floorplan:" + this.floors[1].FloorPlan);
                     this.currentFloor = this.floors[1];
                     this.setFloorPlan();
                     this.update();
                 });
+
+            console.log("////////////////////////////////////////////////////////////////");
 
             console.log(this.floors);
 
@@ -243,6 +248,9 @@
                     body: this.json,
                     headers: { 'content-type': 'application/json' }
                 };
+
+            fetch(url, settings);
+
             console.log("JSON:" + this.json);
         }
 
@@ -268,60 +276,52 @@
 
         }
 
-        this.addDoor = function () {
+        this.addEssential = function (object) {
 
-            fabric.Image.fromURL(("/Content/DOOR-WHITE-small.png"), function (myImg) {
+            let imgAddress = '';
 
-                console.log("../Content/DOOR-WHITE-small.png");
 
+            if (object === 'door') {
+
+                imgAddress = "/Content/DOOR-WHITE-small.png";
+
+            } else if (object === 'stairs') {
+
+                imgAddress = "/Content/STAIRS-small.png";
+
+            } else if (object === 'window') {
+
+                imgAddress = "/Content/WINDOW-WHITE-small.png";
+
+            }
+
+            fabric.Image.fromURL(imgAddress, function (myImg) {
+
+                myImg.id = "object";
                 canvas.add(myImg);
+                myImg.center();
+                hideControls(myImg);
                 canvas.renderAll();
+
             });
         }
 
         this.addObject = function (image) {
 
-            //let activeRoom = canvas.getActiveObject();
-
-            //if (activeRoom == null) {
-
-            //}
-
             fabric.Image.fromURL(('/Content/' + image), function (myImg) {
 
                 console.log("Add Object: " + myImg);
-
-                if (image === "DOOR-WHITE.png") {
-                    myImg.set("width", 5);
-                    myImg.set("height", 5);
-
-                }
-
-                //if (image === "WINDOW-WHITE.png") {
-
-                //}
-
-                //if (image === "STAIRS.png") {
-
-
-                //}
 
                 canvas.add(myImg);
                 canvas.renderAll();
             });
 
-
         }
-
 
         this.setMaterial = function (image) {
 
             let room = canvas.getActiveObject();
 
-            //material = new fabric.Pattern({
-            //    source: ,
-            //    repeat: 'repeat'
-            //});
             if (room.flooring === null) {
                 image = "plywood.png";
             }
@@ -336,11 +336,6 @@
                 canvas.renderAll();
             });
 
-            //room.set('fill', material);
-
-
-            //canvas.renderAll();
-
             this.saveJSON();
 
 
@@ -350,6 +345,7 @@
         this.newRect = function (_name, _flooring, _cost) {
 
             let rect = new fabric.Rect({
+                id: 'room',
                 name: _name,
                 flooring: _flooring,
                 cost: _cost,
@@ -370,16 +366,16 @@
 
             canvas.add(rect);
             rect.center();
+            rect.moveTo(1);
             canvas.setActiveObject(rect);
             this.saveJSON();
         }
 
         this.loadCanvas = function (json) {
             canvas.loadFromJSON(json, canvas.renderAll.bind(canvas), function (o, object) {
-                // `o` = json object
-                console.log("Fabric object: " + object.selectable);
-                // `object` = fabric.Object instance
-                // ... do some stuff ...
+
+                console.log("LOADED " + json);
+
             });
 
             canvas.renderAll();
@@ -399,14 +395,12 @@
 				left: 0,
 				top: 0,
 				fill: "",
-				width: (w * 5),
-				height: (h * 5),
+				width: (w * 10),
+				height: (h * 10),
 				stroke: "black",
 				strokeWidth: 5,
 				selectable: false
-
 			});
-
 
 			fabric.util.loadImage(`${foundFill}`, function (img) {
 			
@@ -418,12 +412,11 @@
 				canvas.renderAll();
 			});
 
-
 			console.log("ID: " + foundation.id);
             canvas.add(foundation);
+            foundation.moveTo(0);
 			foundation.center();
 			canvas.renderAll();
-
         }
 
 
@@ -432,11 +425,6 @@
 
             canvas.clear();
             this.loadCanvas(this.currentFloor.FloorPlan);
-
-            //console.log("First floor " + this.createJObject(this.currentFloor.FloorPlan)[0]);
-            //let object = this.createJObject(this.currentFloor.FloorPlan);
-            //console.log(object.objects[0]);
-            //object.objects[0].selecatable = false;
 
             if (this.currentFloor.FloorPlan == "") {
                 this.createFoundation(opts.length, opts.width);
@@ -451,16 +439,21 @@
         this.createJObject = function (string) {
             return JSON.parse(string);
         }
-            //function loadCanvas(json) {
 
-            //	// parse the data into the canvas
-            //	canvas.loadFromJSON(json);
+        function hideControls (object) {
 
-            //	// re-render the canvas
-            //	canvas.renderAll();
+            object.setControlsVisibility({
+                tr: false,
+                tl: false,
+                br: false,
+                bl: false,
+                ml: false,
+                mt: false,
+                mr: false,
+                mb: false,
+                mtr: false
+            });
+        }
 
-            //	// optional
-            //	canvas.calculateOffset();
-            //}
     </script>
 </project-canvas>
