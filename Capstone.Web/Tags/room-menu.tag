@@ -10,17 +10,19 @@
         <img src="/Content/garbage.svg" onclick="{ deleteRoom }" class="trash">
 
         <input id="roomNameTextBox" type="hidden" placeholder="New room">
-        <span if="{activeRoom != null}"id="roomName">{activeRoom.name}</span>
+        <span if="{activeRoom != null}" id="roomName">{activeRoom.name}</span>
 
         <button type="button" id="door" onclick="{ addDoor }">Door</button>
+        <button type="button" id="stairs" onclick="{ addStairs }">Stairs</button>
+        <button type="button" id="window" onclick="{ addWindow }">Window</button>
         <input type="hidden" class="saveRoom" onclick="{ addRoom }" value="Save">
 
         <!--<div class="paintLightButton">
-            <button class="switchButtons {activated: currentRoom.hasPaint}" onclick="{ switchPaint }" >paint</button>
-        </div>
-        <div class="paintLightButton">
-            <button class="switchButtons  {activated: currentRoom.hasLights} " onclick="{ switchLights }" >light</button>
-        </div>-->
+        <button class="switchButtons {activated: currentRoom.hasPaint}" onclick="{ switchPaint }" >paint</button>
+    </div>
+    <div class="paintLightButton">
+        <button class="switchButtons  {activated: currentRoom.hasLights} " onclick="{ switchLights }" >light</button>
+    </div>-->
     </div>
 
     <style>
@@ -29,7 +31,7 @@
         .roomContainer {
             height: 100%;
             display: grid;
-            grid-template-areas: '... new new new new lock' 'door name name name name ...' '... name name name name ...' '... details details details details ...' 'cost cost ... ... ... trash';
+            grid-template-areas: '... new new new new lock' 'door name name name name ...' 'stairs name name name name ...' 'window details details details details ...' 'cost cost ... ... ... trash';
             position: relative;
             background-image: url("/Content/PLYWOOD.jpg");
             box-shadow: inset 0 0 10px #000;
@@ -81,6 +83,14 @@
 
         #door {
             grid-area: door;
+        }
+
+        #stairs {
+            grid-area: stairs;
+        }
+
+        #window {
+            grid-area: window;
         }
 
         .saveRoom {
@@ -294,6 +304,14 @@
 
         this.addDoor = function () {
             this.opts.bus.trigger("addDoor");
+        }
+
+        this.addStairs = function () {
+            this.opts.bus.trigger("addStairs");
+        }
+
+        this.addWindow = function () {
+            this.opts.bus.trigger("addWindow");
         }
 
         this.newRoom = function () {

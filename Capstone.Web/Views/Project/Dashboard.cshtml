@@ -42,8 +42,8 @@
                     <i class="fa fa-close deleteProjectButton" onclick="deleteProject(this, @project.HouseId)"></i>
                     <a href="@Url.Action("Build", "Project", new { houseId = project.HouseId })">
                         <h4>@project.HouseName</h4>
-                        <p>Budget: @project.Budget</p>
-                        <p>Region: @project.Region</p>
+                        <p>Budget: $@project.Budget</p>
+                        <p>@(((int)project.SquareFootage * project.NumberOfFloors).ToString("N0")) ft<sup>2</sup></p>
                     </a>
                 </div>
             }

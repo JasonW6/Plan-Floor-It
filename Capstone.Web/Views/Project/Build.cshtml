@@ -12,8 +12,8 @@
 }
 
 <project-canvas houseName="@Model.HouseName" houseId="@Model.HouseId" length="@Model.Length" width="@Model.Width"></project-canvas>
-<div class="canvas-container">
-    <canvas id="c" width="1200" height="700"></canvas>
+<div class="canvas-container" style="padding-top: 5vh">
+    <canvas id="c" width="1000" height="755"></canvas>
     <cost-menu baseCost="@Model.BaseCost.ToString("C")" budget="@Model.Budget.ToString("C")" balance="@((Model.Budget - Model.BaseCost).ToString("C"))" isOver="@(isOver)"></cost-menu>
     <img id="legend" src="~/Content/legend.svg" />
 </div>
