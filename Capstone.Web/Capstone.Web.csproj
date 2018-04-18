@@ -234,6 +234,7 @@
     <Content Include="Content\grass.png" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\HouseOnHill.jpg" />
+    <Content Include="Content\legend.svg" />
     <Content Include="Content\marble.jpg" />
     <Content Include="Content\note.svg" />
     <Content Include="Content\padlock-key.svg" />

@@ -1,38 +1,45 @@
 ﻿@model Capstone.Web.Models.ProjectModel
 @{
-	ViewBag.Title = "Build";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Build";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     var isOver = Model.Budget - Model.BaseCost < 0;
 }
 
 
 @section styles{
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
+
 }
 
 
 <project-canvas houseName="@Model.HouseName" houseId="@Model.HouseId" length="@Model.Length" width="@Model.Width"></project-canvas>
 <div class="canvas-container">
-	<canvas id="c" width="1200" height="700"></canvas>
+    <canvas id="c" width="1200" height="700"></canvas>
     <cost-menu baseCost="@Model.BaseCost.ToString("C")" budget="@Model.Budget.ToString("C")" balance="@((Model.Budget - Model.BaseCost).ToString("C"))" isOver="@(isOver)"></cost-menu>
+    <img id="legend" src="~/Content/legend.svg" />
 </div>
+
+
+
 <div id="bottomMenu">
-	<build-menu></build-menu>
-	<room-menu></room-menu>
+    <build-menu></build-menu>
+    <room-menu></room-menu>
 </div>
 
 @section scripts
 {
-	<script src="~/Tags/room-menu.tag" type="riot/tag">
-	</script>
-	<script src="~/Tags/build-menu.tag" type="riot/tag">
-	</script>
-	<script src="~/Tags/project-canvas.tag" type="riot/tag"></script>
-    <script src="~/Tags/cost-menu.tag" type="riot/tag">~/Tags/cost-menu.tag</script>
-	<script src="~/Scripts/fabric.min.js"></script>
-	<script>
+    <script src="~/Tags/room-menu.tag" type="riot/tag">
+    </script>
+    <script src="~/Tags/build-menu.tag" type="riot/tag">
+    </script>
+    <script src="~/Tags/project-canvas.tag" type="riot/tag">
+    </script>
+    <script src="~/Tags/cost-menu.tag" type="riot/tag">
+        ~/Tags/cost-menu.tag
+    </script>
+    <script src="~/Scripts/fabric.min.js"></script>
+    <script>
         let bus = {};
         riot.observable(bus);
         riot.mount('cost-menu', { bus: bus });
@@ -40,13 +47,13 @@
         riot.mount('build-menu', { bus: bus });
 
         riot.mount('project-canvas', { bus: bus });
-        
-	</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-	<script type="text/javascript">
-		class Room {
-			constructor(name) { this.name = name; }
-		}
-	</script>
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script type="text/javascript">
+        class Room {
+            constructor(name) { this.name = name; }
+        }
+    </script>
 }
 

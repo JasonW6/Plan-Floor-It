@@ -371,9 +371,21 @@ div.plannedHouses {
     text-align: center;
 }
 
+/* CANVAS */
+
+.canvas-container img#legend {
+    z-index: 10;
+    margin-left: 75vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+
+}
+
+/* NAV */
 
 #logoff {
     margin-top: 5px;
+    
     display: inline-block;
    
 }
