@@ -2,7 +2,8 @@
     <div id="budgetContainer">
         <h2 id="costHeader">Cost Analysis</h2>
         <p>Budget: {budget}</p>
-        <p>Base Cost: {baseCost}</p>
+        <p>Square Feet: {squareFeet}</p>
+        <p>Estimated Cost: {baseCost}</p>
         <p id="balance" class="{over: overBalance}">Balance: {balance}</p>
     </div>
 
@@ -21,5 +22,6 @@
         this.budget = opts.budget;
         this.balance = opts.balance;
         this.overBalance = opts.isover;
+        this.squareFeet = opts.squarefeet;
     </script>
 </cost-menu>

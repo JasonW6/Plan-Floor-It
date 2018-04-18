@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Capstone.Web.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Capstone.Web.Models
 {
@@ -15,11 +16,15 @@ namespace Capstone.Web.Models
         public bool HasBasement { get; set; }
         public int NumberOfFloors { get; set; }
         public List<FloorModel> ListOfFloors { get; set; }
-        [Required(ErrorMessage = "Length is required.")]
-        [Range(10.00, 150.00, ErrorMessage ="kug")]
+
+        [Required]
+        [Range(0, 150.00)]
+        [DefaultValue(false)]
         public double Length { get; set; }
+
         [Range(10, 150)]
         public double Width { get; set; }
+
         public double SquareFootage
         {
             get
