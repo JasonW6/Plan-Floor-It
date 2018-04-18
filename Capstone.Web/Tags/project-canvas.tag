@@ -1,8 +1,4 @@
-﻿
-
-<project-canvas>
-
-
+﻿<project-canvas>
 
     <div class="head">
         <!--<button onclick={removeFloor} type="button">Remove Floor</button>-->
@@ -21,7 +17,6 @@
     </div>-->
 
     <style>
-
         canvas {
             border: 5px solid #000;
         }
@@ -70,27 +65,22 @@
             border-style: none;
         }
 
-        button:hover {
-            background-color: #FFF;
-            cursor: pointer;
-            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-        }
+            button:hover {
+                background-color: #FFF;
+                cursor: pointer;
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
 
-        button#save {
-            grid-column-start: 3;
-            padding: 0;
-        }
+            button#save {
+                grid-column-start: 3;
+                padding: 0;
+            }
     </style>
 
-
-
     <script>
-
         var canvas = new fabric.Canvas('c', { preserveObjectStacking: true });
-
         let concrete = {};
         let plywood = {};
-
         this.floors = [];
         this.floorId = 1;
         this.currentFloor = {};
@@ -98,6 +88,9 @@
         this.isTopFloor;
         this.isBottomFloor;
         this.roomArea;
+        this.floorCostsLow = {};
+        let floorCostsMid = {};
+        this.floorCostsHig = {};
 
         this.on("mount", function () {
             console.log("loaded");
@@ -112,17 +105,15 @@
 
             this.opts.bus.on("setMaterial", data => {
                 this.setMaterial(data);
-			});
+            });
 
-			this.opts.bus.on("addObject", data => {
-				this.addObject(data);
-			});
+            this.opts.bus.on("addObject", data => {
+                this.addObject(data);
+            });
 
-
-
-			this.opts.bus.on("getActive", () => {
-				this.opts.bus.trigger("sendActive", canvas.getActiveObject());
-			});
+            this.opts.bus.on("getActive", () => {
+                this.opts.bus.trigger("sendActive", canvas.getActiveObject());
+            });
 
             concrete = new fabric.Pattern({
                 source: '/Content/concrete.png',
@@ -133,7 +124,6 @@
                 source: '/Content/plywood.jpg',
                 repeat: "repeat"
             });
-
             this.getFloors();
 
             //this.isTopFloor = this.currentFloor == this.floors[this.floors.length - 1];
@@ -150,8 +140,8 @@
                 const active = canvas.getActiveObject();
                 active.set({ width: active.width * active.scaleX, scaleX: 1, height: active.height * active.scaleY, scaleY: 1 });
                 this.roomArea = active.width * active.height;
-                console.log("Area: " + this.roomArea);
-                opts.bus.trigger("updateRoomArea", this.roomArea);
+                console.log(floorCostsMid);
+                opts.bus.trigger("updateRoomCost", ((this.roomArea / 25) * floorCostsMid[active.flooring]));
                 active.setCoords();
             });
 
@@ -162,7 +152,7 @@
                 var bottom = top + movingBox.height;
                 var left = movingBox.left;
                 var right = left + movingBox.width;
-                
+
                 var topBound = boundingBox.top;
                 var bottomBound = topBound + boundingBox.height;
                 var leftBound = boundingBox.left;
@@ -172,9 +162,19 @@
                 movingBox.set("top", Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
 
             });
+
+            this.opts.bus.on("getFloorCosts", data => {
+                console.log("Costs:" + data);
+                let floorData = {}
+                for (var i = 0; i < data.length; i++) {
+                    floorData["/Content/" + data[i].Name.toLowerCase() + ".png"] = data[i].MediumPrice;
+                }
+                console.log("Mid Costs: " + floorData);
+                floorCostsMid = floorData;
+            });
         });
 
-        
+
 
         this.getFloors = function () {
 
@@ -192,6 +192,7 @@
                 });
 
             console.log(this.floors);
+
             canvas.renderAll();
 
             this.update();
@@ -203,7 +204,7 @@
             this.saveJSON();
 
             if (this.floorId > 0) {
-                this.floorId--; 
+                this.floorId--;
             }
 
             this.currentFloor = this.floors[this.floorId];
@@ -217,7 +218,7 @@
 
             if (this.floorId < this.floors.length - 1) {
                 this.floorId++;
-                
+
             }
 
             this.currentFloor = this.floors[this.floorId];
@@ -226,7 +227,7 @@
         }
 
         this.saveJSON = function () {
-            this.json = JSON.stringify(canvas.toJSON(['id', 'selectable', 'lockRotation','name', 'flooring', '_controlsVisibility']));
+            this.json = JSON.stringify(canvas.toJSON(['id', 'selectable', 'lockRotation', 'name', 'flooring', '_controlsVisibility', 'cost']));
             this.currentFloor.FloorPlan = this.json;
             //fetch - SaveJSON
             const url = "/api/floorplan?floorId=" + this.floors[this.floorId].FloorId;
@@ -237,20 +238,15 @@
                     headers: { 'content-type': 'application/json' }
                 };
             console.log("JSON:" + this.json);
-            fetch(url, settings);
-            
         }
 
         this.newRoom = function (room) {
-
-            this.newRect(room.name, room.flooring);
-
+            this.newRect(room.name, room.flooring, room.cost);
         }
 
         this.deleteRoom = function () {
 
             let room = canvas.getActiveObject();
-
             canvas.remove(room);
             canvas.renderAll();
         }
@@ -264,41 +260,41 @@
             console.log("indeexxxxxxx " + canvas.item(index + 1));
             canvas.renderAll();
 
-		}
+        }
 
-		this.addObject = function (image) {
+        this.addObject = function (image) {
 
-			//let activeRoom = canvas.getActiveObject();
+            //let activeRoom = canvas.getActiveObject();
 
-			//if (activeRoom == null) {
-	
-			//}
+            //if (activeRoom == null) {
 
-			fabric.Image.fromURL(('/Content/' + image), function (myImg) {
+            //}
 
-				console.log("Add Object: " + myImg);
+            fabric.Image.fromURL(('/Content/' + image), function (myImg) {
 
-				if (image === "DOOR-WHITE.png") {
-					myImg.set("width", 5);
-					myImg.set("height", 5);
-	
-				}
+                console.log("Add Object: " + myImg);
 
-				//if (image === "WINDOW-WHITE.png") {
+                if (image === "DOOR-WHITE.png") {
+                    myImg.set("width", 5);
+                    myImg.set("height", 5);
 
-				//}
+                }
 
-				//if (image === "STAIRS.png") {
+                //if (image === "WINDOW-WHITE.png") {
+
+                //}
+
+                //if (image === "STAIRS.png") {
 
 
-				//}
+                //}
 
-				canvas.add(myImg);
-				canvas.renderAll();
-			});
+                canvas.add(myImg);
+                canvas.renderAll();
+            });
 
-			
-		}
+
+        }
 
 
         this.setMaterial = function (image) {
@@ -334,11 +330,12 @@
             canvas.renderAll();
         }
 
-        this.newRect = function (_name, _flooring) {
+        this.newRect = function (_name, _flooring, _cost) {
 
             let rect = new fabric.Rect({
                 name: _name,
                 flooring: _flooring,
+                cost: _cost,
                 left: 500,
                 top: 250,
                 fill: '',
@@ -361,7 +358,6 @@
         }
 
         this.loadCanvas = function (json) {
-
             canvas.loadFromJSON(json, canvas.renderAll.bind(canvas), function (o, object) {
                 // `o` = json object
                 console.log("Fabric object: " + object.selectable);
@@ -370,7 +366,6 @@
             });
 
             canvas.renderAll();
-			
         }
 
         this.createFoundation = function (h, w) {
@@ -381,25 +376,25 @@
                 foundFill = plywood;
             }
 
-			this.foundation = new fabric.Rect({
-				id: "Foundation",
-				left: 0,
-				top: 0,
-				fill: foundFill,
-				width: (w * 5),
-				height: (h * 5),
-				stroke: "black",
-				strokeWidth: 5,
-				selectable: false
-	
-			});
+            this.foundation = new fabric.Rect({
+                id: "Foundation",
+                left: 0,
+                top: 0,
+                cost: 0,
+                fill: foundFill,
+                width: (w * 5),
+                height: (h * 5),
+                stroke: "black",
+                strokeWidth: 5,
+                selectable: false
+            });
 
-			console.log("ID: " + this.foundation.id);
+            console.log("ID: " + this.foundation.id);
             canvas.add(this.foundation);
-			this.foundation.center();
-			canvas.renderAll();
+            this.foundation.center();
+            canvas.renderAll();
 
-		}
+        }
 
 
 
@@ -407,7 +402,7 @@
 
             canvas.clear();
             this.loadCanvas(this.currentFloor.FloorPlan);
-            
+
             //console.log("First floor " + this.createJObject(this.currentFloor.FloorPlan)[0]);
             //let object = this.createJObject(this.currentFloor.FloorPlan);
             //console.log(object.objects[0]);
@@ -418,17 +413,14 @@
                 console.log("no floor plan dude");
             }
 
-            
             canvas.renderAll();
             let objects = canvas.getObjects();
             console.log("Objects " + objects);
         }
 
-
         this.createJObject = function (string) {
             return JSON.parse(string);
         }
-
             //function loadCanvas(json) {
 
             //	// parse the data into the canvas
@@ -440,13 +432,5 @@
             //	// optional
             //	canvas.calculateOffset();
             //}
-
-
     </script>
-
-
-
-
-
-
 </project-canvas>

@@ -211,8 +211,11 @@
             console.log("12312312321");
         });
 
-        this.opts.bus.on("updateRoomArea", data => {
-            console.log("Room Area: " + data);
+        this.opts.bus.on("updateRoomCost", data => {
+            console.log("Room Cost: " + data);
+            this.activeRoom.cost = data;
+            console.log(this.activeRoom);
+            console.log(this.rooms);
         });
 
         function Room(name) {
@@ -221,6 +224,7 @@
             this.hasPaint = false;
             this.hasLights = false;
             this.area;
+            this.cost = 0;
         }
 
         this.switchPaint = function () {
@@ -243,10 +247,15 @@
         //const rooms = [living, family];
 
         this.activeRoom = null;
-
+        this.totalRoomCost;
         this.roomIndex = -1;
         this.rooms = [];
         this.currentRoom = null;
+        this.createdRooms = [];
+        this.createdRooms = document.querySelectorAll('.createdRoom');
+        this.isZoom = false;
+        this.isLocked = false;
+        
         this.currentMaterial = "/Content/plywood.jpg";
 
         this.on("mount", function () {
@@ -256,12 +265,6 @@
             this.save = document.querySelector(".saveRoom");
             this.mainDiv = document.querySelector(".roomContainer");
         });
-
-
-        this.createdRooms = [];
-        this.createdRooms = document.querySelectorAll('.createdRoom');
-        this.isZoom = false;
-        this.isLocked = false;
 
         this.deleteRoom = function () {
 
@@ -281,8 +284,6 @@
                 this.roomIndex = -1;
                 element.value = "";
             }
-
-
 
             this.update();
         }
@@ -307,7 +308,7 @@
             this.setBackgroundStyle(this.activeRoom.flooring);
             this.opts.bus.trigger("newRoom", this.activeRoom);
             this.element.setAttribute("type", "hidden");
-
+            
             this.save.setAttribute("type", "hidden");
             this.update();
         }
