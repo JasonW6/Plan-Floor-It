@@ -34,7 +34,6 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult NewProject(ProjectModel model)
 		{ 
-
 			model.UserId = Guid.Parse(User.Identity.GetUserId());
             int houseId = dal.AddNewHouse(model);
 			MakeFloors(model.GetFloorCount(), houseId);
