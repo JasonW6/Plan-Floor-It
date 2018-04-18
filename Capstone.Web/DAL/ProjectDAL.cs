@@ -13,7 +13,7 @@ namespace Capstone.Web.DAL
         private string connectionString;
 
         private const string SQL_SelectProjectByHouseId = @"SELECT * FROM house WHERE HouseId = @houseId;";
-		private const string SQL_AddNewHouse = @"INSERT INTO house (UserId, HouseName, Basement, Floors, Length, Width, SquareFootage, Region, Budget, BaseCost) VALUES (@userId, @houseName, 1, @floors, @length, @width, @squareFootage, @region, @budget, @baseCost);";
+		private const string SQL_AddNewHouse = @"INSERT INTO house (UserId, HouseName, Basement, Floors, Length, Width, SquareFootage, Budget, BaseCost) VALUES (@userId, @houseName, 1, @floors, @length, @width, @squareFootage, @budget, @baseCost);";
 		private const string SQL_GetUserProjects = @"SELECT * FROM House WHERE UserId = @userId;";
 
         public ProjectDAL(string connectionString)
@@ -35,7 +35,6 @@ namespace Capstone.Web.DAL
                     cmd.Parameters.AddWithValue("@length", model.Length);
                     cmd.Parameters.AddWithValue("width", model.Width);
 					cmd.Parameters.AddWithValue("@squareFootage", model.SquareFootage);
-					cmd.Parameters.AddWithValue("@region", model.Region);
 					cmd.Parameters.AddWithValue("@budget", model.Budget);
                     cmd.Parameters.AddWithValue("@baseCost", model.BaseCost);
 
@@ -126,7 +125,6 @@ namespace Capstone.Web.DAL
                 Length = Convert.ToInt32(reader["Length"]),
                 Width = Convert.ToInt32(reader["Width"]),
                 SquareFootage = Convert.ToDouble(reader["SquareFootage"]),
-                Region = Convert.ToString(reader["Region"]),
                 Budget = Convert.ToDecimal(reader["Budget"])
             };
 
