@@ -4,7 +4,7 @@
         <!--<i onclick="{ switchZoom }" class="fa fa-search-plus {activated: isZoom}"></i>-->
             <button class="roomBtn newRoom accountformbtn" onclick="{newRoom}">New room</button>
         <img src="/Content/garbage.svg" onclick="{ deleteRoom }" class="trash">
-		<img src="/Content/rotate-to-right-button.svg" onclick="{ rotateObject }" class="rotate" />
+		
 
         <input id="roomNameTextBox" type="hidden" placeholder="New room">
         <span if="{activeRoom != null}" id="roomName">{activeRoom.name}</span>
@@ -20,20 +20,20 @@
 
 
         .roomContainer {
-            border: 10px solid black;
             height: 100%;
-            padding: 10px;
             display: grid;
+            padding: 10px;
             grid-gap: 5px;
             grid-template-areas: '... new new new new ...' 'trash name name name name ...' 'rotate name name name name ...' 'lock details details details details ...' 'door ... window window ... stairs';
-            position: relative;
             background-image: url("/Content/PLYWOOD.jpg");
             box-shadow: inset 0 0 10px #000;
+            box-sizing: border-box;
             z-index: 0;
         }
 
             .roomContainer button {
-                background-color: white;
+                background-color: black;
+                color: white;
                 transition-duration: 0.4s;
                 border-radius: 5px;
                 font-size: 1.0rem;
@@ -181,7 +181,7 @@
         }
 
         .room-name {
-            height: 10%;
+            
         }
     </style>
 
@@ -251,7 +251,8 @@
         this.createdRooms = document.querySelectorAll('.createdRoom');
         this.isZoom = false;
         this.isLocked = false;
-        
+        let curAngle;
+
         this.currentMaterial = "/Content/plywood.jpg";
 
         this.on("mount", function () {
@@ -265,10 +266,12 @@
 		this.rotateObject = function () {
 
 			let object = this.getActive();
-			var curAngle = object.angle;
+			curAngle = object.angle;
 			let newAngle = curAngle + 90;
 
-			this.opts.bus.trigger("rotateObject", this.newAngle);
+            console.log("Rooootate");
+
+			this.opts.bus.trigger("rotateObject", newAngle);
 		}
 
         this.deleteRoom = function () {

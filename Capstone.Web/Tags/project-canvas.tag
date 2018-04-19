@@ -322,8 +322,8 @@
 		this.rotateObject = function (newAngle) {
 
 			let object = canvas.getActiveObject();
-			object.set("angle", newAngle);
-
+            object.selectable = true;
+            canvas.renderAll();
 		}
 
         this.deleteRoom = function () {
@@ -519,7 +519,7 @@
                 mt: false,
                 mr: false,
                 mb: false,
-                mtr: false
+                mtr: true
             });
         }
 
