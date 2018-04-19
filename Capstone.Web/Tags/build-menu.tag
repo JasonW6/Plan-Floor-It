@@ -79,6 +79,7 @@
             -webkit-flex-direction: row;
             flex-direction: row;
             display: flex;
+            margin-top: 15px;
         }
 
             .materials p {
@@ -98,9 +99,6 @@
                 border-radius: 5px;
             }
 
-        #floorMaterials {
-            margin-top: 30px;
-        }
 
         .material-container {
             display: inline-block;
