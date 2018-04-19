@@ -6,16 +6,16 @@
 
 @if (Request.IsAuthenticated)
 {
-    <button class="navbarBtn"> @Html.ActionLink("Hello " + dal.GetFirstName(User.Identity.GetUserId()) + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
+    <button id="name-button" class="navbarBtn"> @Html.ActionLink("Hello " + dal.GetFirstName(User.Identity.GetUserId()) + "!", "Dashboard", "Project", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
         //<div class="nav navbar-nav navbar-right">
-            <button id="logoff" class="navbarBtn" href="javascript:document.getElementById('logoutForm').submit()">Log off</button>
+        <button id="logoff" class="navbarBtn" href="javascript:document.getElementById('logoutForm').submit()">Log off</button>
         //</div>
     }
     //<form method="get" action="@Url.Action("Dashboard", "Project")">
-        <button class="navbarBtn homePage" onclick="location.href='@Url.Action("Dashboard", "Project")'">Dashboard</button>
+    <button id="dashboard" class="navbarBtn homePage" onclick="location.href='@Url.Action("Dashboard", "Project")'">Dashboard</button>
     //</form>
 }
 else

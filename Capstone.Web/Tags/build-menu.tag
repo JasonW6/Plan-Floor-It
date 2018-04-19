@@ -142,18 +142,21 @@
             display: inline-block;
             margin: auto;
             transition-duration: 0.4s;
-            background-color: white;
+            color: black;
             padding: 10px;
             text-align: center;
             border-radius: 5px;
-            box-shadow: 0 0 10px #000;
             cursor: pointer;
         }
+            .meunTab:hover {
+                color: white;
+            }
 
         .activeMenuTab {
             border-radius: 5px;
+            background-color: black;
+            color: white;
 
-            box-shadow: inset 0 0 10px #000;
         }
 
         .glass.tab {
