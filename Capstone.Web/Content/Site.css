@@ -461,6 +461,7 @@ img#plan.svg {
     .userProject {
         font-size: 1.2rem;
     }
+
 .dashboardButton {
 	position: absolute;
 	top: 20%;
@@ -545,7 +546,7 @@ project-canvas {
     margin-bottom: 5vh;
 }
 
-div.room-container {
+div.roomContainer {
     height: 100%;
 }
 
@@ -575,21 +576,24 @@ div.room-container {
 
 
 #bottomMenu{
-    height: 30%;
+    height: 30vh;
     display: grid;
     grid-template-columns: 40% 30% 30%;
 }
 
-build-menu{
+build-menu {
     grid-column: 1;
     border-right: 2px solid lightgray;
     height: 100%;
+    box-sizing: border-box;
 }
 
 room-menu{
-    grid-column: 2;
+    grid-area: 1 / 2 / 2 / 3;
     height: 100%;
     box-sizing: border-box;
+    border: 10px solid black;
+    z-index: 2;
 }
 
 #logoutForm{
@@ -599,7 +603,7 @@ room-menu{
 
 cost-menu {
     border: 10px solid black;
-    grid-column: 3;
+    grid-area: 1 / 3 / 2 / 4;
     color: black;
     font-family: sans-serif;
     height: 100%;
@@ -607,6 +611,7 @@ cost-menu {
     font-size: 1.5rem;
     background-color: #eb78b3;
     box-shadow: inset 0 0 10px #000;
+    box-sizing: border-box;
 }
 
 input[type='number'] {
