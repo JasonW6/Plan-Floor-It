@@ -6,8 +6,8 @@
         <img src="/Content/garbage.svg" onclick="{ deleteRoom }" class="trash">
 		
 
-        <input id="roomNameTextBox" type="hidden" placeholder="New room">
-        <span if="{activeRoom != null}" id="roomName">{activeRoom.name}</span>
+        <input if="{!showName}" id="roomNameTextBox" type="hidden" placeholder="New room">
+        <span style="visibility:hidden" id="roomName">{activeRoom.name}</span>
 
         <button type="button" id="door" onclick="{ addDoor }">Door</button>
         <button type="button" id="stairs" onclick="{ addStairs }">Stairs</button>
@@ -187,6 +187,8 @@
 
     <script>
 
+		var showName;
+		
         this.opts.bus.on("setMaterial", data => {
             this.setMaterial(data);
 
@@ -197,12 +199,20 @@
         this.opts.bus.on("changeRoom", data => {
             this.activeRoom = data;
             this.setBackgroundStyle(data.flooring);
-            console.log("****");
+			console.log("****");
+			showName = true;
+			this.save.setAttribute("type", "hidden");
+			this.element.setAttribute("type", "hidden");
+			this.span.style.visibility = "visible";
             this.update();
             
         });
 
-        this.opts.bus.on("updateCurrentRoom", data => {
+		this.opts.bus.on("updateCurrentRoom", data => {
+			showName = true;
+			this.save.setAttribute("type", "hidden");
+			this.element.setAttribute("type", "hidden");
+			this.span.style.visibility = "visible";
             this.updateCurrentRoom(data);
             console.log("12312312321");
         });
@@ -276,7 +286,7 @@
 
         this.deleteRoom = function () {
 
-            let element = document.querySelector('#roomNameTextBox');
+            this.element = document.querySelector('#roomNameTextBox');
 
             this.opts.bus.trigger("deleteRoom", this.currentRoom);
 
@@ -308,28 +318,33 @@
             this.opts.bus.trigger("addWindow");
         }
 
-        this.newRoom = function () {
-
-            this.element.setAttribute("type", "text");
+		this.newRoom = function () {
+			showName = false;
+			this.activeRoom = null;
             this.element.value = '';
-            this.activeRoom = null;
-            this.save.setAttribute("type", "button");
+			this.save.setAttribute("type", "button");
+			this.element.setAttribute("type", "text");
+			this.span.style.visibility = "hidden";
             this.update();
         }
 
-        this.addRoom = function () {
+		this.addRoom = function () {
 
             var room = new Room(this.element.value);
             this.rooms.push(room);
             console.log(this.rooms);
             this.roomIndex++;
-            this.activeRoom = this.rooms[this.roomIndex];
+			this.activeRoom = this.rooms[this.roomIndex];
+			this.element.setAttribute("type", "hidden");
+			this.span.style.visibility = "visible";
             this.activeRoom.flooring = "/Content/plywood.jpg";
             this.setBackgroundStyle(this.activeRoom.flooring);
             this.opts.bus.trigger("newRoom", this.activeRoom);
-            this.element.setAttribute("type", "hidden");
+
             
-            this.save.setAttribute("type", "hidden");
+			this.save.setAttribute("type", "hidden");
+			this.element.setAttribute("type", "hidden");
+			showName = true;
             this.update();
         }
 
@@ -341,7 +356,11 @@
         }
 
         this.updateCurrentRoom = function (index) {
-            console.log("indndnndnndnd " + index);
+			console.log("indndnndnndnd " + index);
+			showName = true;
+			this.save.setAttribute("type", "hidden");
+			this.element.setAttribute("type", "hidden");
+			this.span.style.visibility = "visible";
 
             this.currentRoom = this.rooms[this.roomIndex];
 
@@ -369,7 +388,10 @@
             this.opts.bus.on("sendActive", data => {
                 this.activeRoom = data;
             });
-
+			showName = true;
+			this.save.setAttribute("type", "hidden");
+			this.element.setAttribute("type", "hidden");
+			this.span.style.visibility = "visible";
             return this.activeRoom;
         }
 
