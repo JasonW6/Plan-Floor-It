@@ -438,7 +438,8 @@
 
             canvas.add(rect);
             rect.center();
-            rect.moveTo(1);
+
+            rect.moveTo(this.findLastRoom());
             canvas.setActiveObject(rect);
             this.saveJSON();
         }
@@ -530,6 +531,24 @@
         function round(number) {
             var factor = Math.pow(10, 1);
             return Math.round(number * factor) / factor;
+        }
+
+        this.findLastRoom = function () {
+
+            let index = 1;
+            let objects = canvas.getObjects();
+
+            for (let i = 1; i < objects.length; i++) {
+
+                if (objects[i].id == 'object') {
+                    return index;
+                }
+
+                index++;
+
+            }
+
+            return index;
         }
 
 
