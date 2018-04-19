@@ -261,6 +261,7 @@
     <Content Include="Content\paint-roller.svg" />
     <Content Include="Content\plan.svg" />
     <Content Include="Content\plywood.jpg" />
+    <Content Include="Content\rotate-to-right-button.svg" />
     <Content Include="Content\sink.png" />
     <Content Include="Content\STAIRS-DRAWN.png" />
     <Content Include="Content\STAIRS-small.png" />

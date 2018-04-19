@@ -4,6 +4,7 @@
         <!--<i onclick="{ switchZoom }" class="fa fa-search-plus {activated: isZoom}"></i>-->
             <button class="roomBtn newRoom accountformbtn" onclick="{newRoom}">New room</button>
         <img src="/Content/garbage.svg" onclick="{ deleteRoom }" class="trash">
+		<img src="/Content/rotate-to-right-button.svg" onclick="{ rotateObject }" class="rotate" />
 
         <input id="roomNameTextBox" type="hidden" placeholder="New room">
         <span if="{activeRoom != null}" id="roomName">{activeRoom.name}</span>
@@ -13,12 +14,6 @@
         <button type="button" id="window" onclick="{ addWindow }">Window</button>
         <input type="hidden" class="saveRoom" onclick="{ addRoom }" value="Save">
 
-        <!--<div class="paintLightButton">
-        <button class="switchButtons {activated: currentRoom.hasPaint}" onclick="{ switchPaint }" >paint</button>
-    </div>
-    <div class="paintLightButton">
-        <button class="switchButtons  {activated: currentRoom.hasLights} " onclick="{ switchLights }" >light</button>
-    </div>-->
     </div>
 
     <style>
@@ -30,7 +25,7 @@
             padding: 10px;
             display: grid;
             grid-gap: 5px;
-            grid-template-areas: '... new new new new ...' 'door name name name name ...' 'stairs name name name name ...' 'window details details details details ...' 'lock cost ... ... ... trash';
+            grid-template-areas: '... new new new new ...' 'trash name name name name ...' 'rotate name name name name ...' 'lock details details details details ...' 'door ... window window ... stairs';
             position: relative;
             background-image: url("/Content/PLYWOOD.jpg");
             box-shadow: inset 0 0 10px #000;
@@ -117,14 +112,21 @@
         img.trash {
             margin: auto;
             grid-area: trash;
-            width: 2.2rem;
+            width: 2.0rem;
             cursor: pointer;
         }
+
+		img.rotate {
+			margin: auto;
+			grid-area: rotate;
+			width: 2.0rem;
+			cursor: pointer;
+		}
 
         img.lock {
             margin: auto;
             grid-area: lock;
-            width: 2.2rem;
+            width: 2.0rem;
             cursor: pointer;
         }
 
@@ -258,7 +260,16 @@
             this.element = document.querySelector('#roomNameTextBox');
             this.save = document.querySelector(".saveRoom");
             this.mainDiv = document.querySelector(".roomContainer");
-        });
+		});
+
+		this.rotateObject = function () {
+
+			let object = this.getActive();
+			var curAngle = object.getAngle();
+			let newAngle = curAngle + 90;
+
+			this.opts.bus.trigger("rotateObject", this.newAngle);
+		}
 
         this.deleteRoom = function () {
 
