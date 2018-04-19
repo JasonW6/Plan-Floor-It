@@ -12,8 +12,7 @@
 
 
         <div class="materialsContainer" id="otherSection" if={!isFloors}>
-            <div class="materialScroll">
-            </div>
+
             <div class="materials" id="objectMaterials">
 
                 <div class="material" each="{object, index in objects}" id="object-{index}">
@@ -27,14 +26,14 @@
 
 
         <div class="materialsContainer" id="materialSection" if={isFloors}>
-            <div class="materialScroll">
-            </div>
+
+
             <div class="materials" id="floorMaterials">
 
                 <div class="material" each="{floor, index in floors}" id="floor-{index}">
                     <div onclick="{ setMaterial }" class="material-container" style="background-image: url('/Content/{floor.ImageSource}')">
                         <img src="/Content/{floor.ImageSource}" class="matImg" style="border-style:none; box-shadow: none; display: none;" />
-                            <p>{floor.Name}</p>
+                        <p>{floor.Name}</p>
                     </div>
                 </div>
             </div>
@@ -63,12 +62,12 @@
             box-shadow: 0 0 10px #000;
         }
 
-        div.glass.tiles::before {
-            -webkit-filter: blur(30px);
-            filter: blur(30px);
-            content: '';
-            z-index: -1;
-        }
+            div.glass.tiles::before {
+                -webkit-filter: blur(30px);
+                filter: blur(30px);
+                content: '';
+                z-index: -1;
+            }
 
         .materialsContainer {
             width: 100%;
@@ -77,6 +76,11 @@
 
         .materials {
             height: 100%;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            display: flex;
         }
 
             .materials p {
@@ -88,7 +92,6 @@
                 font-size: 1.2rem;
                 font-weight: 600;
                 border-radius: 5px;
-
             }
 
         #floorMaterials {
@@ -148,15 +151,15 @@
             border-radius: 5px;
             cursor: pointer;
         }
-            .meunTab:hover {
-                color: white;
-            }
+
+        .meunTab:hover {
+            color: white;
+        }
 
         .activeMenuTab {
             border-radius: 5px;
             background-color: black;
             color: white;
-
         }
 
         .glass.tab {
@@ -196,12 +199,7 @@
                     console.log(this.objects);
                     console.log(this.floors);
                     this.update();
-                    $('#floorMaterials').slick({
-                        infinite: false,
-                        slidesToShow: 5,
-                        slidesToScroll: 2,
-                        arrows: true
-                    });
+
                 });
         }
 
@@ -225,23 +223,13 @@
                 this.materialTab.classList.add('activeMenuTab');
                 this.otherTab.classList.remove('activeMenuTab');
                 this.update();
-                $('#floorMaterials').slick({
-                    infinite: false,
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    arrows: true
-                });
+
             }
             else {
                 this.otherTab.classList.add('activeMenuTab');
                 this.materialTab.classList.remove('activeMenuTab');
                 this.update();
-                $('#objectMaterials').slick({
-                    infinite: false,
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    arrows: true
-                });
+
             }
         }
     </script>
