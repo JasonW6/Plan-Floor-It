@@ -1,6 +1,6 @@
 ﻿<room-menu>
     <div class="roomContainer">
-        <img src="/Content/padlock-key.svg" onclick="{ switchLock }" class="lock">
+        <!--<img src="/Content/padlock-key.svg" onclick="{ switchLock }" class="lock">-->
         <!--<i onclick="{ switchZoom }" class="fa fa-search-plus {activated: isZoom}"></i>-->
             <button class="roomBtn newRoom accountformbtn" onclick="{newRoom}">New room</button>
         <img src="/Content/garbage.svg" onclick="{ deleteRoom }" class="trash">
@@ -24,7 +24,7 @@
             display: grid;
             padding: 10px;
             grid-gap: 5px;
-            grid-template-areas: '... new new new new ...' 'trash name name name name ...' 'rotate name name name name ...' 'lock details details details details ...' 'door ... window window ... stairs';
+            grid-template-areas: 'trash new new new new ...' '... name name name name ...' 'rotate name name name name ...' '... details details details details ...' 'door ... window window ... stairs';
             background-image: url("/Content/PLYWOOD.jpg");
             box-shadow: inset 0 0 10px #000;
             box-sizing: border-box;
