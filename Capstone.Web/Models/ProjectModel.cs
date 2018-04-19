@@ -17,12 +17,10 @@ namespace Capstone.Web.Models
         public int NumberOfFloors { get; set; }
         public List<FloorModel> ListOfFloors { get; set; }
 
-        [Required]
-        [Range(0, 150.00)]
-        [DefaultValue(false)]
+        
         public double Length { get; set; }
 
-        [Range(10, 150)]
+        
         public double Width { get; set; }
 
         public double SquareFootage

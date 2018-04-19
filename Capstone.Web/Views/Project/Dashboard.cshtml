@@ -17,17 +17,21 @@
             display: block !important;
         }
 
-        .deleteProjectButton:hover{
-            color: red;
-        }
-    </style>    
+            .deleteProjectButton:hover {
+                color: red;
+            }
+    </style>
 }
 @section scripts{
     <script>
         function deleteProject(element, houseId) {
-            element.parentElement.remove();
-            fetch("/api/deleteProject?projectId=" + houseId, { method: 'POST' });
-            alert("Project deleted successfully");
+            var doubleCheck = confirm("Are you sure you want to delete this?");
+            if (doubleCheck === true) {
+                element.parentElement.remove();
+                fetch("/api/deleteProject?projectId=" + houseId, { method: 'POST' });
+                alert("Project deleted successfully");
+            }
+
         }
     </script>
 }
