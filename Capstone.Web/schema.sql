@@ -80,7 +80,7 @@ INSERT INTO Materials VALUES ('Plywood', 1, 0.50, 2.00, 8.00, 'plywood.jpg')
 INSERT INTO Materials VALUES ('Marble', 1, 3.80, 7.50, 20.00, 'marble.png')
 
 INSERT INTO Materials VALUES ('Couch', 0, 3.80, 7.50, 20.00, 'couch.png')
-INSERT INTO Materials VALUES ('Toilet', 0, 3.80, 7.50, 20.00, 'TIOLET.png')
+INSERT INTO Materials VALUES ('Toilet', 0, 3.80, 7.50, 20.00, 'TOILET.png')
 INSERT INTO Materials VALUES ('Table', 0, 3.80, 7.50, 20.00, 'COFFEE-table.png')
 INSERT INTO Materials VALUES ('Couch (L)', 0, 3.80, 7.50, 20.00, 'SECTIONAL-L.png')
 INSERT INTO Materials VALUES ('Couch (R)', 0, 3.80, 7.50, 20.00, 'SECTIONAL-R.png')

@@ -16,8 +16,8 @@
             <div class="materials" id="objectMaterials">
 
                 <div class="material" each="{object, index in objects}" id="object-{index}">
-                    <div class="glass tiles">
-                        <img ondblclick="{ addObject }" src="/Content/{object.ImageSource}" class="matImg" style="border-style:none; box-shadow: none" />
+                    <div class="material-container" ondblclick="{ addObject }">
+                        <img src="/Content/{object.ImageSource}" class="matImg" style="border-style:none; box-shadow: none" />
                         <p>{object.Name}</p>
                     </div>
                 </div>
@@ -32,7 +32,6 @@
 
                 <div class="material" each="{floor, index in floors}" id="floor-{index}">
                     <div onclick="{ setMaterial }" class="material-container" style="background-image: url('/Content/{floor.ImageSource}')">
-                        <img src="/Content/{floor.ImageSource}" class="matImg" style="border-style:none; box-shadow: none; display: none;" />
                         <p>{floor.Name}</p>
                     </div>
                 </div>
@@ -47,7 +46,6 @@
             background-color: #d7bbd9;
             background-repeat: repeat;
             width: 100%;
-            height: 108%;
             display: inline-block;
             border: 10px solid black;
             box-shadow: inset 0 0 10px #000;
@@ -86,6 +84,12 @@
             .materials p {
                 display: block;
                 background-color: rgba(0, 0, 0, 0.6);
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                text-align: center;
                 color: white;
                 margin: 30px 0;
                 padding: 5px;
@@ -105,6 +109,7 @@
             border-radius: 5px;
             margin: auto;
             box-shadow: 0 0 10px #000;
+            position: relative;
         }
 
         #materialSection {
@@ -116,7 +121,7 @@
             height: 60%;
             min-height: 87px;
             transition-duration: 0.4s;
-            margin: 0 auto;
+            margin: 0 20%;
             border: 2px solid white;
             border-radius: 5px;
             box-shadow: inset 0 0 10px #000;
