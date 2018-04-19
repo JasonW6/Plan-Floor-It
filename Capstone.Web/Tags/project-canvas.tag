@@ -210,7 +210,11 @@
                 
             });
 
-            canvas.on("object:moving", function (e) {
+			canvas.on("object:moving", function (e) {
+
+				if (e.target.id === 'object') {
+					return;
+				};
 
                 textWidth.set('text', '');
                 textHeight.set('text', '');
