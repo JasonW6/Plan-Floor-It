@@ -265,7 +265,7 @@
 		this.rotateObject = function () {
 
 			let object = this.getActive();
-			var curAngle = object.getAngle();
+			var curAngle = object.angle;
 			let newAngle = curAngle + 90;
 
 			this.opts.bus.trigger("rotateObject", this.newAngle);

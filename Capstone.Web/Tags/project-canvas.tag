@@ -137,7 +137,11 @@
 
             this.opts.bus.on("addObject", data => {
                 this.addObject(data);
-            });
+			});
+
+			this.opts.bus.on("rotateObject", data => {
+				this.rotateObject(data);
+			});
 
             this.opts.bus.on("getActive", () => {
                 this.opts.bus.trigger("sendActive", canvas.getActiveObject());
@@ -313,7 +317,14 @@
 
         this.newRoom = function (room) {
             this.newRect(room.name, room.flooring, room.cost);
-        }
+		}
+
+		this.rotateObject = function (newAngle) {
+
+			let object = canvas.getActiveObject();
+			object.set("angle", newAngle);
+
+		}
 
         this.deleteRoom = function () {
 
