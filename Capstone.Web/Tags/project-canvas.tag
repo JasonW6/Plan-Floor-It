@@ -29,21 +29,31 @@
             height: 7vh;
             box-shadow: 0 0 10px #000;
             z-index: 2;
+            border: 10px solid #000;
             box-shadow: inset 0 0 10px #000;
         }
 
         #house-name {
             font-size: 2.5rem;
+            background-color: black;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
             font-weight: 700;
             margin: auto;
         }
 
         .floor-number {
             grid-column-start: 2;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
         }
 
         .floor-container {
             display: grid;
+
             grid-template-columns: 1fr 1fr 1fr;
             margin: auto;
             grid-column-start: 2;
@@ -55,7 +65,8 @@
             height: 50%;
             transform: translateY(50%);
             font-family: sans-serif;
-            background-color: #FFF;
+            background-color: black;
+            color: white;
             margin-left: 10px;
             margin-right: 10px;
             font-size: 2rem;
@@ -66,7 +77,6 @@
         }
 
             button:hover {
-                background-color: #FFF;
                 cursor: pointer;
                 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
             }
