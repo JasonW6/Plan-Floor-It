@@ -216,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Appharbor-Grass.png" />
+    <Content Include="Content\Appharbor-Marble.png" />
     <Content Include="Content\bed.png" />
     <Content Include="Content\brick-wall.svg" />
     <Content Include="Content\bungalow.jpeg" />
