@@ -5,7 +5,7 @@
 }
 
 <body id="login">
-    <img id="trees" class="svg" src="~/Content/house-trees.svg" />
+
     <div class="accountFormContainer">
 
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
@@ -20,7 +20,7 @@
             <div class="accountFormControl">
                 @Html.PasswordFor(m => m.Password, new { placeholder = "password" })
             </div>
-            <div class="accountFormControl">
+            <div class="accountFormControl remember">
                 @Html.CheckBoxFor(m => m.RememberMe)
                 @Html.LabelFor(m => m.RememberMe, new { @class = "rememberMeText" })
             </div>

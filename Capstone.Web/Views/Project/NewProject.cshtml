@@ -12,34 +12,30 @@
         <div class="blur">
             <div class="form-container">
                 @Html.ValidationSummary()
-                <label>Project Name @Html.TextBoxFor(m => m.HouseName)</label>
-                <label>
-                    <br />
-                    <br />
-                    Floors
-                    <select name="NumberOfFloors">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
+                <label class="l" id="l-name">
+                    Project Name
                 </label>
+                <label id="l-name-2"> @Html.TextBoxFor(m => m.HouseName)</label>
+                <label class="l" id="l-floors">
+                    Floors
+                </label>
+                <select id="l-floors-2" name="NumberOfFloors">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
                 @*<label>
-                    Region
-                    <select name="Region">
-                        <option value="Cleveland-Elyria">Cleveland-Elyria</option>
-                        <option value="Akron">Akron</option>
-                        <option value="Canton-Massillon">Canton-Massillon</option>
-                    </select>
-                </label>*@
-                <br />
-                <br />
-                <label>Budget @Html.TextBoxFor(m => m.Budget)</label>
-                <br />
-                <br />
-                <label>Foundation Size<br /> @Html.TextBoxFor(m => m.Length, new { placeholder = "Length" }) X @Html.TextBoxFor(m => m.Width, new { placeholder = "Width" })</label>
-                <br />
-                <br />
-                <input class="navbarBtn accountformbtn" type="submit" value="Build" />
+            Region
+            <select name="Region">
+                <option value="Cleveland-Elyria">Cleveland-Elyria</option>
+                <option value="Akron">Akron</option>
+                <option value="Canton-Massillon">Canton-Massillon</option>
+            </select>
+        </label>*@
+                <label class="l" id="l-budget">Budget</label> <label id="l-budget-2">@Html.TextBoxFor(m => m.Budget)</label>
+                <label class="l" id="l-foundation">Foundation</label> <label id="l-foundation-2">@Html.TextBoxFor(m => m.Length, new { placeholder = "Length" }) X @Html.TextBoxFor(m => m.Width, new { placeholder = "Width" })</label>
+                <input id="l-build" class="navbarBtn accountformbtn" type="submit" value="Build" />
             </div>
         </div>
 

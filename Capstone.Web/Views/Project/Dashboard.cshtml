@@ -7,7 +7,10 @@
 @section styles{
     <style>
         .deleteProjectButton {
+            background-color: #FBBAFF;
             margin-left: 0.5em;
+            border-radius: 100%;
+            padding: 0 2px 1px 3px;
             margin-top: 0.5em;
             color: ghostwhite;
             position: absolute;
@@ -42,8 +45,9 @@
                     <i class="fa fa-close deleteProjectButton" onclick="deleteProject(this, @project.HouseId)"></i>
                     <a href="@Url.Action("Build", "Project", new { houseId = project.HouseId })">
                         <h4>@project.HouseName</h4>
-                        <p>Budget: $@project.Budget</p>
                         <p>@(((int)project.SquareFootage * project.NumberOfFloors).ToString("N0")) ft<sup>2</sup></p>
+                        <p>Budget: $@project.Budget</p>
+
                     </a>
                 </div>
             }

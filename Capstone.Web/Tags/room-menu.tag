@@ -2,11 +2,7 @@
     <div class="roomContainer">
         <img src="/Content/padlock-key.svg" onclick="{ switchLock }" class="lock">
         <!--<i onclick="{ switchZoom }" class="fa fa-search-plus {activated: isZoom}"></i>-->
-        <div class="room-btn-container">
-            <button if="{roomIndex > 0}" id="roomBackButton" onclick="{ downRoom }" type="button">&lt</button>
-            <button if="{roomIndex < rooms.length - 1}" onclick="{ upRoom }" id="roomForwardButton" type="button">&gt</button>
             <button class="roomBtn newRoom accountformbtn" onclick="{newRoom}">New room</button>
-        </div>
         <img src="/Content/garbage.svg" onclick="{ deleteRoom }" class="trash">
 
         <input id="roomNameTextBox" type="hidden" placeholder="New room">
@@ -29,9 +25,12 @@
 
 
         .roomContainer {
+            border: 10px solid black;
             height: 100%;
+            padding: 10px;
             display: grid;
-            grid-template-areas: '... new new new new lock' 'door name name name name ...' 'stairs name name name name ...' 'window details details details details ...' 'cost cost ... ... ... trash';
+            grid-gap: 5px;
+            grid-template-areas: '... new new new new ...' 'door name name name name ...' 'stairs name name name name ...' 'window details details details details ...' 'lock cost ... ... ... trash';
             position: relative;
             background-image: url("/Content/PLYWOOD.jpg");
             box-shadow: inset 0 0 10px #000;
@@ -42,6 +41,8 @@
                 background-color: white;
                 transition-duration: 0.4s;
                 border-radius: 5px;
+                font-size: 1.0rem;
+                font-weight: 600;
                 border-style: none;
                 cursor: pointer;
             }
@@ -51,34 +52,13 @@
                     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
                 }
 
-        .room-btn-container {
-            grid-area: new;
-            display: grid;
-            grid-template-columns: 30% 40% 30%;
-        }
-
-        #roomBackButton {
-            grid-area: 1 / 1 / 2 / 2;
-            margin: auto;
-            font-size: 1.5rem;
-            font-weight: 700;
-            padding: 5px 10px;
-        }
 
         .roomBtn.newRoom {
-            margin: auto;
-            grid-area: 1 / 2 / 2 / 3;
+            display: inline-block;
+            grid-area: new;
             font-size: 1.5rem;
             font-weight: 600;
-            padding: 5px;
-        }
-
-        #roomForwardButton {
-            grid-area: 1 / 3 / 2 / 4;
-            margin: auto;
-            font-size: 1.5rem;
-            font-weight: 700;
-            padding: 5px 10px;
+            padding: 1px;
         }
 
         #door {

@@ -11,17 +11,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
 }
 
-<project-canvas houseName="@Model.HouseName" houseId="@Model.HouseId" length="@Model.Length" width="@Model.Width"></project-canvas>
-<div class="canvas-container" style="padding-top: 5vh">
-    <canvas id="c" width="1000" height="755"></canvas>
-    <cost-menu baseCost="@Model.BaseCost.ToString("C")" budget="@Model.Budget.ToString("C")" balance="@((Model.Budget - Model.BaseCost).ToString("C"))" squarefeet="@(Model.SquareFootage * Model.NumberOfFloors)" isOver="@(isOver)"></cost-menu>
-    <img id="legend" src="~/Content/legend.svg" />
-</div>
-<div id="bottomMenu">
-    <build-menu></build-menu>
-    <room-menu></room-menu>
-</div>
+    <div class="build-view">
+        <project-canvas houseName="@Model.HouseName" houseId="@Model.HouseId" length="@Model.Length" width="@Model.Width"></project-canvas>
+        <div class="build-container">
+            <canvas id="c" width="1000" height="755"></canvas>
+            <img id="legend" src="~/Content/legend.svg" />
+        </div>
+        <div id="bottomMenu">
+            <build-menu></build-menu>
+            <room-menu></room-menu>
+            <cost-menu baseCost="@Model.BaseCost.ToString("C")" budget="@Model.Budget.ToString("C")" balance="@((Model.Budget - Model.BaseCost).ToString("C"))" squarefeet="@(Model.SquareFootage * Model.NumberOfFloors)" isOver="@(isOver)"></cost-menu>
 
+        </div>
+    </div>
 @section scripts
 {
     <script src="~/Tags/room-menu.tag" type="riot/tag">

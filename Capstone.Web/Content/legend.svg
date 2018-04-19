@@ -1,23 +1,24 @@
 <svg width="266" height="26" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
  <g>
   <title>Layer 1</title>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_9" y2="6.583333" x2="251.249679" y1="6.583333" x1="200.249683" stroke-width="1.5" fill="none"/>
-  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_10" y2="11.583333" x2="250.749684" y1="0.75" x1="250.749684" stroke-width="1.5" fill="none"/>
+  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_10" y2="11.583333" x2="250.749684" y1="0.75" x1="250.749684" stroke-width="2.5" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_11" y2="11.249998" x2="200.91635" y1="0.750001" x1="200.91635" stroke-width="1.5" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_13" y2="11.583333" x2="200.916363" y1="0.75" x1="200.916363" stroke-width="1.5" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_14" y2="11.249999" x2="101.083304" y1="0.750002" x1="101.083304" stroke-width="1.5" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_15" y2="6.583334" x2="101.583317" y1="6.583334" x1="50.583321" stroke-width="1.5" fill="none"/>
-  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_16" y2="11.583334" x2="101.083322" y1="0.750001" x1="101.083322" stroke-width="1.5" fill="none"/>
+  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_16" y2="11.583334" x2="101.083322" y1="0.750001" x1="101.083322" stroke-width="2.5" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_17" y2="11.249999" x2="51.249987" y1="0.750002" x1="51.249987" stroke-width="1.5" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_18" y2="6.499868" x2="251.416444" y1="6.499868" x1="200.416448" stroke-width="2" fill="none"/>
-  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_19" y2="11.583334" x2="51.250001" y1="0.750001" x1="51.250001" stroke-width="1.5" fill="none"/>
-  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_20" y2="11.249999" x2="1.416666" y1="0.750002" x1="1.416666" stroke-width="1.5" fill="none"/>
+  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_19" y2="11.583334" x2="51.250001" y1="0.750001" x1="51.250001" stroke-width="2.5" fill="none"/>
+  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_20" y2="11.249999" x2="1.416666" y1="0.750002" x1="1.416666" stroke-width="2.5" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_26" y2="6.583334" x2="201.249955" y1="6.583334" x1="150.249959" stroke-width="1.5" fill="none"/>
-  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_27" y2="11.583334" x2="200.74996" y1="0.750001" x1="200.74996" stroke-width="1.5" fill="none"/>
+  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_27" y2="11.583334" x2="200.74996" y1="0.750001" x1="200.74996" stroke-width="2.5" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_28" y2="11.249999" x2="150.916625" y1="0.750002" x1="150.916625" stroke-width="1.5" fill="none"/>
-  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_30" y2="11.583334" x2="150.916639" y1="0.750001" x1="150.916639" stroke-width="1.5" fill="none"/>
-  <text stroke="#ffffff" transform="matrix(0.5284997526277272,0,0,0.565710908816398,35.47386984807681,82.00181353636027) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_31" y="-104.098998" x="9.731317" stroke-width="0" fill="#ffffff">10 ft</text>
-  <text stroke="#ffffff" transform="matrix(0.5284997526277272,0,0,0.565710908816398,35.47386984807681,82.00181353636027) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_32" y="-105.719352" x="387.685894" stroke-width="0" fill="#ffffff">50 ft</text>
+  <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_30" y2="11.583334" x2="150.916639" y1="0.750001" x1="150.916639" stroke-width="2.5" fill="none"/>
+  <text stroke="#ffffff" transform="matrix(0.5284997526277272,0,0,0.565710908816398,35.47386984807681,82.00181353636027) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_31" y="-105.277455" x="13.515611" fill="#ffffff">5 ft</text>
+  <text stroke="#ffffff" transform="matrix(0.5284997526277272,0,0,0.565710908816398,35.47386984807681,82.00181353636027) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_32" y="-105.719352" x="378.225165" fill="#ffffff">25 ft</text>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_33" y2="6.583334" x2="51.749996" y1="6.583334" x1="0.75" stroke-width="2" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_34" y2="6.499868" x2="102.916508" y1="6.499868" x1="51.916512" stroke-width="2" fill="none"/>
   <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_35" y2="6.583334" x2="151.416634" y1="6.583334" x1="100.416638" stroke-width="1.5" fill="none"/>

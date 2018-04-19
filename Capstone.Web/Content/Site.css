@@ -76,23 +76,26 @@ a{
 /* HOME PAGE */
 
 body#home {
-    background: linear-gradient(#8AF3FF, #18A999, #39222E);
+    background-image: url('GRADIENT-LOGO-1-REVERSE.png');
+    background-color: #000;
     background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 img#house.svg {
-    display: block;
+    display: none;
     margin: auto;
     width: 200px;
 }
 
 h1#homeTitle {
+    margin-bottom: 15vh;
+    margin-top: 10vh;
     background-color: #FFF;
     padding: 10px 20px;
     border-radius: 10px;
     border-style: none;
     font-family: sans-serif;
-    box-shadow: inset 0 0 10px #000;
 }
 
 button.accountHomeButton {
@@ -118,8 +121,10 @@ button#registerBtn.accountHomeBtn {
 /* LOGIN */
 
 body#login {
-    background: linear-gradient(#8AF3FF, #18A999, #95C623);
+    background-image: url('GRADIENT-LOGO-1.png');
+    background-color: #FFF;
     background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 img#trees.svg {
@@ -141,27 +146,39 @@ img#trees.svg {
 h1.accountFormTitle {
     display: inline-block;
     font-size: 3rem;
-    background-color: #FFF;
+    background-color: #000;
+    color: #FFF;
     padding: 10px 20px;
     border-radius: 10px;
     border-style: none;
     font-family: sans-serif;
-    box-shadow: inset 0 0 10px #000;
 }
 
 #login input {
     font-size: 1rem;
+    color: #FFF;
+    font-weight: 600;
+    background-color: #000;
     padding: 5px;
     border-radius: 5px;
     border-style: none;
 }
 
+div.remember {
+    display: inline-block;
+    background-color: #000;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 input#RememberMe {
+    background-color: #000;
     box-shadow: none;
 }
 
 .rememberMeText {
     color: white;
+    font-weight: 600;
     margin: 10px 0;
 }
 
@@ -175,11 +192,15 @@ input#RememberMe {
 /* REGISTER */
 
 body#register {
-    background: linear-gradient(#8AF3FF, #18A999, #CF098D);
+    background-image: url('GRADIENT-LOGO-4.png');
+    background-color: #FFF;
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-weight: 600;
 }
 
 img#paint.svg {
+    display: none;
     position: absolute;
     bottom: 50px;
     left: 50px;
@@ -188,6 +209,9 @@ img#paint.svg {
 
 #register input {
     font-size: 1rem;
+    color: #FFF;
+    font-weight: 600;
+    background-color: #000;
     padding: 5px;
     border-radius: 5px;
     border-style: none;
@@ -201,7 +225,7 @@ img#paint.svg {
 }
 
 .text-danger li {
-    color: white;
+    color: #000;
     text-align: left;
     font-size: 1.5rem;
     list-style: symbols(*);
@@ -211,15 +235,89 @@ img#paint.svg {
 
 #newProject {
     background: linear-gradient(#FFFA00, #5AFF15, #00FF7B);
+    background-image: url('HOUSE-LOGO-LINES.png'), linear-gradient(#FFFA00, #5AFF15, #00FF7B);
+    background-repeat: no-repeat;
+    font-weight: 600;
     background-attachment: fixed;
     height: 100%;
 }
 
 img#hills.svg {
     position: absolute;
+    display: none;
     bottom: 50px;
     left: 50px;
     width: 32vw;
+}
+
+div.form-container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: 'name name-2' 'floors floors-2' 'budget budget-2' 'foundation foundation-2' 'build build';
+    background-color: rgba(0, 0, 0, 0.60);
+    color: white;
+    position: relative;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 2;
+}
+
+.l {
+
+    display: inline-block;
+}
+
+#l-name {
+    grid-area: name;
+    display: inline-block;
+}
+
+#l-name-2 {
+    grid-area: name-2;
+    display: inline-block;
+}
+
+#l-floors {
+    grid-area: floors;
+    display: inline-block;
+}
+
+#l-floors-2 {
+    grid-area: floors-2;
+    display: inline-block;
+}
+
+#l-budget {
+    grid-area: budget;
+    display: inline-block;
+}
+
+#l-budget-2 {
+    grid-area: budget-2;
+    display: inline-block;
+}
+
+#l-foundation {
+    grid-area: foundation;
+    display: inline-block;
+
+}
+
+#l-foundation-2 {
+    grid-area: foundation-2;
+    display: inline-block;
+}
+
+input#Width {
+    width: 60px;
+}
+
+input#Length {
+    width: 60px;
+}
+
+#l-build {
+    grid-area: build;
 }
 
 #newProjectForm {
@@ -229,12 +327,18 @@ img#hills.svg {
     font-weight: 600;
     font-family: sans-serif;
     left: 50%;
-    top: 15%;
+    top: 25%;
     transform: translateX(-50%);
 }
 
-#newProject .form-container label {
-    margin-top: 100px;
+#newProject input {
+    font-size: 1rem;
+    color: #FFF;
+    font-weight: 600;
+    background-color: #000;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: none;
 }
 
 h1#new-project {
@@ -245,12 +349,19 @@ h1#new-project {
     font-family: sans-serif;
 }
 
-div.form-container {
-    background-color: rgba(255, 255, 255, 0.30);
-    position: relative;
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 2;
+select {
+    width: 40px;
+    text-align: center;
+    font-size: 1rem;
+    color: #FFF;
+    font-weight: 600;
+    background-color: #000;
+    padding-left: 15px;
+    border-radius: 5px;
+    border-style: none;
+    height: 28px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 div.form-container::before {
@@ -300,17 +411,14 @@ input#HasBasement {
 /* DASHBOARD */
 
 #dashboardSection {
-    
-    /*background-repeat: no-repeat;
-    background-position: center center;
-    height: 95vh;*/
-    background: linear-gradient(#FBBAFF, #EF73E9, #763C89);
-    height: 150%;
+    background-image: url('HOUSE-LOGO-WHITE-LINES.png'), linear-gradient(#FBBAFF, #EF73E9, #763C89);
+    background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: cover;
+    height: 100%;
 }
 
 img#plan.svg {
+    display: none;
     position: absolute;
     bottom: 50px;
     left: 50px;
@@ -353,6 +461,7 @@ div.plannedHouses {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    height: 70vh;
     width: 600px;
     justify-content: center;
     overflow: scroll;
@@ -372,15 +481,47 @@ div.plannedHouses {
 
 /* CANVAS */
 
-.canvas-container img#legend {
+div.build-view {
+    display: flex;
+    flex-direction: column;
+}
+
+project-canvas {
+    height: 10%;
+}
+
+.build-container {
+    background-image: url('GRADIENT-LOGO-3-REVERSE.png');
+    background-size: 60%;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom left;
+    height: 100%;
+}
+
+.canvas-container {
+    margin: auto;
+    background-image: url('GRASS-2.png');
+    border: 20px solid black;
+    box-shadow: inset 0 0 10px #000;
+    height: 100vh;
+}
+
+.build-container img#legend {
     z-index: 10;
     margin-left: 75vw;
     margin-top: 5vh;
     margin-bottom: 5vh;
+    
 
 }
 
 /* NAV */
+
+.nav {
+    height: 5%;
+}
 
 #logoff {
     margin-top: 5px;
@@ -399,29 +540,24 @@ div.plannedHouses {
     margin-top: 5px;
 }
 
-.canvas-container {
-	margin: auto;
-	background-image: url('grass-1.png');
-}
+
 
 #bottomMenu{
+    height: 30%;
     display: grid;
-    grid-template-columns: 65% 35%;
-}
-
-project-canvas {
-    
+    grid-template-columns: 40% 30% 30%;
 }
 
 build-menu{
-    /*grid-column: 1;
+    grid-column: 1;
     border-right: 2px solid lightgray;
-    height: 27vh;*/
+    height: 100%;
 }
 
 room-menu{
     grid-column: 2;
-    height: 27vh;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 #logoutForm{
@@ -430,11 +566,13 @@ room-menu{
 }
 
 cost-menu {
-    position: absolute;
-    top: 40%;
-    left: 10%;
-    background-color: aliceblue;
-    border-radius: 5px;
-    padding: 1em;
-    border: 5px solid black;
+    border: 10px solid black;
+    grid-column: 3;
+    color: black;
+    font-family: sans-serif;
+    height: 100%;
+    font-weight: 600;
+    font-size: 1.5rem;
+    background-color: #eb78b3;
+    box-shadow: inset 0 0 10px #000;
 }

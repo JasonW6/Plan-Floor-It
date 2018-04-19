@@ -22,7 +22,7 @@
         }
 
         .head {
-            background-color: #8AF3FF;
+            background-color: #cddeed;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             min-height: 80px;
@@ -78,7 +78,20 @@
     </style>
 
     <script>
+
         var canvas = new fabric.Canvas('c', { preserveObjectStacking: true });
+
+        let textWidth = new fabric.Text('', { left: 100, top: 100 });
+        let textHeight = new fabric.Text('', { left: 100, top: 100 });
+        textWidth.selectable = false;
+        textHeight.selectable = false;
+        textWidth.fontWeight = 600;
+        textHeight.fontWeight = 600;
+        textWidth.fontSize = 32;
+        textHeight.fontSize = 32;
+        textWidth.fontFamily = 'Helvetica';
+        textHeight.fontFamily = 'Helvetica';
+
 
 		let concrete = '/Content/concrete.png';
 		let plywood = '/Content/plywood.jpg';
@@ -96,6 +109,9 @@
 
         this.on("mount", function () {
             console.log("loaded");
+
+            canvas.selection = false;
+
 
             this.opts.bus.on("newRoom", data => {
                 this.newRoom(data);
@@ -141,21 +157,50 @@
                     opts.bus.trigger("changeRoom", currentRoom);
                 } else if (e.target.id === 'object') {
                     opts.bus.trigger("objectView", e.target);
+                } else {
+                    textWidth.set('text', '');
+                    textHeight.set('text', '');
                 }
 
                 console.log(e.target.id);
             });
 
             canvas.on('object:scaling', function () {
+
                 const active = canvas.getActiveObject();
+
                 active.set({ width: active.width * active.scaleX, scaleX: 1, height: active.height * active.scaleY, scaleY: 1 });
-                this.roomArea = active.width * active.height;
-                console.log(floorCostsMid);
-                opts.bus.trigger("updateRoomCost", ((this.roomArea / 25) * floorCostsMid[active.flooring]));
                 active.setCoords();
+
+                this.roomArea = active.width * active.height;
+                opts.bus.trigger("updateRoomCost", ((this.roomArea / 25) * floorCostsMid[active.flooring]));
+
+                let midBottom = active.oCoords.mb;
+                let midLeft = active.oCoords.ml;
+
+                console.log("%%%%%%" + midLeft);
+
+                canvas.bringForward(textWidth);
+                canvas.bringForward(textHeight);
+
+                let width = round(active.width / 10).toString();
+                let height = round(active.height / 10).toString();
+
+                textWidth.set('text', width + "'");
+                textWidth.set("left", midBottom.x - 30);
+                textWidth.set("top", midBottom.y);
+
+                textHeight.set('text', height + "'");
+                textHeight.set("left", midLeft.x - 80);
+                textHeight.set("top", midLeft.y - 20);
+                
             });
 
             canvas.on("object:moving", function (e) {
+
+                textWidth.set('text', '');
+                textHeight.set('text', '');
+
                 let movingBox = e.target;
                 const boundingBox = canvas.item(0);
                 var top = movingBox.top;
@@ -170,6 +215,8 @@
 
                 movingBox.set("left", Math.min(Math.max(left, leftBound), rightBound - movingBox.width));
                 movingBox.set("top", Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
+
+
 
             });
 
@@ -454,6 +501,12 @@
                 mtr: false
             });
         }
+
+        function round(number) {
+            var factor = Math.pow(10, 1);
+            return Math.round(number * factor) / factor;
+        }
+
 
     </script>
 </project-canvas>
