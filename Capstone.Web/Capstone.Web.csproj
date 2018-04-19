@@ -222,6 +222,7 @@
     <Content Include="Content\CARPET-LIGHT.png" />
     <Content Include="Content\carpet.jpg" />
     <Content Include="Content\chair.png" />
+    <Content Include="Content\COFFEE-TABLE.png" />
     <Content Include="Content\concrete.jpg" />
     <Content Include="Content\concrete.png" />
     <Content Include="Content\couch.png" />
@@ -255,6 +256,7 @@
     <Content Include="Content\HOUSE-LOGO-WHITE-LINES.png" />
     <Content Include="Content\HouseOnHill.jpg" />
     <Content Include="Content\legend.svg" />
+    <Content Include="Content\LIGHTER-CONCRETE.png" />
     <Content Include="Content\marble.jpg" />
     <Content Include="Content\note.svg" />
     <Content Include="Content\padlock-key.svg" />
@@ -262,6 +264,8 @@
     <Content Include="Content\plan.svg" />
     <Content Include="Content\plywood.jpg" />
     <Content Include="Content\rotate-to-right-button.svg" />
+    <Content Include="Content\SECTIONAL-L.png" />
+    <Content Include="Content\SECTIONAL-R.png" />
     <Content Include="Content\sink.png" />
     <Content Include="Content\STAIRS-DRAWN.png" />
     <Content Include="Content\STAIRS-small.png" />
@@ -270,6 +274,7 @@
     <Content Include="Content\tile.jpg" />
     <Content Include="Content\TILE.png" />
     <Content Include="Content\toilet.png" />
+    <Content Include="Content\TUB.png" />
     <Content Include="Content\WINDOW-BLACK.png" />
     <Content Include="Content\WINDOW-TRANSPARENT.png" />
     <Content Include="Content\WINDOW-WHITE-small.png" />
