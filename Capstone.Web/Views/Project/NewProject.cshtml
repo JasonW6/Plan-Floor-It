@@ -15,7 +15,7 @@
                 <label class="l" id="l-name">
                     Project Name
                 </label>
-                <label id="l-name-2"> @Html.TextBoxFor(m => m.HouseName)</label>
+                <label id="l-name-2"> @Html.TextBoxFor(m => m.HouseName, new { autocomplete = "off" })</label>
                 <label class="l" id="l-floors">
                     Floors
                 </label>
@@ -33,8 +33,8 @@
                 <option value="Canton-Massillon">Canton-Massillon</option>
             </select>
         </label>*@
-                <label class="l" id="l-budget">Budget</label> <label id="l-budget-2">@Html.TextBoxFor(m => m.Budget)</label>
-                <label class="l" id="l-foundation">Foundation</label> <label id="l-foundation-2">@Html.TextBoxFor(m => m.Length, new { placeholder = "Length" }) X @Html.TextBoxFor(m => m.Width, new { placeholder = "Width" })</label>
+                <label class="l" id="l-budget">Budget</label> <label id="l-budget-2">@Html.TextBoxFor(m => m.Budget, new { autocomplete = "off" })</label>
+                <label class="l" id="l-foundation">Foundation</label> <label id="l-foundation-2"><input type="number" step="0.01"  name="Length" max="150" min="10" autocomplete="off" /> X <input type="number" step="0.01"  name="Width" max="150" min="10" autocomplete="off" /> </label>
                 <input id="l-build" class="navbarBtn accountformbtn" type="submit" value="Build" />
             </div>
         </div>
