@@ -27,7 +27,6 @@
             grid-template-columns: 1fr 1fr 1fr;
             min-height: 80px;
             height: 7vh;
-            box-shadow: 0 0 10px #000;
             z-index: 2;
             border: 10px solid #000;
             box-shadow: inset 0 0 10px #000;
@@ -247,6 +246,15 @@
                 console.log("Mid Costs: " + floorData);
                 floorCostsMid = floorData;
             });
+
+            window.addEventListener("keydown", (e) => {
+                console.log("Keyyyy " + e.keyCode);
+
+                if (e.keyCode === 8) {
+                    this.deleteRoom();
+                }
+
+            });
         });
 
 
@@ -369,10 +377,11 @@
 
             fabric.Image.fromURL(imgAddress, function (myImg) {
 
-                myImg.id = "object";
-                canvas.add(myImg);
-                myImg.center();
+                myImg.id = "object"; 
                 hideControls(myImg);
+                myImg.set("left", 500);
+                myImg.set("top", 670);
+                canvas.add(myImg);
                 canvas.renderAll();
 
             });
@@ -383,10 +392,15 @@
             fabric.Image.fromURL(('/Content/' + image), function (myImg) {
 
                 console.log("Add Object: " + myImg);
-				myImg.id = "object";
+                myImg.id = "object";
+                hideControls(myImg);
+                myImg.set("left", 500);
+                myImg.set("top", 670);
                 canvas.add(myImg);
                 canvas.renderAll();
             });
+
+            
 
         }
 
