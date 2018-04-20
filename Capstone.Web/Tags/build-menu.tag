@@ -84,17 +84,16 @@
 
             .materials p {
                 display: block;
-                background-color: rgba(0, 0, 0, 0.6);
                 position: absolute;
                 top: 0;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 90%;
                 text-align: center;
-                color: white;
+                color: black;
                 margin: 30px 0;
                 padding: 5px;
-                font-size: 1.2rem;
+                font-size: 1.5rem;
                 font-weight: 600;
                 border-radius: 5px;
             }
@@ -106,7 +105,6 @@
             width: 150px;
             border-radius: 5px;
             margin: auto;
-            box-shadow: 0 0 10px #000;
             position: relative;
         }
 
@@ -115,20 +113,17 @@
         }
 
         .matImg {
-            width: 60%;
-            height: 60%;
-            min-height: 87px;
+            display: block;
+            max-width: 150px;
+            max-height: 100px;
+            width: auto;
+            height: auto;
             transition-duration: 0.4s;
             margin: 0 20%;
-            border: 2px solid white;
-            border-radius: 5px;
-            box-shadow: inset 0 0 10px #000;
             cursor: pointer;
         }
 
-            .matImg:hover {
-                box-shadow: 0 0 10px #000;
-            }
+
 
         div.slick-track {
             width: 100%;
