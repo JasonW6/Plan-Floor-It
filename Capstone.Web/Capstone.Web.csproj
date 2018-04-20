@@ -220,6 +220,7 @@
     <Content Include="Content\bed.png" />
     <Content Include="Content\brick-wall.svg" />
     <Content Include="Content\bungalow.jpeg" />
+    <Content Include="Content\BUSH-1.png" />
     <Content Include="Content\CARPET-DARK.png" />
     <Content Include="Content\CARPET-LIGHT.png" />
     <Content Include="Content\carpet.jpg" />
@@ -276,6 +277,8 @@
     <Content Include="Content\tile.jpg" />
     <Content Include="Content\TILE.png" />
     <Content Include="Content\toilet.png" />
+    <Content Include="Content\TREE-1.png" />
+    <Content Include="Content\TREE-2.png" />
     <Content Include="Content\TUB.png" />
     <Content Include="Content\WINDOW-BLACK.png" />
     <Content Include="Content\WINDOW-TRANSPARENT.png" />
