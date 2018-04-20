@@ -529,7 +529,7 @@ project-canvas {
 
 .canvas-container {
     margin: 20px auto;
-    background-image: url('GRASS-2.png');
+    background-image: url('Appharbor-Grass.png');
     border: 20px solid black;
     box-shadow: inset 0 0 10px #000;
     height: 100vh;
@@ -537,7 +537,7 @@ project-canvas {
 
 .build-container img#legend {
     z-index: 1;
-    background-image: url("GRASS-2.png");
+    background-image: url("Appharbor-Grass.png");
     padding: 20px;
     margin-left: 75vw;
     margin-top: 5vh;

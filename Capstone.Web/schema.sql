@@ -87,3 +87,9 @@ INSERT INTO Materials VALUES ('Couch (R)', 0, 3.80, 7.50, 20.00, 'SECTIONAL-R.pn
 INSERT INTO Materials VALUES ('Bathtub', 0, 3.80, 7.50, 20.00, 'tub.png')
 INSERT INTO Materials VALUES ('Bed', 0, 3.80, 7.50, 20.00, 'bed.png')
 
+INSERT INTO Materials VALUES ('Tree', 0, 3.80, 7.50, 20.00, 'TREE-1.png')
+INSERT INTO Materials VALUES ('Large Tree', 0, 3.80, 7.50, 20.00, 'TREE-2.png')
+INSERT INTO Materials VALUES ('Bush', 0, 3.80, 7.50, 20.00, 'BUSH-1.png')
+
+
+

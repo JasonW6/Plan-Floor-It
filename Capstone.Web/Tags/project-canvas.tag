@@ -383,7 +383,7 @@
             fabric.Image.fromURL(('/Content/' + image), function (myImg) {
 
                 console.log("Add Object: " + myImg);
-
+				myImg.id = "object";
                 canvas.add(myImg);
                 canvas.renderAll();
             });
